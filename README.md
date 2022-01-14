@@ -1,7 +1,4 @@
-# Note: If you are creating an Issue, Please create at the package's repository. This is the Packages Demo repository, Thanks!
-https://github.com/kempsteven/vue-html2pdf/issues
-
-# test-npm
+# Note: Report Generator Machine
 
 ## Project setup
 ```
