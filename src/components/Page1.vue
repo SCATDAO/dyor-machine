@@ -9,7 +9,7 @@
       <b>2022</b>
     </div>
     <div class="css-dyor-doc-rcb">
-      <span>21 de Septiembre 2022</span>
+      <span>21 SEPTEMBER 2022</span>
     </div>
     <div class="css-dyor-doc-rub">
       <span>Community Report by {{ reportDataDecoded[0].an }}</span>
@@ -58,7 +58,6 @@ export default {
 .css-dyor-doc-aiw {
   width: 100px;
   height: 100px;
-  background: red;
   background-image: url("https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/6117f689ce4c7529d5850b8a_sundae.png");
   background-size: contain;
   box-shadow: var(--shadow-blue);

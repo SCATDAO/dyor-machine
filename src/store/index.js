@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getField, updateField } from 'vuex-map-fields';
+import questionList from "../data"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        questionList: questionList,
         reportDataDecoded: Object,
         controlValue: {
             showLayout: false,
@@ -26,7 +28,7 @@ export default new Vuex.Store({
         updateField,
         updateReportData(state, payload) {
             state.reportDataDecoded = payload
-            console.log( JSON.stringify(state.reportDataDecoded))
+            console.log(JSON.stringify(state.reportDataDecoded))
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true
@@ -35,8 +37,11 @@ export default new Vuex.Store({
     },
     getters: {
         getField,
-        sendMeReport(state){
+        sendMeReport(state) {
             return state.reportDataDecoded
+        },
+        sendMeQuestion(state) {
+            return state.questionList
         }
     },
 })
