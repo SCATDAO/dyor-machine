@@ -8,12 +8,14 @@ Vue.use(VueRouter)
 
 
 const routes = [
-  { path: '/', component: DyorGenerator },
-  { path: '/show', component: DyorGenerator }
+  { path: '/', component: DyorGenerator, props: false },
+  { path: '/show/:data', component: DyorGenerator, name: 'show', props: true },
+  { path: '/download/:data', component: DyorGenerator, name: 'download', props: true },
 ]
 
 const router = new VueRouter({
-  routes 
+  mode: 'history',
+  routes
 })
 
 

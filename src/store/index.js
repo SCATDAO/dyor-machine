@@ -6,26 +6,37 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        reportDataDecoded: Object,
         controlValue: {
-            showLayout: true,
+            showLayout: false,
             floatLayout: true,
             enableDownload: true,
-            previewModal: true,
+            previewModal: false,
             paginateElementsByHeight: 1100,
             manualPagination: false,
-            filename: 'Hee Hee',
+            filename: 'dyor-report',
             pdfQuality: 2,
             pdfFormat: 'a4',
             pdfOrientation: 'portrait',
             pdfContentWidth: '800px'
-        }
+        },
     },
 
     mutations: {
-        updateField
+        updateField,
+        updateReportData(state, payload) {
+            state.reportDataDecoded = payload
+            console.log( JSON.stringify(state.reportDataDecoded))
+        },
+        showReportLayout(state) {
+            state.controlValue.showLayout = true
+            console.log("yes")
+        }
     },
-
     getters: {
-        getField
+        getField,
+        sendMeReport(state){
+            return state.reportDataDecoded
+        }
     },
 })

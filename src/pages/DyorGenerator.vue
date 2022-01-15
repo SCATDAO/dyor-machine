@@ -335,13 +335,22 @@ import Page3 from "../components/Page3";
 
 import { mapFields } from "vuex-map-fields";
 
+import { Blackhole } from "blackhole-qr";
+
 export default {
   name: "DyorGenerator",
+  props: {
+    data: String,
+  },
   components: {
     VueHtml2pdf,
     Page1,
     Page2,
     Page3,
+  },
+  created() {
+    this.decodeReportData();
+    this.knowCurrentRoute();
   },
   data() {
     return {
@@ -351,28 +360,22 @@ export default {
       pdfDownloaded: false,
     };
   },
-
+  mounted() {},
   computed: {
     ...mapFields(["controlValue"]),
-
     htmlToPdfOptions() {
       return {
         margin: 0,
-
-        filename: "hee hee.pdf",
-
+        filename: "dyor-report.pdf",
         image: {
           type: "jpeg",
           quality: 0.98,
         },
-
         enableLinks: true,
-
         html2canvas: {
           scale: this.controlValue.pdfQuality,
           useCORS: true,
         },
-
         jsPDF: {
           unit: "in",
           format: this.controlValue.pdfFormat,
@@ -381,26 +384,47 @@ export default {
       };
     },
   },
-
   methods: {
+    knowCurrentRoute() {
+      if (this.$route.name === "download") {
+        this.downloadPdf();
+      }
+      if (this.$route.name === "show") {
+        this.$store.commit('showReportLayout')
+      }
+    },
+    decodeReportData() {
+      const quickResponse = new Blackhole();
+      const result = quickResponse.decodeByValue(this.data);
+      this.$store.commit("updateReportData", result);
+    },
     async downloadPdf() {
       if (!(await this.validateControlValue())) return;
 
       this.$refs.html2Pdf.generatePdf();
     },
-
+    async beforeDownload({ html2pdf, options, pdfContent }) {
+      console.log(`On Before PDF Generation`);
+      // await html2pdf().set(options).from(pdfContent).toPdf().get('pdf').then((pdf) => {
+      // 	const totalPages = pdf.internal.getNumberOfPages()
+      // 	for (let i = 1; i <= totalPages; i++) {
+      // 		pdf.setPage(i)
+      // 		pdf.setFontSize(10)
+      // 		pdf.setTextColor(150)
+      // 		pdf.text('Page ' + i + ' of ' + totalPages, (pdf.internal.pageSize.getWidth() * 0.88), (pdf.internal.pageSize.getHeight() - 0.3))
+      // 	}
+      // }).save()
+    },
     validateControlValue() {
       if (this.controlValue.pdfQuality > 2) {
         alert("pdf-quality value should only be 0 - 2");
         this.controlValue.pdfQuality = 2;
-
         return false;
       }
 
       if (!this.controlValue.paginateElementsByHeight) {
         alert("paginate-elements-by-height value cannot be empty");
         this.controlValue.paginateElementsByHeight = 1400;
-
         return false;
       }
 
@@ -423,24 +447,20 @@ export default {
       if (!paperSizes.includes(this.controlValue.pdfFormat)) {
         alert(`pdf-format value should only be ${paperSizes}`);
         this.controlValue.pdfFormat = "a4";
-
         return false;
       }
 
       if (!this.controlValue.pdfOrientation) {
         alert("pdf-orientation value cannot be empty");
         this.controlValue.pdfOrientation = "portrait";
-
         return false;
       }
 
       if (!this.controlValue.pdfContentWidth) {
         alert("pdf-content-width value cannot be empty");
         this.controlValue.pdfContentWidth = "800px";
-
         return false;
       }
-
       return true;
     },
 
@@ -456,20 +476,6 @@ export default {
     hasPaginated() {
       console.log(`PDF has been paginated`);
     },
-
-    async beforeDownload({ html2pdf, options, pdfContent }) {
-      console.log(`On Before PDF Generation`);
-      // await html2pdf().set(options).from(pdfContent).toPdf().get('pdf').then((pdf) => {
-      // 	const totalPages = pdf.internal.getNumberOfPages()
-      // 	for (let i = 1; i <= totalPages; i++) {
-      // 		pdf.setPage(i)
-      // 		pdf.setFontSize(10)
-      // 		pdf.setTextColor(150)
-      // 		pdf.text('Page ' + i + ' of ' + totalPages, (pdf.internal.pageSize.getWidth() * 0.88), (pdf.internal.pageSize.getHeight() - 0.3))
-      // 	}
-      // }).save()
-    },
-
     hasDownloaded(blobPdf) {
       console.log(`PDF has downloaded yehey`);
       this.pdfDownloaded = true;
