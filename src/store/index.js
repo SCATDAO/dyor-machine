@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { getField, updateField } from 'vuex-map-fields';
+import questionList from "../data"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        questionList: questionList,
         reportDataDecoded: Object,
         controlValue: {
             showLayout: false,
@@ -26,7 +28,12 @@ export default new Vuex.Store({
         updateField,
         updateReportData(state, payload) {
             state.reportDataDecoded = payload
-            console.log( JSON.stringify(state.reportDataDecoded))
+
+            state.questionList.forEach((e) => {
+                e.answer = payload[e.id].an
+                e.textarea = payload[e.id].ta
+            })
+            console.log(JSON.stringify(state.questionList[0].answer))
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true
@@ -35,8 +42,11 @@ export default new Vuex.Store({
     },
     getters: {
         getField,
-        sendMeReport(state){
+        sendMeReport(state) {
             return state.reportDataDecoded
+        },
+        sendMeQuestion(state) {
+            return state.questionList
         }
     },
 })
