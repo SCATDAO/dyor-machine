@@ -381,6 +381,7 @@ export default {
           format: this.controlValue.pdfFormat,
           orientation: this.controlValue.pdfOrientation,
         },
+        pagebreak: { mode: 'avoid-all' }
       };
     },
   },

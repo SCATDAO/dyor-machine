@@ -28,7 +28,12 @@ export default new Vuex.Store({
         updateField,
         updateReportData(state, payload) {
             state.reportDataDecoded = payload
-            console.log(JSON.stringify(state.reportDataDecoded))
+
+            state.questionList.forEach((e) => {
+                e.answer = payload[e.id].an
+                e.textarea = payload[e.id].ta
+            })
+            console.log(JSON.stringify(state.questionList[0].answer))
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true

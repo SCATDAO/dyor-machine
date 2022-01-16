@@ -60,8 +60,7 @@ export default {
   height: 100px;
   background-image: url("https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/6117f689ce4c7529d5850b8a_sundae.png");
   background-size: contain;
-  box-shadow: var(--shadow-blue);
-  border: 1px solid var(--border-primary);
+  box-shadow: 1px 1px 20px var(--shadow-blue);
   border-radius: 8px;
 }
 
