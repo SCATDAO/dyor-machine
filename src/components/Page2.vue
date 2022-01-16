@@ -31,7 +31,6 @@
         </div>
         <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
       </div>
-  
     </div>
 
     <div class="css-dyor-doc-rtw">
@@ -65,7 +64,6 @@
         </div>
         <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
       </div>
-  
     </div>
 
     <div class="css-dyor-doc-rtw">
@@ -99,7 +97,6 @@
         </div>
         <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
       </div>
-  
     </div>
 
     <div class="css-dyor-doc-rtw">
@@ -133,7 +130,6 @@
         </div>
         <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
       </div>
-  
     </div>
   </div>
 </template>
@@ -187,8 +183,8 @@ export default {
         if (option.id === question.answer) {
           return option.value.toFixed(2);
         }
-        return (0.0).toFixed(2);
       }
+      return (0.0).toFixed(2);
     },
     knowMaxValue(question) {
       let counter = [];
