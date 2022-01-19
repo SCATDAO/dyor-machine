@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueApexCharts from 'vue-apexcharts'
 
 import store from './store'
 import router from "./router"
 
+import VueApexCharts from 'vue-apexcharts'
 
 Vue.use(VueApexCharts)
 
