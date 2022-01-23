@@ -32,13 +32,12 @@ export default new Vuex.Store({
             state.questionList.forEach((e) => {
                 e.answer = payload[e.id].an
                 e.textarea = payload[e.id].ta
+                e.input = payload[e.id].ed
             })
-            console.log(JSON.stringify(state.questionList[0].answer))
+            console.log(JSON.stringify(state.questionList[8]))
         },
         showReportLayout(state) {
-            state.controlValue.showLayout = true
-            console.log("yes")
-        }
+            state.controlValue.showLayout = true      }
     },
     getters: {
         getField,

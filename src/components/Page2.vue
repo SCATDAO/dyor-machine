@@ -2,8 +2,10 @@
   <div class="css-dyor-doc-pwo">
     <div class="css-dyor-doc-bar">
       <div class="css-dyor-doc-brw">
-        <div class="css-dyor-doc-sbc">Public distribution</div>
-        <div class="css-dyor-doc-swc">Fair public and private distribution</div>
+        <div class="css-dyor-doc-sbc">Tokenomics</div>
+        <div class="css-dyor-doc-swc">
+          Public and private token distribution
+        </div>
       </div>
       <div class="css-dyor-doc-sbg" id="chart1">
         <apexchart
@@ -47,36 +49,14 @@ export default {
   created() {
     this.updateQuestionList();
     this.evaluatePercentage();
-  },
-  methods: {
-    searchByCategory(category) {
-      let byCategory = [];
-      for (const question of this.questionList) {
-        if (question.category === category) {
-          byCategory.push(question);
-        }
-      }
-      return byCategory;
-    },
-    evaluatePercentage() {
-      console.log(this.questionList[8].answer, "e");
-    },
-    updateQuestionList() {
-      this.questionList = this.$store.getters.sendMeQuestion;
-      console.log(this.questionList);
-    },
-    knowAnswerOption(question) {
-      for (const option of question.options) {
-        if (option.id === question.answer) {
-          return option.name;
-        }
-      }
-    },
+    this.updateDataReport();
+    this.updateChartData();
   },
   data() {
     return {
+      reportDataDecoded: Object,
       questionList: Object,
-      donutData: [7, 13, 80],
+      donutData: [],
       donutOption: {
         chart: {
           id: "chart1",
@@ -105,11 +85,7 @@ export default {
             },
           },
         ],
-        labels: [
-          "Development team / Early investors",
-          "Public sale or rewards",
-          "Rest of tokenomics distribution",
-        ],
+        labels: [],
       },
 
       barData: [
@@ -192,6 +168,55 @@ export default {
         },
       },
     };
+  },
+  methods: {
+    updateChartData() {
+      let dataSorted = [];
+      let labelSorted = [];
+      this.reportDataDecoded[9].ed.forEach((data) => {
+        dataSorted.push(data.per);
+      });
+      dataSorted.sort(function (a, b) {
+        return a - b;
+      });
+
+      for (const element of dataSorted) {
+        for (const per of this.reportDataDecoded[9].ed)
+          if (element === per.per) {
+            labelSorted.push(per.name);
+          }
+      }
+      console.log(dataSorted);
+      console.log(labelSorted);
+      this.donutData = dataSorted;
+      this.donutOption.labels = labelSorted;
+    },
+    updateDataReport() {
+      this.reportDataDecoded = this.$store.getters.sendMeReport;
+    },
+    searchByCategory(category) {
+      let byCategory = [];
+      for (const question of this.questionList) {
+        if (question.category === category) {
+          byCategory.push(question);
+        }
+      }
+      return byCategory;
+    },
+    evaluatePercentage() {
+      console.log(this.questionList[8].answer, "e");
+    },
+    updateQuestionList() {
+      this.questionList = this.$store.getters.sendMeQuestion;
+      console.log(this.questionList);
+    },
+    knowAnswerOption(question) {
+      for (const option of question.options) {
+        if (option.id === question.answer) {
+          return option.name;
+        }
+      }
+    },
   },
   mounted() {
     this.$nextTick(() => {
