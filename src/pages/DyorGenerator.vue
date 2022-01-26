@@ -321,6 +321,7 @@
         <Page1 />
         <Page2 />
         <Page3 />
+        <Page4 />
       </section>
     </vue-html2pdf>
   </section>
@@ -332,6 +333,7 @@ import VueHtml2pdf from "vue-html2pdf";
 import Page1 from "../components/Page1";
 import Page2 from "../components/Page2";
 import Page3 from "../components/Page3";
+import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
 
@@ -347,6 +349,7 @@ export default {
     Page1,
     Page2,
     Page3,
+    Page4,
   },
   created() {
     this.decodeReportData();
@@ -381,7 +384,7 @@ export default {
           format: this.controlValue.pdfFormat,
           orientation: this.controlValue.pdfOrientation,
         },
-        pagebreak: { mode: 'avoid-all' }
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy']}
       };
     },
   },
@@ -397,7 +400,7 @@ export default {
     decodeReportData() {
       const quickResponse = new Blackhole();
       const result = quickResponse.decodeByValue(this.data);
-      this.$store.commit("updateReportData", result);
+      this.$store.commit("updateReportData", JSON.parse(result));
     },
     async downloadPdf() {
       if (!(await this.validateControlValue())) return;
