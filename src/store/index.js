@@ -15,7 +15,7 @@ export default new Vuex.Store({
             enableDownload: true,
             previewModal: false,
             paginateElementsByHeight: 1100,
-            manualPagination: false,
+            manualPagination: true,
             filename: 'dyor-report',
             pdfQuality: 2,
             pdfFormat: 'a4',
@@ -34,7 +34,7 @@ export default new Vuex.Store({
                 e.textarea = payload[e.id].ta
                 e.input = payload[e.id].ed
             })
-            console.log(JSON.stringify(state.questionList[8]))
+            console.log(state.questionList)
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true      }
