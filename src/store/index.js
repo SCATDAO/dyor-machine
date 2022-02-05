@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { getField, updateField } from 'vuex-map-fields';
 import questionList from "../data"
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -37,7 +38,8 @@ export default new Vuex.Store({
             console.log(state.questionList)
         },
         showReportLayout(state) {
-            state.controlValue.showLayout = true      }
+            state.controlValue.showLayout = true
+        }
     },
     getters: {
         getField,

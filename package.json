@@ -1,5 +1,5 @@
 {
-  "name": "vue-html2pdf-demo",
+  "name": "DyorTool",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "apexcharts": "^3.33.0",
-    "blackhole-qr": "^2.0.2",
+    "axios": "^0.25.0",
+    "bestial-encoder": "^1.0.9",
     "core-js": "^3.4.7",
     "html2pdf.js": "^0.9.2",
+    "qrious": "^4.0.2",
     "vue": "^2.6.10",
     "vue-apexcharts": "^1.6.2",
     "vue-html2pdf": "^1.8.0",

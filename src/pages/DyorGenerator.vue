@@ -337,8 +337,6 @@ import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
 
-import { Blackhole } from "blackhole-qr";
-
 export default {
   name: "DyorGenerator",
   props: {
@@ -352,7 +350,6 @@ export default {
     Page4,
   },
   created() {
-    this.decodeReportData();
     this.knowCurrentRoute();
   },
   data() {
@@ -396,11 +393,6 @@ export default {
       if (this.$route.name === "show") {
         this.$store.commit('showReportLayout')
       }
-    },
-    decodeReportData() {
-      const quickResponse = new Blackhole();
-      const result = quickResponse.decodeByValue(this.data);
-      this.$store.commit("updateReportData", JSON.parse(result));
     },
     async downloadPdf() {
       if (!(await this.validateControlValue())) return;
