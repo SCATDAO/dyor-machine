@@ -35,7 +35,7 @@ export default new Vuex.Store({
                 e.textarea = payload[e.id].ta
                 e.input = payload[e.id].ed
             })
-            console.log(state.questionList)
+            console.log("TEST2", JSON.stringify(state.reportDataDecoded[0]))
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true
@@ -45,6 +45,9 @@ export default new Vuex.Store({
         getField,
         sendMeReport(state) {
             return state.reportDataDecoded
+        },
+        sendMeAudit(state){
+            return state.reportDataDecoded[0]
         },
         sendMeQuestion(state) {
             return state.questionList

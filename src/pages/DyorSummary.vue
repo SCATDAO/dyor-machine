@@ -306,15 +306,28 @@
         <div class="css-work-finished-tw">
           <div class="css-work-finished-ttw">
             <div class="css-work-finished-stw">
-              <div class="css-work-finished-stt">SUNDAESWAP</div>
+              <div class="css-work-finished-stt">
+                {{ newAudit.pn }}
+                <span
+                  style="
+                    color: var(--text-color-secondary);
+                    font-weight: initial;
+                  "
+                  >- {{ newAudit.ps }}</span
+                >
+              </div>
               <div class="css-work-finished-sfw">
-                <div class="css-work-finished-sta"></div>
+                <div class="css-work-finished-sta">
+                  <div class="css-work-finished-txa">
+                    <img :src="newAudit.pl" alt="" />
+                  </div>
+                </div>
                 <div class="css-work-finished-std">
                   <div>Total Percentage</div>
-                  <div class="css-work-finished-stx">
-                    {{ totalScore }}
+                  <div class="css-work-finished-stx">78%</div>
+                  <div class="css-work-finished-stm">
+                    Created by {{ newAudit.an }}
                   </div>
-                  <div class="css-work-finished-stm">by Holder3289</div>
                 </div>
               </div>
               <div class="css-work-finished-sfw">
@@ -357,16 +370,28 @@
             <div class="css-work-finished-sts">
               <div class="css-work-finished-sti">
                 Development Team
-                <span>{{ evaluateCategory("Development Team") }}</span>
+                <span
+                  >{{ evaluateCategory("Development Team") }} /
+                  {{ KnowMaxCategory("Development Team") }}</span
+                >
               </div>
               <div class="css-work-finished-sti">
-                Tokenomics<span>{{ evaluateCategory("Tokenomics") }}</span>
+                Tokenomics<span
+                  >{{ evaluateCategory("Tokenomics") }} /
+                  {{ KnowMaxCategory("Tokenomics") }}</span
+                >
               </div>
               <div class="css-work-finished-sti">
-                Community<span>{{ evaluateCategory("Community") }}</span>
+                Community<span
+                  >{{ evaluateCategory("Community") }} /
+                  {{ KnowMaxCategory("Community") }}</span
+                >
               </div>
               <div class="css-work-finished-sti">
-                Trading Metrics<span>{{ evaluateCategory("Metrics") }}</span>
+                Trading Metrics<span
+                  >{{ evaluateCategory("Metrics") }} /
+                  {{ KnowMaxCategory("Metrics") }}</span
+                >
               </div>
             </div>
             <div class="css-work-finished-sr">
@@ -378,12 +403,15 @@
             </div>
           </div>
           <div class="css-work-finished-ttt">
-            <div class="css-work-finished-qai" @click="deployCategories(0)">
+            <div
+              class="css-work-finished-qai"
+              v-on:click="dropdown.e1 = !dropdown.e1"
+            >
               Development Team
               <button>
                 <svg
                   class="css-work-finished-arrow"
-                  :class="{ active: openDownCategory[0] === true }"
+                  :class="{ active: dropdown.e1 === true }"
                   width="20"
                   height="20"
                   viewBox="0 0 1024 1024"
@@ -396,7 +424,7 @@
                 </svg>
               </button>
             </div>
-            <template v-if="openDownCategory[0] === true">
+            <template v-if="dropdown.e1 === true">
               <div class="css-work-finished-qao">
                 <div class="css-work-finished-qah">
                   <div class="css-work-finished-stb">Total Score:</div>
@@ -422,13 +450,13 @@
 
             <div
               class="css-work-finished-qai"
-              v-on:click="openDownCategory[1] = !openDownCategory[1]"
+              v-on:click="dropdown.e2 = !dropdown.e2"
             >
               Tokenomics
               <button>
                 <svg
                   class="css-work-finished-arrow"
-                  :class="{ active: openDownCategory[1] === true }"
+                  :class="{ active: dropdown.e2 === true }"
                   width="20"
                   height="20"
                   viewBox="0 0 1024 1024"
@@ -441,7 +469,7 @@
                 </svg>
               </button>
             </div>
-            <template v-if="openDownCategory[1] === true">
+            <template v-if="dropdown.e2 === true">
               <div class="css-work-finished-qao">
                 <div class="css-work-finished-qah">
                   <div class="css-work-finished-stb">Total Score:</div>
@@ -467,13 +495,13 @@
 
             <div
               class="css-work-finished-qai"
-              v-on:click="openDownCategory[2] = !openDownCategory[2]"
+              v-on:click="dropdown.e3 = !dropdown.e3"
             >
               Community
               <button>
                 <svg
                   class="css-work-finished-arrow"
-                  :class="{ active: openDownCategory[2] === true }"
+                  :class="{ active: dropdown.e3 === true }"
                   width="20"
                   height="20"
                   viewBox="0 0 1024 1024"
@@ -486,7 +514,7 @@
                 </svg>
               </button>
             </div>
-            <template v-if="openDownCategory[2] === true">
+            <template v-if="dropdown.e3 === true">
               <div class="css-work-finished-qao">
                 <div class="css-work-finished-qah">
                   <div class="css-work-finished-stb">Total Score:</div>
@@ -512,13 +540,13 @@
 
             <div
               class="css-work-finished-qai"
-              v-on:click="openDownCategory[3] = !openDownCategory[3]"
+              v-on:click="dropdown.e4 = !dropdown.e4"
             >
               Metrics
               <button>
                 <svg
                   class="css-work-finished-arrow"
-                  :class="{ active: openDownCategory[3] === true }"
+                  :class="{ active: dropdown.e4 === true }"
                   width="20"
                   height="20"
                   viewBox="0 0 1024 1024"
@@ -531,7 +559,7 @@
                 </svg>
               </button>
             </div>
-            <template v-if="openDownCategory[3] === true">
+            <template v-if="dropdown.e4 === true">
               <div class="css-work-finished-qao">
                 <div class="css-work-finished-qah">
                   <div>Total Score:</div>
@@ -575,9 +603,11 @@ export default {
   data() {
     return {
       dataParsed: [],
+      newAudit: {},
       answeredQuestion: [],
       totalScore: 0,
-      openDownCategory: [true, false, false, false],
+      teste: true,
+      dropdown: { e1: false, e2: false, e3: false, e4: false },
       machineURL: String,
     };
   },
@@ -599,15 +629,17 @@ export default {
         const result = JSON.parse(
           bestialEncoder.decodeByValue(response.data.data)
         );
+        console.log("TEST1", JSON.stringify(result));
         this.$store.commit("updateReportData", result);
         this.answeredQuestion = this.$store.getters.sendMeQuestion;
-        console.log("sech", JSON.stringify(this.answeredQuestion));
+        this.newAudit = this.$store.getters.sendMeAudit;
+        console.log("TEST3", JSON.stringify(this.answeredQuestion));
+        this.evaluateQuestions();
       })
       .catch((error) => {
         console.log("NOP TRAIDO", error);
       });
 
-    this.evaluateQuestions();
     this.createNewCanvas();
   },
   methods: {
@@ -616,15 +648,13 @@ export default {
         element: document.getElementById("quickResponse"),
         value: `http://192.168.1.3:8080/report/${this.id}`,
       });
+      console.log(`http://192.168.1.3:8080/report/${this.id}`);
       quickResponse.size = 200;
       quickResponse.background = "transparent";
       quickResponse.foregroundAlpha = 0.8;
       quickResponse.backgroundAlpha = 0.8;
       quickResponse.foreground = "#000000";
       quickResponse.level = "L";
-    },
-    deployCategories(index) {
-      this.openDownCategory[index] = !this.openDownCategory[index];
     },
     createMachineURL(route) {
       const machineURL = {
@@ -806,6 +836,8 @@ a {
 
 .css-work-finished-stm {
   color: var(--text-color-secondary);
+  text-transform: capitalize;
+  font-size: var(--text-size-secondary);
 }
 
 .css-work-finished-sts {
@@ -879,6 +911,7 @@ a {
 .css-work-finished-std {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-left: 1rem;
   text-align: start;
 }
@@ -896,9 +929,17 @@ a {
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  background-image: url("https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/6117f689ce4c7529d5850b8a_sundae.png");
   background-size: contain;
   border: 2px solid var(--border-primary);
+}
+
+.css-work-finished-txa {
+}
+
+.css-work-finished-txa img {
+  width: 80px;
+  border: 1px solid transparent;
+  height: 80px;
 }
 
 .css-work-finished-sr {
@@ -918,7 +959,7 @@ a {
 .css-work-finished-ttw {
   margin: 0 3rem;
   margin-top: 3rem;
-  border: 1px solid var(--border-primary);
+  border: 2px solid var(--border-primary);
   color: var(--text-color-primary);
   border-radius: 4px;
   height: 350px;
