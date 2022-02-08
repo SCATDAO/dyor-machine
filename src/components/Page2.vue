@@ -8,56 +8,55 @@
       </div>
       <div class="css-dyor-doc-sdq"></div>
       <div class="css-dyor-doc-sbc">
-        Project Summary <span>Project sources and repositories</span>
+       General Information 
       </div>
-      <div class="css-dyor-doc-sba">Name: <span>Sundaeswap </span></div>
-      
       <div class="css-dyor-doc-sba">
-        Category: <span>Descentralized exchange</span>
+        Name:
+        <span style="text-transform: capitalize;"> {{ newAudit.pn }} </span>
       </div>
-            <div class="css-dyor-doc-sba">
-        Description:
-        <span
-          >SundaeSwap is a decentralized exchange protocol for the Cardano
-          Network, enabling native token and ADA exchanges for anyone. With its
-          protocol, you will be able to swap, stake, lend, borrow, and more in a
-          truly decentralized way!</span
+
+      <div class="css-dyor-doc-sba">
+        Category:
+        <span>
+          <span style="text-transform: capitalize;">
+            {{ newAudit.pc }}
+          </span></span
         >
       </div>
-          <div class="css-dyor-doc-sba">Token: <span>SUNDAE</span></div>
       <div class="css-dyor-doc-sba">
-        Website: <span>www.sundaeswap.finance</span>
+        Description:
+        <span style="text-transform: capitalize"> {{ newAudit.pd }} </span>
       </div>
-      
       <div class="css-dyor-doc-sba">
-        Twitter:
-        <span> www.twitter.com/SundaeSwap</span>
+        Token:
+        <span style="text-transform: uppercase"> {{ newAudit.ps }} </span>
+      </div>
+      <div class="css-dyor-doc-sba">
+        Website:
+        <span style="text-transform: lowercase"> {{ newAudit.pw }} </span>
+      </div>
+
+      <div class="css-dyor-doc-sba">
+        Github/Repository:
+        <span style="text-transform: lowercase"> {{ newAudit.pr }} </span>
       </div>
       <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-sba">
-        Reddit:
-        <span> www.reddit.com/r/SundaeSwap/</span>
-      </div>
-
-      <div class="css-dyor-doc-sba">
-        Telegram:
-        <span>www.reddit.com/r/SundaeSwap/</span>
-      </div>
-
-      <div class="css-dyor-doc-sba">
-        Discord:
-        <span>www.reddit.com/r/SundaeSwap/</span>
-      </div>
-      <div class="css-dyor-doc-sba">
-        whitepaper:
-        <span>www.sundaeswap.finance/whitepaper</span>
+        Report creator:
+        <span style="text-transform: capitalize"> {{ newAudit.an }} </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    newAudit() {
+      return this.$store.getters.sendMeAudit;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -79,7 +78,8 @@ export default {};
 .css-dyor-doc-sba {
   justify-content: space-between;
   display: flex;
-  margin-top: 3rem;
+  font-weight: bold;
+  margin-top: 2rem;
   text-align: start;
 }
 

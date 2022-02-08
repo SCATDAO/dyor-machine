@@ -192,7 +192,9 @@ export default {
       let dataSorted = [];
       let labelSorted = [];
       this.reportDataDecoded[9].ed.forEach((data) => {
-        dataSorted.push(data.per);
+        if (data.per !== "") {
+          dataSorted.push(data.per);
+        }
       });
       dataSorted.sort(function (a, b) {
         return a - b;
@@ -211,17 +213,18 @@ export default {
     },
     updateBarData() {
       let barData = [
-        this.reportDataDecoded[16].ta,
-        this.reportDataDecoded[18].ta,
-        this.reportDataDecoded[20].ta,
-        this.reportDataDecoded[22].ta,
+        this.reportDataDecoded[16].ed,
+        this.reportDataDecoded[18].ed,
+        this.reportDataDecoded[20].ed,
+        this.reportDataDecoded[22].ed
       ];
+      console.log(JSON.stringify(barData));
       this.barData[0].data = barData;
 
       let barLegend = [];
 
-      for (const x of barData) {
-        barLegend.push(x + " Users");
+      for (const e of barData) {
+        barLegend.push(e + " Users");
       }
 
       this.barOption.legend.customLegendItems = barLegend;

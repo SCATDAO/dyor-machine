@@ -320,7 +320,7 @@
       <section slot="pdf-content">
         <Page1 />
         <Page2 />
-        <Page3 />
+        <page3 />
         <Page4 />
       </section>
     </vue-html2pdf>
@@ -336,13 +336,10 @@ import Page3 from "../components/Page3";
 import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
-
-import { Blackhole } from "blackhole-qr";
-
 export default {
   name: "DyorGenerator",
   props: {
-    data: String,
+    route: String,
   },
   components: {
     VueHtml2pdf,
@@ -352,8 +349,9 @@ export default {
     Page4,
   },
   created() {
-    this.decodeReportData();
     this.knowCurrentRoute();
+    console.log(this.te);
+    console.log("TEST12", JSON.stringify(this.$store.getters.sendMeReport));
   },
   data() {
     return {
@@ -363,7 +361,9 @@ export default {
       pdfDownloaded: false,
     };
   },
-  mounted() {},
+  mounted() {
+    console.log("TEST12", JSON.stringify(this.$store.getters.sendMeReport));
+  },
   computed: {
     ...mapFields(["controlValue"]),
     htmlToPdfOptions() {
@@ -384,23 +384,18 @@ export default {
           format: this.controlValue.pdfFormat,
           orientation: this.controlValue.pdfOrientation,
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy']}
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
     },
   },
   methods: {
     knowCurrentRoute() {
-      if (this.$route.name === "download") {
+      if (this.route === "download") {
         this.downloadPdf();
       }
-      if (this.$route.name === "show") {
-        this.$store.commit('showReportLayout')
+      if (this.route === "show") {
+        this.$store.commit("showReportLayout");
       }
-    },
-    decodeReportData() {
-      const quickResponse = new Blackhole();
-      const result = quickResponse.decodeByValue(this.data);
-      this.$store.commit("updateReportData", JSON.parse(result));
     },
     async downloadPdf() {
       if (!(await this.validateControlValue())) return;

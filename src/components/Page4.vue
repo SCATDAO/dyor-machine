@@ -2,15 +2,13 @@
   <div class="css-dyor-doc-pwo">
     <div class="css-dyor-doc-rtw">
       Development Team
-      <div>
-        75%
-        <span>
-          <div>
-            {{ evaluateCategory("Development Team") }} /
-            {{ KnowMaxCategory("Development Team") }}
-          </div></span
-        >
-      </div>
+
+      <span>
+        <div>
+          {{ evaluateCategory("Development Team") }} /
+          {{ KnowMaxCategory("Development Team") }}
+        </div></span
+      >
     </div>
 
     <div
@@ -29,21 +27,21 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-        <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
+        <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        </div>
       </div>
     </div>
 
     <div class="css-dyor-doc-rtw">
       Tokenomics
-      <div>
-        75%
-        <span>
-          <div>
-            {{ evaluateCategory("Tokenomics") }} /
-            {{ KnowMaxCategory("Tokenomics") }}
-          </div></span
-        >
-      </div>
+
+      <span>
+        <div>
+          {{ evaluateCategory("Tokenomics") }} /
+          {{ KnowMaxCategory("Tokenomics") }}
+        </div></span
+      >
     </div>
 
     <div
@@ -62,21 +60,21 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-        <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
+           <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        </div>
       </div>
     </div>
 
     <div class="css-dyor-doc-rtw">
       Community
-      <div>
-        75%
-        <span>
-          <div>
-            {{ evaluateCategory("Community") }} /
-            {{ KnowMaxCategory("Community") }}
-          </div></span
-        >
-      </div>
+
+      <span>
+        <div>
+          {{ evaluateCategory("Community") }} /
+          {{ KnowMaxCategory("Community") }}
+        </div></span
+      >
     </div>
 
     <div
@@ -95,21 +93,20 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-        <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
+              <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        </div>
       </div>
     </div>
 
     <div class="css-dyor-doc-rtw">
       ICO Trading Metrics
-      <div>
-        75%
-        <span>
-          <div>
-            {{ evaluateCategory("Metrics") }} /
-            {{ KnowMaxCategory("Metrics") }}
-          </div></span
-        >
-      </div>
+      <span>
+        <div>
+          {{ evaluateCategory("Metrics") }} /
+          {{ KnowMaxCategory("Metrics") }}
+        </div></span
+      >
     </div>
 
     <div
@@ -128,14 +125,20 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-        <div class="css-dyor-doc-ror">{{ element.textarea }}</div>
+             <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import DyorEditor from "./DyorEditor.vue";
 export default {
+  components: {
+    DyorEditor,
+  },
   created() {
     this.updateQuestionList();
     this.evaluateQuestions();
@@ -250,12 +253,14 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: var(--text-size-title);
-  padding: 1rem 0;
-  border-top: 1px dashed var(--border-primary);
-  border-bottom: 1px dashed var(--border-primary);
+  padding: 1rem 1rem;
+  border: 1px solid var(--border-primary);
+
   border-radius: 4px;
   align-items: center;
+  border-left: 2px solid var(--complementary-color-blue);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .css-dyor-doc-rra {
@@ -281,14 +286,8 @@ export default {
   color: var(--text-color-primary);
 }
 
-.css-dyor-doc-rtw div {
-  display: flex;
-  flex-direction: column;
-  text-align: end;
-}
-
 .css-dyor-doc-rtw span {
-  font-size: var(--text-size-secondary);
+  font-size: var(--text-size-primary);
   color: var(--text-color-secondary);
 }
 
@@ -300,7 +299,6 @@ export default {
   margin-top: 1rem;
   text-align: start;
   border-radius: 4px;
-  border-left: 2px solid var(--complementary-color-blue);
 }
 
 .css-dyor-doc-rsw div {

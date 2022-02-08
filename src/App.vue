@@ -5,12 +5,8 @@
 </template>
 
 <script>
-import DyorGenerator from "./pages/DyorGenerator.vue";
 export default {
   name: "app",
-  components:{
-    DyorGenerator
-  }
 };
 </script>
 
@@ -50,6 +46,21 @@ body {
   padding: 0;
   margin: 0;
 }
+header {
+  width: 100%;
+  min-width: 100%;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  z-index: 10;
+  padding: 0 10%;
+}
+
 
 #app {
   font-family: "Nunito", sans-serif;
