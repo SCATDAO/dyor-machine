@@ -5,12 +5,8 @@
 </template>
 
 <script>
-import DyorGenerator from "./pages/DyorGenerator.vue";
 export default {
   name: "app",
-  components:{
-    DyorGenerator
-  }
 };
 </script>
 
