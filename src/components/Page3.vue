@@ -193,7 +193,7 @@ export default {
       let labelSorted = [];
       this.reportDataDecoded[9].ed.forEach((data) => {
         if (data.per !== "") {
-          dataSorted.push(data.per);
+          dataSorted.push(data.per.replace(/\D/gm,""));
         }
       });
       dataSorted.sort(function (a, b) {
@@ -206,25 +206,23 @@ export default {
             labelSorted.push(per.name);
           }
       }
-      console.log(dataSorted);
-      console.log(labelSorted);
       this.donutData = dataSorted;
       this.donutOption.labels = labelSorted;
     },
     updateBarData() {
       let barData = [
-        this.reportDataDecoded[16].ed,
-        this.reportDataDecoded[18].ed,
-        this.reportDataDecoded[20].ed,
-        this.reportDataDecoded[22].ed
+        this.reportDataDecoded[16].ed.replace(/\D/gm,""),
+        this.reportDataDecoded[18].ed.replace(/\D/gm,""),
+        this.reportDataDecoded[20].ed.replace(/\D/gm,""),
+        this.reportDataDecoded[22].ed.replace(/\D/gm,""),
       ];
-      console.log(JSON.stringify(barData));
+      console.log("TEST BAR", JSON.stringify(barData));
       this.barData[0].data = barData;
 
       let barLegend = [];
 
       for (const e of barData) {
-        barLegend.push(e + " Users");
+        barLegend.push(e + " Followers");
       }
 
       this.barOption.legend.customLegendItems = barLegend;

@@ -296,7 +296,6 @@
         </g>
       </svg>
     </header>
-    <button :progress="progress" @click="downloadPdf()">x</button>
     <vue-html2pdf
       :show-layout="controlValue.showLayout"
       :float-layout="controlValue.floatLayout"
@@ -319,7 +318,7 @@
     >
       <section slot="pdf-content">
         <Page1 />
-        <Page2 />
+        <Page2 :reportCode="reportCode" :totalScore="totalScore" />
         <page3 />
         <Page4 />
       </section>
@@ -340,6 +339,8 @@ export default {
   name: "DyorGenerator",
   props: {
     route: String,
+    totalScore: String,
+    reportCode: String,
   },
   components: {
     VueHtml2pdf,
@@ -347,11 +348,6 @@ export default {
     Page2,
     Page3,
     Page4,
-  },
-  created() {
-    this.knowCurrentRoute();
-    console.log(this.te);
-    console.log("TEST12", JSON.stringify(this.$store.getters.sendMeReport));
   },
   data() {
     return {
@@ -362,14 +358,19 @@ export default {
     };
   },
   mounted() {
-    console.log("TEST12", JSON.stringify(this.$store.getters.sendMeReport));
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.$emit("domRendered");
+        this.knowCurrentRoute();
+      }, 1000);
+    });
   },
   computed: {
     ...mapFields(["controlValue"]),
     htmlToPdfOptions() {
       return {
         margin: 0,
-        filename: "dyor-report.pdf",
+        filename: this.controlValue.filename,
         image: {
           type: "jpeg",
           quality: 0.98,
@@ -381,6 +382,7 @@ export default {
         },
         jsPDF: {
           unit: "in",
+          precision: 100,
           format: this.controlValue.pdfFormat,
           orientation: this.controlValue.pdfOrientation,
         },

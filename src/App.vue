@@ -1,6 +1,6 @@
 <template>
   <div id="app">
- <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -61,7 +61,6 @@ header {
   padding: 0 10%;
 }
 
-
 #app {
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -77,5 +76,19 @@ header {
   background: var(--base-color-white-primary);
   flex-direction: column;
   overflow: hidden;
+  animation-name: deploy;
+  animation-duration: 1s;
+  -webkit-tap-highlight-color: transparent;
+   image-rendering: optimizeQuality;
+   text-rendering: geometricPrecision;
+}
+
+@keyframes deploy {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
