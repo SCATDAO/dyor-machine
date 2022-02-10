@@ -10,6 +10,7 @@ export default new Vuex.Store({
     state: {
         questionList: questionList,
         reportDataDecoded: Object,
+        reporDate: "",
         controlValue: {
             showLayout: false,
             floatLayout: true,
@@ -27,6 +28,9 @@ export default new Vuex.Store({
 
     mutations: {
         updateField,
+        updateReportDate(state, payload) {
+            state.reportDate = payload
+        },
         updateReportData(state, payload) {
             state.reportDataDecoded = payload
 
@@ -37,7 +41,7 @@ export default new Vuex.Store({
             })
 
             state.controlValue.filename = payload[0].pn + " report"
-        
+
         },
         showReportLayout(state) {
             state.controlValue.showLayout = true
@@ -53,6 +57,9 @@ export default new Vuex.Store({
         },
         sendMeQuestion(state) {
             return state.questionList
+        },
+        sendMeDate(state){
+            return state.reportDate
         }
     },
 })

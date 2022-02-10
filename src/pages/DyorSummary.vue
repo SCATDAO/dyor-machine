@@ -598,7 +598,11 @@
       </div>
     </template>
     <template v-if="displaySub">
-      <DyorGenerator :reportCode="id" :route="machineRoute" :totalScore="totalScore" />
+      <DyorGenerator
+        :reportCode="id"
+        :route="machineRoute"
+        :totalScore="totalScore"
+      />
     </template>
   </div>
 </template>
@@ -622,13 +626,15 @@ export default {
       machineRoute: "",
       dataParsed: [],
       newAudit: {},
-      answeredQuestion: [],
       isNoApply: false,
       teste: true,
       dropdown: { e1: false, e2: false, e3: false, e4: false },
     };
   },
   computed: {
+    answeredQuestion() {
+      return this.$store.getters.sendMeQuestion;
+    },
     totalScore() {
       let counter = 0;
       if (this.isNoApply) {
@@ -661,15 +667,16 @@ export default {
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
-     
         const result = JSON.parse(
           bestialEncoder.decodeByValue(response.data.data)
         );
-        
+
+        this.$store.commit(
+          "updateReportDate",
+          new Date(response.data.date * 1)
+        );
         this.$store.commit("updateReportData", result);
-        this.answeredQuestion = this.$store.getters.sendMeQuestion;
         this.newAudit = this.$store.getters.sendMeAudit;
-  
       })
       .catch((error) => {
         console.log("NO GET", error);
@@ -852,7 +859,7 @@ a {
   border: none;
 }
 
-.css-work-finished-qai:hover{
+.css-work-finished-qai:hover {
   background: var(--base-color-white-secondary);
   animation-name: xtrans;
   animation-duration: 1s;

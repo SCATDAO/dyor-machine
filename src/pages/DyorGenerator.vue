@@ -379,7 +379,6 @@ export default {
         enableLinks: true,
         html2canvas: {
           scale: this.controlValue.pdfQuality,
-          allowTaint: true,
           useCORS: true,
         },
         jsPDF: {

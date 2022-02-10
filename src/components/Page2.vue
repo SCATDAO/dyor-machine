@@ -24,9 +24,9 @@
           ></canvas>
           <div class="css-dyor-doc-sfx">
             <span class="css-dyor-doc-sxx">
-              <span>Report_ID:</span> {{ reportCode }}</span
+              <span>ID:</span> {{ reportCode }}</span
             >
-            <span class="css-dyor-doc-sxx"> <span>Date:</span> 12/12/2022</span>
+            <span class="css-dyor-doc-sxx"> <span>Date:</span> {{ reportDate.toLocaleString()}}</span>
             <span class="css-dyor-doc-sxx">
               <span>Created_by:</span> {{ newAudit.an }}</span
             >
@@ -81,6 +81,9 @@ export default {
   computed: {
     newAudit() {
       return this.$store.getters.sendMeAudit;
+    },
+        reportDate() {
+      return this.$store.getters.sendMeDate;
     },
   },
   mounted() {
