@@ -28,7 +28,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id" :data="element.textarea" />
+          <textarea id="textarea2" v-model="element.textarea"></textarea>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id" :data="element.textarea" />
+          <textarea id="textarea2" v-model="element.textarea"></textarea>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id" :data="element.textarea" />
+          <textarea id="textarea2" v-model="element.textarea"></textarea>
         </div>
       </div>
     </div>
@@ -134,7 +134,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id" :data="element.textarea" />
+          <textarea id="textarea2" v-model="element.textarea"></textarea>
         </div>
       </div>
     </div>
@@ -142,11 +142,7 @@
 </template>
 
 <script>
-import DyorEditor from "./DyorEditor.vue";
 export default {
-  components: {
-    DyorEditor,
-  },
   created() {
     this.updateQuestionList();
     this.evaluateQuestions();
@@ -303,6 +299,25 @@ export default {
   margin-bottom: 1rem;
 }
 
+#textarea2 {
+  width: 100%;
+  border: none;
+  height: 300px;
+  font-size: var(--text-size-primary);
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  caret-color: var(--text-color-primary);
+  color: var(--text-color-secondary);
+  resize: none;
+  font-family: "Nunito", sans-serif;
+  font-weight: lighter;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
 .css-dyor-doc-rra {
   display: flex;
   flex-direction: column;
