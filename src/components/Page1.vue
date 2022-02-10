@@ -454,16 +454,18 @@
 
     <div class="css-dyor-doc-rap">
       <div class="css-dyor-doc-aiw">
-        <img class="css-dyor-doc-scw"  id="logo-img" :src="newAudit.pl" alt="" />
+        <img class="css-dyor-doc-scw" id="logo-img" :src="newAudit.pl" alt="" />
       </div>
     </div>
     <div class="css-dyor-doc-rsb">
       <b>{{ newAudit.pn }}</b>
       <b>DYOR REPORT</b>
-      <b>2022</b>
+      <b>{{ reportDate.getFullYear() }}</b>
     </div>
     <div class="css-dyor-doc-rcb">
-      <span>21 SEPTEMBER 2022</span>
+      <div>{{ reportDate.getDate() }}</div>
+      <div>{{ reportDate.toLocaleString("default", { month: "long" }) }}</div>
+      <div>{{ reportDate.getFullYear() }}</div>
     </div>
     <div class="css-dyor-doc-rub">
       <span>Community report made by {{ newAudit.an }}</span>
@@ -478,9 +480,12 @@ export default {
     return {};
   },
   computed: {
+    reportDate() {
+      return this.$store.getters.sendMeDate;
+    },
     newAudit() {
       return this.$store.getters.sendMeAudit;
-    }
+    },
   },
   methods: {},
   mounted() {
@@ -528,13 +533,17 @@ export default {
 .css-dyor-doc-rcb {
   text-transform: uppercase;
   display: flex;
-  flex-direction: column;
   color: #fff;
   position: absolute;
   bottom: 15rem;
-  text-align: start;
+  display: flex;
+  align-items: center;
   padding: 0 4rem;
   letter-spacing: 0.3em;
+}
+
+.css-dyor-doc-rcb div {
+  margin-right: 0.5rem;
 }
 
 .css-dyor-doc-rub {
