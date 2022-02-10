@@ -150,7 +150,8 @@ export default {
 .css-dyor-doc-psp {
   font-weight: bold;
   margin-top: 1rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-size: var(--text-size-fourth);
 }
 .css-dyor-doc-pss {
   margin-top: 1rem;

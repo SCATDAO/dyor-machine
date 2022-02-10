@@ -317,7 +317,7 @@
       ref="html2Pdf"
     >
       <section slot="pdf-content">
-        <Page1 />
+        <Page1/>
         <Page2 :reportCode="reportCode" :totalScore="totalScore" />
         <page3 />
         <Page4 />
@@ -335,6 +335,7 @@ import Page3 from "../components/Page3";
 import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
+
 export default {
   name: "DyorGenerator",
   props: {
@@ -378,6 +379,7 @@ export default {
         enableLinks: true,
         html2canvas: {
           scale: this.controlValue.pdfQuality,
+          allowTaint: true,
           useCORS: true,
         },
         jsPDF: {
@@ -393,7 +395,7 @@ export default {
   methods: {
     knowCurrentRoute() {
       if (this.route === "download") {
-        this.downloadPdf();
+        this.downloadPdf()
       }
       if (this.route === "show") {
         this.$store.commit("showReportLayout");

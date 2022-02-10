@@ -322,7 +322,7 @@ export default {
 .css-dyor-doc-rrr {
   border-bottom: 1px solid var(--border-primary);
   padding: 1rem 1rem;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--text-color-primary);
 }
 

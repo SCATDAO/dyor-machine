@@ -664,14 +664,14 @@ export default {
         const result = JSON.parse(
           bestialEncoder.decodeByValue(response.data.data)
         );
-        console.log("TEST1", JSON.stringify(result));
+      
         this.$store.commit("updateReportData", result);
         this.answeredQuestion = this.$store.getters.sendMeQuestion;
         this.newAudit = this.$store.getters.sendMeAudit;
-        console.log("TEST3", JSON.stringify(this.answeredQuestion));
+  
       })
       .catch((error) => {
-        console.log("NOP TRAIDO", error);
+        console.log("NO GET", error);
       });
 
     this.createNewCanvas();
