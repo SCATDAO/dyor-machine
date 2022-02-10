@@ -657,7 +657,7 @@ export default {
     const bestialEncoder = new BestialEncoder();
     axios({
       method: "get",
-      url: `http://167.71.91.99:8083/v1/findReport/${this.id}`,
+      url: `http://104.248.123.67:8083/v1/findReport/${this.id}`,
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
@@ -681,7 +681,7 @@ export default {
     createNewCanvas() {
       const quickResponse = new QRious({
         element: document.getElementById("quickResponse"),
-        value: `http://167.71.91.99:8081/report/${this.id}`,
+        value: `http://104.248.123.67:8081/report/${this.id}`,
       });
       quickResponse.size = 200;
       quickResponse.background = "transparent";
