@@ -5,7 +5,9 @@ import store from './store'
 import router from "./router"
 
 import VueApexCharts from 'vue-apexcharts'
+import VueQrcodeReader from "vue-qrcode-reader";
 
+Vue.use(VueQrcodeReader);
 
 Vue.use(VueApexCharts)
 

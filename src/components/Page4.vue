@@ -28,7 +28,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id"    :data="element.textarea"/>
+          <DyorEditor :id="element.id" :data="element.textarea" />
         </div>
       </div>
     </div>
@@ -60,8 +60,8 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-           <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id" :data="element.textarea" />
         </div>
       </div>
     </div>
@@ -93,8 +93,8 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-              <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id" :data="element.textarea" />
         </div>
       </div>
     </div>
@@ -103,8 +103,16 @@
       ICO Trading Metrics
       <span>
         <div>
-          {{ evaluateCategory("Metrics") }} /
-          {{ KnowMaxCategory("Metrics") }}
+          <template v-if="evaluateCategory('Metrics') === 404">
+            <span>Doesn't Apply </span>
+          </template>
+
+          <template v-if="evaluateCategory('Metrics') !== 404">
+            <span
+              >{{ evaluateCategory("Metrics") }} /
+              {{ KnowMaxCategory("Metrics") }}</span
+            >
+          </template>
         </div></span
       >
     </div>
@@ -125,8 +133,8 @@
         <div class="css-dyor-doc-rrr">
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
-             <div class="css-dyor-doc-ror">
-          <DyorEditor :id="element.id"    :data="element.textarea"/>
+        <div class="css-dyor-doc-ror">
+          <DyorEditor :id="element.id" :data="element.textarea" />
         </div>
       </div>
     </div>
@@ -147,7 +155,31 @@ export default {
     return {
       questionList: Object,
       totalScore: 0,
+      isNoApply: false,
     };
+  },
+  totalScore() {
+    let counter = 0;
+    if (this.isNoApply) {
+      for (const element of this.questionList.slice(0, 23)) {
+        for (const option of element.options) {
+          if (option.id === element.answer) {
+            counter += option.value;
+          }
+        }
+      }
+
+      return ((counter * 100) / 30).toFixed(2);
+    } else {
+      for (const element of this.questionList) {
+        for (const option of element.options) {
+          if (option.id === element.answer) {
+            counter += option.value;
+          }
+        }
+      }
+      return ((counter * 100) / 35).toFixed(2);
+    }
   },
   methods: {
     updateQuestionList() {
@@ -212,13 +244,21 @@ export default {
       for (const element of this.questionList) {
         if (element.category === cty) {
           for (const option of element.options) {
+            if (element.answer === 404) {
+              counter = 404;
+            }
             if (option.id === element.answer) {
               counter += option.value;
             }
           }
         }
       }
-      return counter.toFixed(2);
+      if (counter === 404) {
+        this.isNoApply = true;
+        return counter;
+      } else {
+        return counter.toFixed(2);
+      }
     },
   },
   mounted() {
@@ -282,7 +322,7 @@ export default {
 .css-dyor-doc-rrr {
   border-bottom: 1px solid var(--border-primary);
   padding: 1rem 1rem;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--text-color-primary);
 }
 

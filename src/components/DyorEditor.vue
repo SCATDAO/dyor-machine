@@ -37,7 +37,6 @@ export default {
   methods: {
     parsedata() {
       this.parseData = this.data;
-      console.log(this.parseData);
     },
     createNewEditor() {
       const editor = new EditorJS({

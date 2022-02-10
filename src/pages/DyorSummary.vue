@@ -413,8 +413,8 @@
                     <svg
                       class="css-work-finished-arrow"
                       :class="{ active: dropdown.e1 === true }"
-                      width="20"
-                      height="20"
+                      width="16"
+                      height="16"
                       viewBox="0 0 1024 1024"
                       data-v-365b8594=""
                     >
@@ -458,8 +458,8 @@
                     <svg
                       class="css-work-finished-arrow"
                       :class="{ active: dropdown.e2 === true }"
-                      width="20"
-                      height="20"
+                      width="16"
+                      height="16"
                       viewBox="0 0 1024 1024"
                       data-v-365b8594=""
                     >
@@ -503,8 +503,8 @@
                     <svg
                       class="css-work-finished-arrow"
                       :class="{ active: dropdown.e3 === true }"
-                      width="20"
-                      height="20"
+                      width="16"
+                      height="16"
                       viewBox="0 0 1024 1024"
                       data-v-365b8594=""
                     >
@@ -548,8 +548,8 @@
                     <svg
                       class="css-work-finished-arrow"
                       :class="{ active: dropdown.e4 === true }"
-                      width="20"
-                      height="20"
+                      width="16"
+                      height="16"
                       viewBox="0 0 1024 1024"
                       data-v-365b8594=""
                     >
@@ -598,7 +598,7 @@
       </div>
     </template>
     <template v-if="displaySub">
-      <DyorGenerator :route="machineRoute" />
+      <DyorGenerator :reportCode="id" :route="machineRoute" :totalScore="totalScore" />
     </template>
   </div>
 </template>
@@ -631,7 +631,6 @@ export default {
   computed: {
     totalScore() {
       let counter = 0;
-      console.log("TEST 23", JSON.stringify(this.answeredQuestion.slice(0, 23)))
       if (this.isNoApply) {
         for (const element of this.answeredQuestion.slice(0, 23)) {
           for (const option of element.options) {
@@ -665,14 +664,14 @@ export default {
         const result = JSON.parse(
           bestialEncoder.decodeByValue(response.data.data)
         );
-        console.log("TEST1", JSON.stringify(result));
+      
         this.$store.commit("updateReportData", result);
         this.answeredQuestion = this.$store.getters.sendMeQuestion;
         this.newAudit = this.$store.getters.sendMeAudit;
-        console.log("TEST3", JSON.stringify(this.answeredQuestion));
+  
       })
       .catch((error) => {
-        console.log("NOP TRAIDO", error);
+        console.log("NO GET", error);
       });
 
     this.createNewCanvas();
@@ -683,7 +682,6 @@ export default {
         element: document.getElementById("quickResponse"),
         value: `http://192.168.1.3:8080/report/${this.id}`,
       });
-      console.log(`http://192.168.1.3:8080/report/${this.id}`);
       quickResponse.size = 200;
       quickResponse.background = "transparent";
       quickResponse.foregroundAlpha = 0.8;
@@ -853,6 +851,23 @@ a {
   border: none;
 }
 
+.css-work-finished-qai:hover{
+  background: var(--base-color-white-secondary);
+  animation-name: xtrans;
+  animation-duration: 1s;
+}
+
+@keyframes xtrans {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
 .css-work-finished-stw {
   width: 300px;
   display: flex;
@@ -894,6 +909,8 @@ a {
 .css-work-finished-qao {
   width: 100%;
   display: flex;
+  animation-name: deploy;
+  animation-duration: 1s;
   flex-direction: column;
 }
 
@@ -925,7 +942,7 @@ a {
 .css-work-finished-stt {
   font-size: var(--text-size-title);
   text-transform: capitalize;
-
+  font-weight: bold;
   text-align: start;
 }
 

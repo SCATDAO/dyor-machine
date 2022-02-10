@@ -71,7 +71,6 @@
 export default {
   created() {
     this.updateQuestionList();
-    this.evaluatePercentage();
     this.updateDataReport();
     this.updateChartData();
     this.updateBarData();
@@ -193,38 +192,27 @@ export default {
       let labelSorted = [];
       this.reportDataDecoded[9].ed.forEach((data) => {
         if (data.per !== "") {
-          dataSorted.push(data.per);
+          dataSorted.push(data.per.replace(/\D/gm, "") * 1);
+          labelSorted.push(data.name);
         }
       });
-      dataSorted.sort(function (a, b) {
-        return a - b;
-      });
 
-      for (const element of dataSorted) {
-        for (const per of this.reportDataDecoded[9].ed)
-          if (element === per.per) {
-            labelSorted.push(per.name);
-          }
-      }
-      console.log(dataSorted);
-      console.log(labelSorted);
       this.donutData = dataSorted;
       this.donutOption.labels = labelSorted;
     },
     updateBarData() {
       let barData = [
-        this.reportDataDecoded[16].ed,
-        this.reportDataDecoded[18].ed,
-        this.reportDataDecoded[20].ed,
-        this.reportDataDecoded[22].ed
+        this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
+        this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
+        this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
+        this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
       ];
-      console.log(JSON.stringify(barData));
       this.barData[0].data = barData;
 
       let barLegend = [];
 
       for (const e of barData) {
-        barLegend.push(e + " Users");
+        barLegend.push(e + " Followers");
       }
 
       this.barOption.legend.customLegendItems = barLegend;
@@ -241,12 +229,8 @@ export default {
       }
       return byCategory;
     },
-    evaluatePercentage() {
-      console.log(this.questionList[8].answer, "e");
-    },
     updateQuestionList() {
       this.questionList = this.$store.getters.sendMeQuestion;
-      console.log(this.questionList);
     },
     knowAnswerOption(question) {
       for (const option of question.options) {
