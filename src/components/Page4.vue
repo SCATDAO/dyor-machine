@@ -28,7 +28,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <textarea id="textarea2" v-model="element.textarea"></textarea>
+          <div class="textarea2">{{ element.textarea }}</div>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <textarea id="textarea2" v-model="element.textarea"></textarea>
+          <div class="textarea2">{{ element.textarea }}</div>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <textarea id="textarea2" v-model="element.textarea"></textarea>
+          <div class="textarea2">{{ element.textarea }}</div>
         </div>
       </div>
     </div>
@@ -134,9 +134,21 @@
           <span>{{ knowAnswerOption(element) }}</span>
         </div>
         <div class="css-dyor-doc-ror">
-          <textarea id="textarea2" v-model="element.textarea"></textarea>
+          <div class="textarea2">{{ element.textarea }}</div>
         </div>
       </div>
+    </div>
+
+    <div class="css-dyor-doc-dtx">
+      The information contained in the DYOR Tool and within this report is not
+      intended as, and shall not be understood or construed as, financial
+      advice. The makers of the tool and creator of this report are not
+      financial advisors or attorneys, and the information contained on the
+      website and within this report is not a substitute for financial advice
+      from a professional who is aware of the facts and circumstances of your
+      individual situation. The creators of the tool and creator of this report
+      accept no liability whatsoever for any loss or damage you may incur. We
+      expressly recommend that you seek advice from a professional.
     </div>
   </div>
 </template>
@@ -298,13 +310,20 @@ export default {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-
-#textarea2 {
+.css-dyor-doc-dtx{
+  border: 1px solid var(--complementary-color-blue);
+  background: var(--color-soft-blue);
+  color: var(--complementary-color-blue);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+}
+.textarea2 {
   width: 100%;
   border: none;
-  height: 300px;
   font-size: var(--text-size-primary);
-  overflow: auto;
+  text-align: left;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -315,7 +334,9 @@ export default {
   font-family: "Nunito", sans-serif;
   font-weight: lighter;
   padding: 0.5rem;
-  box-sizing: border-box;
+  white-space: pre-line;
+  word-break: break-word;
+  overflow-wrap: anywhere;
   border: 1px solid transparent;
 }
 .css-dyor-doc-rra {
@@ -329,9 +350,7 @@ export default {
 
 .css-dyor-doc-ror {
   padding: 1rem 1rem;
-  white-space: pre-line;
   box-sizing: content;
-  word-break: break-all;
 }
 
 .css-dyor-doc-rrr {

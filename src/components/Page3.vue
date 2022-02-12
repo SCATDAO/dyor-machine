@@ -64,6 +64,7 @@
         </div>
       </div>
     </div>
+          <div class="html2pdf__page-break" />
   </div>
 </template>
 
