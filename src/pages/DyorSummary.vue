@@ -663,7 +663,7 @@ export default {
     const bestialEncoder = new BestialEncoder();
     axios({
       method: "get",
-      url: `http://104.248.123.67:8083/v1/findReport/${this.id}`,
+      url: `https://api.dyortool.io/v1/findReport/${this.id}`,
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
@@ -688,7 +688,7 @@ export default {
     createNewCanvas() {
       const quickResponse = new QRious({
         element: document.getElementById("quickResponse"),
-        value: `http://104.248.123.67:8081/report/${this.id}`,
+        value: `https://audits.dyortool.io/report/${this.id}`,
       });
       quickResponse.size = 200;
       quickResponse.background = "transparent";

@@ -93,7 +93,7 @@ export default {
     createNewCanvas() {
       const quickResponse = new QRious({
         element: document.getElementById("quickResponse2"),
-        value: `http://192.168.1.3:8080/report/${this.reportCode}`,
+        value: `https://audits.dyortool.io/report/${this.reportCode}`,
       });
       quickResponse.size = 100;
       quickResponse.background = "transparent";
