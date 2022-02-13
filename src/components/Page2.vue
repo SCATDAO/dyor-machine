@@ -6,17 +6,7 @@
         dedicate research to potential projects to invest. The information
         contained in this report belongs solely and exclusively to its creator.
       </div>
-      <div class="css-dyor-doc-sdq">
-        <div class="css-dyor-doc-sxa">
-          <div class="css-dyor-doc-sxz">
-            <img class="css-dyor-doc-csx" :src="newAudit.pl" alt="" />
-          </div>
-
-          <span class="css-dyor-doc-psp">{{ newAudit.pn }}</span>
-          <span class="css-dyor-doc-pss">Total Score:</span>
-          <span class="css-dyor-doc-tsp">{{ totalScore }}%</span>
-        </div>
-        <div class="css-dyor-doc-sxf">
+              <div class="css-dyor-doc-sxf">
           <canvas
             class="camva"
             id="quickResponse2"
@@ -26,11 +16,23 @@
             <span class="css-dyor-doc-sxx">
               <span>ID:</span> {{ reportCode }}</span
             >
-            <span class="css-dyor-doc-sxx"> <span>Date:</span> {{ reportDate.toLocaleString()}}</span>
             <span class="css-dyor-doc-sxx">
-              <span>Created_by:</span> {{ newAudit.an }}</span
+              <span>Date:</span> {{ reportDate.toLocaleString() }}</span
+            >
+            <span class="css-dyor-doc-sxx">
+              <span>Author:</span> {{ newAudit.an }}</span
             >
           </div>
+        </div>
+      <div class="css-dyor-doc-sdq">
+        <div class="css-dyor-doc-sxa">
+          <div class="css-dyor-doc-sxz">
+            <img class="css-dyor-doc-csx" :src="newAudit.pl" alt="" />
+          </div>
+
+          <span class="css-dyor-doc-psp">{{ newAudit.pn }}</span>
+          <span class="css-dyor-doc-pss">Total Score:</span>
+          <span class="css-dyor-doc-tsp">{{ totalScore }}%</span>
         </div>
       </div>
       <div class="css-dyor-doc-sbc">General Information</div>
@@ -64,12 +66,12 @@
         Github/Repository:
         <span style="text-transform: lowercase"> {{ newAudit.pr }} </span>
       </div>
-      <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-sba">
         Report creator:
         <span style="text-transform: capitalize"> {{ newAudit.an }} </span>
       </div>
     </div>
+    <div class="html2pdf__page-break" />
   </div>
 </template>
 
@@ -82,7 +84,7 @@ export default {
     newAudit() {
       return this.$store.getters.sendMeAudit;
     },
-        reportDate() {
+    reportDate() {
       return this.$store.getters.sendMeDate;
     },
   },
@@ -134,15 +136,14 @@ export default {
 .css-dyor-doc-sba {
   justify-content: space-between;
   display: flex;
-  font-weight: bold;
-  margin-top: 2rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
   text-align: start;
 }
 
 .css-dyor-doc-sdq {
   border: 1px solid var(--border-primary);
   border-radius: 4px;
-  height: 500px;
   margin-top: 1rem;
   box-sizing: border-box;
   padding: 1rem 1rem;
@@ -161,7 +162,7 @@ export default {
 }
 .css-dyor-doc-sxf {
   display: flex;
-  margin-top: 4rem;
+  margin-top: 1rem;
   align-items: center;
 }
 
@@ -170,7 +171,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 0rem 1rem;
-  height: 100%;
+  height: 100px;
   text-align: start;
   flex-direction: column;
   justify-content: space-around;
@@ -182,7 +183,8 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .css-dyor-doc-sxz {

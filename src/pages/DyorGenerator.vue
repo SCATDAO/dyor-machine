@@ -363,7 +363,7 @@ export default {
       setTimeout(() => {
         this.$emit("domRendered");
         this.knowCurrentRoute();
-      }, 1000);
+      },1000);
     });
   },
   computed: {

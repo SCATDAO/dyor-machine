@@ -272,7 +272,7 @@ export default {
 
         image: {
           type: "jpeg",
-          quality: 0.98,
+          quality: 0.9,
         },
 
         enableLinks: false,
