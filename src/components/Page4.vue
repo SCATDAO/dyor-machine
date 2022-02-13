@@ -310,13 +310,14 @@ export default {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.css-dyor-doc-dtx{
+.css-dyor-doc-dtx {
   border: 1px solid var(--complementary-color-blue);
   background: var(--color-soft-blue);
   color: var(--complementary-color-blue);
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
+  font-size: var(--text-size-secondary);
   margin-top: 1rem;
 }
 .textarea2 {
