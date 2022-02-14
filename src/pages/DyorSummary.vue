@@ -1189,7 +1189,7 @@ a {
   height: 64px;
   display: flex;
   align-items: center;
-  padding: 0 10% !important;
+  padding: 0 3rem !important;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -1334,6 +1334,7 @@ a {
   .css-work-finished-her {
     background: var(--complementary-color-blue);
     box-shadow: none;
+    padding: 0 10%;
   }
 
   .css-work-finished-ttt {
