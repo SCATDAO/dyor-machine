@@ -298,6 +298,7 @@ export default {
 </script>
 
 <style scoped>
+
 .layout-container {
   position: fixed;
   width: 100vw;

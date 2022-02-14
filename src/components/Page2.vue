@@ -1,29 +1,24 @@
 <template>
   <div class="css-dyor-doc-pwo">
     <div class="css-dyor-doc-fpg">
-      <div class="css-dyor-doc-dba">
-        Dyor tool is a tool for the crypto community aimed at investors who
-        dedicate research to potential projects to invest. The information
-        contained in this report belongs solely and exclusively to its creator.
-      </div>
-              <div class="css-dyor-doc-sxf">
-          <canvas
-            class="camva"
-            id="quickResponse2"
-            style="image-rendering: pixelated"
-          ></canvas>
-          <div class="css-dyor-doc-sfx">
-            <span class="css-dyor-doc-sxx">
-              <span>ID:</span> {{ reportCode }}</span
-            >
-            <span class="css-dyor-doc-sxx">
-              <span>Date:</span> {{ reportDate.toLocaleString() }}</span
-            >
-            <span class="css-dyor-doc-sxx">
-              <span>Author:</span> {{ newAudit.an }}</span
-            >
-          </div>
+      <div class="css-dyor-doc-sxf">
+        <canvas
+          class="camva"
+          id="quickResponse2"
+          style="image-rendering: pixelated"
+        ></canvas>
+        <div class="css-dyor-doc-sfx">
+          <span class="css-dyor-doc-sxx">
+            <span>ID:</span> {{ reportCode }}</span
+          >
+          <span class="css-dyor-doc-sxx">
+            <span>Date:</span> {{ reportDate.toLocaleString() }}</span
+          >
+          <span class="css-dyor-doc-sxx">
+            <span>Author:</span> {{ newAudit.an }}</span
+          >
         </div>
+      </div>
       <div class="css-dyor-doc-sdq">
         <div class="css-dyor-doc-sxa">
           <div class="css-dyor-doc-sxz">
@@ -162,7 +157,6 @@ export default {
 }
 .css-dyor-doc-sxf {
   display: flex;
-  margin-top: 1rem;
   align-items: center;
 }
 
@@ -201,19 +195,6 @@ export default {
   font-size: var(--text-size-primary);
   font-weight: initial;
 }
-
-.css-dyor-doc-dba {
-  font-size: var(--text-size-secondary);
-  border-radius: 4px;
-  border: 1px solid var(--color-soft-blue);
-  background: var(--color-soft-blue);
-  color: var(--complementary-color-blue);
-  box-sizing: border-box;
-  padding: 1rem;
-  text-align: center;
-  display: flex;
-}
-
 .css-dyor-doc-sba span {
   width: 80%;
   text-align: end;
