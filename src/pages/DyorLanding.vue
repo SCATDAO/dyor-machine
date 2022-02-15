@@ -503,7 +503,7 @@ a {
   border: 1px solid hsla(0, 0%, 100%, 0.2);
   box-sizing: border-box;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; scroll-behavior: smooth;
 }
 
 .css-landing-scw.active {
@@ -518,7 +518,7 @@ a {
   display: flex;
   overflow-x: hidden;
   box-sizing: border-box;
-  justify-content: center;
+  justify-content: center; scroll-behavior: smooth;
   overflow-y: auto;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='300' height='600' preserveAspectRatio='none' viewBox='0 0 300 600'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1093%26quot%3b)' fill='none'%3e%3crect width='300' height='600' x='0' y='0' fill='rgba(0%2c 105%2c 245%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c261.293C51.319%2c272.678%2c113.717%2c272.859%2c152.676%2c237.568C191.76%2c202.164%2c167.837%2c134.57%2c191.769%2c87.578C217.432%2c37.189%2c289.994%2c13.844%2c295.288%2c-42.456C300.56%2c-98.52%2c260.817%2c-152.404%2c217.748%2c-188.68C177.213%2c-222.822%2c119.355%2c-218.372%2c68.543%2c-233.437C17.56%2c-248.553%2c-28.856%2c-285.25%2c-81.449%2c-277.39C-136.416%2c-269.176%2c-191.461%2c-238.236%2c-219.69%2c-190.362C-246.995%2c-144.055%2c-223.911%2c-86.197%2c-225.866%2c-32.475C-227.571%2c14.375%2c-252.34%2c63.787%2c-230.449%2c105.243C-208.688%2c146.452%2c-153.162%2c152.151%2c-114.575%2c178.281C-74.717%2c205.271%2c-46.995%2c250.868%2c0%2c261.293' fill='%23005fdd'%3e%3c/path%3e%3cpath d='M300 817.0889999999999C348.193 816.529 404.014 850.509 441.622 820.367 480.092 789.534 462.999 727.1659999999999 472.54499999999996 678.798 479.64 642.848 493.495 609.13 490.519 572.608 487.404 534.376 480.31899999999996 494.509 455.16700000000003 465.547 430.026 436.597 389.916 429.4 354.151 415.579 314.936 400.425 275.9 368.699 235.608 380.7 195.315 392.701 183.425 443.363 155.464 474.759 126.994 506.727 86.89500000000001 527.662 69.781 566.9 49.672 613.003 35.24799999999999 665.91 51.29900000000001 713.578 67.814 762.624 108.46700000000001 803.8 156.246 823.686 201.447 842.499 251.043 817.658 300 817.0889999999999' fill='%230f76ff'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1093'%3e%3crect width='300' height='600' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
   background-size: cover;
