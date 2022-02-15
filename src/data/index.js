@@ -130,7 +130,7 @@ const questionList = [
     name: "Plagarism",
     question: "Was there any plagiarism in the whitepaper?",
     worksteps: [
-      "A. Upload a copy of the whitepaper to Grammerly using this link ( https://www.grammarly.com/plagiarism-checker ).",
+      "A. Copy the information in the whitepaper and paste it into the following website (https://www.check-plagiarism.com/).",
       "B. Include a copy of the results into the box below.",
     ],
 
@@ -588,7 +588,7 @@ const questionList = [
     category: "Metrics",
     name: "Fair Launch",
     question:
-      "If project has the token had its initial offering yet (ISO, IDO, ICO, etc.), was it a fair token launch?",
+      "If the project has had its initial offering, (ISO, IDO, ICO, etc) was it a fair launch?",
     worksteps: [
       "NOTE. This section only applies for projects which have had their initial offering and are actively traded. If it has not, skip this section by clicking next until it reaches the end.",
       "A. Fair launch would describe everyone having equal access to the token and no premine for specific individuals. Instances where certain countries are excluded for legal reasons would not apply.",
