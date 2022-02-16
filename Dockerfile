@@ -1,4 +1,4 @@
-FROM node:latest as build-stage
+FROM node:17.1.0 as build-stage
 WORKDIR /dyor-machine
 COPY package.json ./
 RUN npm install
