@@ -394,7 +394,7 @@
         <qrcode-capture @decode="onDecode" :capture="capture" />
       </div>
 
-      <div class="css-landing-cqs">{{ result.substr(-10) }}</div>
+      <div class="css-landing-cqs"> Result: {{ result.substr(-10) }}</div>
 
       <button class="css-landing-scw" :class="{ active: result }">
         <a :href="result" target="_blank">Go to Report</a>

@@ -46,7 +46,7 @@
       </div>
       <div class="css-dyor-doc-sba">
         Description:
-        <span style="text-transform: capitalize"> {{ newAudit.pd }} </span>
+        <span style="text-align: start;"> {{ newAudit.pd }} </span>
       </div>
       <div class="css-dyor-doc-sba">
         Token:
@@ -56,7 +56,7 @@
         Website:
         <span style="text-transform: lowercase"> {{ newAudit.pw }} </span>
       </div>
-
+  <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-sba">
         Github/Repository:
         <span style="text-transform: lowercase"> {{ newAudit.pr }} </span>
@@ -66,7 +66,7 @@
         <span style="text-transform: capitalize"> {{ newAudit.an }} </span>
       </div>
     </div>
-    <div class="html2pdf__page-break" />
+  
   </div>
 </template>
 
@@ -131,7 +131,12 @@ export default {
 .css-dyor-doc-sba {
   justify-content: space-between;
   display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  border: 1px solid var(--border-primary);
   font-weight: 600;
+  border-radius: 4px;
+  padding: 1rem;
   margin-top: 1.5rem;
   text-align: start;
 }
@@ -149,7 +154,6 @@ export default {
 .css-dyor-doc-psp {
   font-weight: bold;
   margin-top: 1rem;
-  text-transform: capitalize;
   font-size: var(--text-size-fourth);
 }
 .css-dyor-doc-pss {
@@ -196,7 +200,7 @@ export default {
   font-weight: initial;
 }
 .css-dyor-doc-sba span {
-  width: 80%;
+  width: 50%;
   text-align: end;
   color: var(--text-color-secondary);
 }
