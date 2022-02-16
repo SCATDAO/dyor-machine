@@ -503,7 +503,7 @@ export default {
 
 .css-dyor-doc-rap {
   width: 100%;
-  top: calc(12rem + 7px);
+  top: 18%;
   height: 100px;
   display: flex;
   justify-content: center;
