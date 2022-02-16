@@ -790,7 +790,7 @@ import axios from "axios";
 import { BestialEncoder } from "bestial-encoder";
 import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 export default {
   props: {
@@ -848,7 +848,7 @@ export default {
     })
       .then((response) => {
         const result = JSON.parse(
-        DOMPurify.sanitize(  bestialEncoder.decodeByValue(response.data.data))
+          DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
         );
 
         this.$store.commit(
@@ -881,6 +881,11 @@ export default {
       quickResponse.level = "L";
     },
     createMachineURL(route) {
+      var metaTag = document.createElement("meta");
+      metaTag.name = "viewport";
+      metaTag.content =
+        "content=width=1024";
+      document.getElementsByTagName("head")[0].appendChild(metaTag);
       this.displaySub = !this.displaySub;
       this.machineRoute = route;
     },
