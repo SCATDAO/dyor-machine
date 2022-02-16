@@ -46,7 +46,7 @@
       </div>
       <div class="css-dyor-doc-sba">
         Description:
-        <span style="text-align: start;"> {{ newAudit.pd }} </span>
+        <span style="text-transform: capitalize"> {{ newAudit.pd }} </span>
       </div>
       <div class="css-dyor-doc-sba">
         Token:
