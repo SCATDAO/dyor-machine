@@ -493,6 +493,7 @@ export default {
   },
   methods: {
     onDecode(result) {
+      this.result = result;
       window.open(result, "_blank").focus();
     },
     scanQuickResponse(e) {
