@@ -597,7 +597,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-    box-shadow: 0px 0px 20px var(--border-primary);
+  position: relative;
+  box-shadow: 0px 0px 20px var(--border-primary);
 }
 
 .css-landing-cpx svg {
