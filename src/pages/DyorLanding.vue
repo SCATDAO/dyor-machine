@@ -374,7 +374,13 @@
           </g>
         </svg>
       </div>
-      <div class="css-landing-cqs" id="teste">Code {{ reactiveResponse }}</div>
+
+            <div id="test-re">
+        <template v-if="result">
+          <a class="css-landing-cas" :href="result"> Go to Report </a>
+        </template>
+      </div>
+      <div class="css-landing-cqs" id="teste">{{ reactiveResponse }}</div>
 
       <div class="css-landing-lbc"></div>
 
@@ -470,11 +476,6 @@
           id="decode-file"
           @change="scanQuickResponse"
         />
-      </div>
-      <div id="test-re">
-        <template v-if="result">
-          <a class="css-landing-cas" :href="result"> Go to Report </a>
-        </template>
       </div>
       <div class="css-landing-wxs"></div>
     </div>
@@ -615,6 +616,8 @@ a {
 
 .css-landing-cqs {
   width: 100%;
+  height: 1rem;
+  min-height: 1rem;
   padding: 1rem 0;
   margin-top: 3rem;
   align-items: center;
