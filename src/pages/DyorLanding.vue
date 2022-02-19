@@ -471,6 +471,14 @@
           </g>
         </svg>
       </button>
+
+      <div id="test-re">
+        <template v-if="result">
+          <a class="css-landing-cas" :href="result">
+            Go to Report{{ result }}
+          </a>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -494,7 +502,6 @@ export default {
   methods: {
     onDecode(result) {
       this.result = result;
-      window.open(result, "_blank").focus();
     },
     scanQuickResponse(e) {
       const qrcode = new Decoder();
@@ -508,7 +515,9 @@ export default {
               let a = document.getElementById("teste");
               let c = result.data.toString();
               a.innerText = c.substr(-10);
-              window.open(c, "_blank").focus();
+              let r = document.getElementById("test-re");
+              const w = `<a href="${c}" style="height: 50px; width:100%;  margin-top:2rem;  align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
+              r.innerHTML = w;
             })
             .catch((error) => {
               console.error(error);
@@ -543,6 +552,26 @@ a {
   color: #fff;
 }
 
+.css-landing-scw {
+  height: 3rem;
+  border-radius: 8px;
+  margin-top: auto;
+  display: flex;
+  background: var(--complementary-color-blue);
+  justify-content: center;
+  align-items: center;
+}
+
+.css-landing-cas {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 2rem;
+  background: var(--complementary-color-blue);
+}
 .css-landing-ecb {
   text-decoration: none;
   padding: 1rem;
