@@ -378,7 +378,6 @@
 
       <div class="css-landing-lbc"></div>
 
-
       <template v-if="isCamera">
         <qrcode-stream
           :key="_uid"
@@ -474,11 +473,10 @@
       </div>
       <div id="test-re">
         <template v-if="result">
-          <a class="css-landing-cas" :href="result">
-            Go to Report
-          </a>
+          <a class="css-landing-cas" :href="result"> Go to Report </a>
         </template>
       </div>
+      <div class="css-landing-wxs"></div>
     </div>
   </div>
 </template>
@@ -516,7 +514,7 @@ export default {
               let c = result.data.toString();
               a.innerText = c.substr(-10);
               let r = document.getElementById("test-re");
-              const w = `<a href="${c}" style="height: 50px; width:100%;  margin-top:2rem;  align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
+              const w = `<a href="${c}" style="height: 3rem; width:100%;  margin-top:2rem; align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
               r.innerHTML = w;
             })
             .catch((error) => {
@@ -590,6 +588,14 @@ a {
   border: 1px solid var(--border-primary);
 }
 
+.css-landing-wxs {
+  height: 100px;
+  min-height: 100px;
+}
+.qrcode-stream-wrapper {
+  margin-top: 2rem;
+}
+
 .css-landing-iiu {
   width: 100%;
   height: 100px;
@@ -644,7 +650,7 @@ a {
 
 .css-landing-cwx {
   width: 400px;
-  height: 60%;
+  height: 70%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
