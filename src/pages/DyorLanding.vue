@@ -377,6 +377,53 @@
       <div class="css-landing-cqs" id="teste">Code {{ reactiveResponse }}</div>
 
       <div class="css-landing-lbc"></div>
+
+
+      <template v-if="isCamera">
+        <qrcode-stream
+          :key="_uid"
+          @decode="onDecode"
+          capture="user"
+          :track="paintBoundingBox"
+          @init="onInit"
+        >
+        </qrcode-stream>
+      </template>
+
+      <button class="css-landing-ecb" v-on:click="isCamera = !isCamera">
+        <svg
+          id="SVGRoot"
+          width="300px"
+          height="100px"
+          version="1.1"
+          viewBox="0 0 300 100"
+          xmlns="http://www.w3.org/2000/svg"
+          opacity=".3"
+        >
+          <text
+            x="141.39316"
+            y="81.102722"
+            font-family="Nunito"
+            font-size="40px"
+            font-weight="bold"
+            style="line-height: 1.25"
+            xml:space="preserve"
+          >
+            <tspan x="141.39316" y="81.102722" />
+          </text>
+          <g
+            transform="matrix(1.875 0 0 1.875 127.25 22.603)"
+            fill="#0069f5"
+            fill-rule="evenodd"
+          >
+            <path
+              d="m6 18h3c0.66667 0.11438 1 0.44772 1 1s-0.33333 0.88562-1 1h-5v-5c0-0.66667 0.33333-1 1-1s1 0.33333 1 1zm12 0v-3c0.11438-0.66667 0.44772-1 1-1s0.88562 0.33333 1 1v5h-5c-0.66667 0-1-0.33333-1-1s0.33333-1 1-1zm0-12h-3c-0.66667-0.11438-1-0.44772-1-1 0-0.55228 0.33333-0.88562 1-1h5v5c0 0.66667-0.33333 1-1 1s-1-0.33333-1-1zm-12 0v3c-0.11438 0.66667-0.44772 1-1 1-0.55228 0-0.88562-0.33333-1-1v-5h5c0.66667 0 1 0.33333 1 1s-0.33333 1-1 1z"
+              fill="#0069f5"
+              fill-rule="nonzero"
+            />
+          </g>
+        </svg>
+      </button>
       <div class="css-landing-cpx">
         <svg
           id="SVGRoot"
@@ -425,57 +472,10 @@
           @change="scanQuickResponse"
         />
       </div>
-
-      <template v-if="isCamera">
-        <qrcode-stream
-          :key="_uid"
-          @decode="onDecode"
-          capture="user"
-          :track="paintBoundingBox"
-          @init="onInit"
-        >
-        </qrcode-stream>
-      </template>
-
-      <button class="css-landing-ecb" v-on:click="isCamera = !isCamera">
-        <svg
-          id="SVGRoot"
-          width="300px"
-          height="100px"
-          version="1.1"
-          viewBox="0 0 300 100"
-          xmlns="http://www.w3.org/2000/svg"
-          opacity=".3"
-        >
-          <text
-            x="141.39316"
-            y="81.102722"
-            font-family="Nunito"
-            font-size="40px"
-            font-weight="bold"
-            style="line-height: 1.25"
-            xml:space="preserve"
-          >
-            <tspan x="141.39316" y="81.102722" />
-          </text>
-          <g
-            transform="matrix(1.875 0 0 1.875 127.25 22.603)"
-            fill="#0069f5"
-            fill-rule="evenodd"
-          >
-            <path
-              d="m6 18h3c0.66667 0.11438 1 0.44772 1 1s-0.33333 0.88562-1 1h-5v-5c0-0.66667 0.33333-1 1-1s1 0.33333 1 1zm12 0v-3c0.11438-0.66667 0.44772-1 1-1s0.88562 0.33333 1 1v5h-5c-0.66667 0-1-0.33333-1-1s0.33333-1 1-1zm0-12h-3c-0.66667-0.11438-1-0.44772-1-1 0-0.55228 0.33333-0.88562 1-1h5v5c0 0.66667-0.33333 1-1 1s-1-0.33333-1-1zm-12 0v3c-0.11438 0.66667-0.44772 1-1 1-0.55228 0-0.88562-0.33333-1-1v-5h5c0.66667 0 1 0.33333 1 1s-0.33333 1-1 1z"
-              fill="#0069f5"
-              fill-rule="nonzero"
-            />
-          </g>
-        </svg>
-      </button>
-
       <div id="test-re">
         <template v-if="result">
           <a class="css-landing-cas" :href="result">
-            Go to Report{{ result }}
+            Go to Report
           </a>
         </template>
       </div>
@@ -677,7 +677,6 @@ a {
 #logo132 {
   width: 120px;
   height: 24px;
-  position: absolute;
   z-index: 1;
 }
 @media (max-width: 600px) {
