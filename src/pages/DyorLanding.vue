@@ -515,7 +515,7 @@ export default {
               let c = result.data.toString();
               a.innerText = c.substr(-10);
               let r = document.getElementById("test-re");
-              const w = `<a href="${c}" style="height: 3rem; width:100%;  margin-top:2rem; align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
+              const w = `<a href="${c}" style="height: 3rem; width:100%;  margin-top:3rem; align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
               r.innerHTML = w;
             })
             .catch((error) => {
@@ -619,7 +619,7 @@ a {
   height: 1rem;
   min-height: 1rem;
   padding: 1rem 0;
-  margin-top: 3rem;
+  margin-top: 2rem;
   align-items: center;
   display: flex;
   justify-content: center;
