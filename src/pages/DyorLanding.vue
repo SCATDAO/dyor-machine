@@ -375,7 +375,7 @@
         </svg>
       </div>
 
-            <div id="test-re">
+      <div id="test-re">
         <template v-if="result">
           <a class="css-landing-cas" :href="result"> Go to Report </a>
         </template>
@@ -495,7 +495,7 @@ export default {
   },
   computed: {
     reactiveResponse() {
-      return this.result.substr(-10);
+      return this.result.slice(this.result.length - 10);
     },
   },
   methods: {
@@ -513,7 +513,7 @@ export default {
             .then((result) => {
               let a = document.getElementById("teste");
               let c = result.data.toString();
-              a.innerText = c.substr(-10);
+              a.innerText = c.slice(c.length - 10);
               let r = document.getElementById("test-re");
               const w = `<a href="${c}" style="height: 3rem; width:100%;  margin-top:3rem; align-items:  center;  justify-content:center; display: flex; background: var(--complementary-color-blue); color: #fff; border-radius: 8px;" target="_blank" >Go to report</a>`;
               r.innerHTML = w;
