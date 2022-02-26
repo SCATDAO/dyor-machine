@@ -317,7 +317,7 @@
       ref="html2Pdf"
     >
       <section slot="pdf-content">
-        <Page1/>
+        <Page1 />
         <Page2 :reportCode="reportCode" :totalScore="totalScore" />
         <page3 />
         <Page4 />
@@ -363,7 +363,7 @@ export default {
       setTimeout(() => {
         this.$emit("domRendered");
         this.knowCurrentRoute();
-      },1000);
+      }, 1000);
     });
   },
   computed: {
@@ -387,17 +387,18 @@ export default {
           format: this.controlValue.pdfFormat,
           orientation: this.controlValue.pdfOrientation,
         },
-        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+        pagebreak: { mode: "legacy" },
       };
     },
   },
   methods: {
     knowCurrentRoute() {
       if (this.route === "download") {
-        this.downloadPdf()
+        this.downloadPdf();
       }
       if (this.route === "show") {
         this.$store.commit("showReportLayout");
+        this.downloadPdf();
       }
     },
     async downloadPdf() {
