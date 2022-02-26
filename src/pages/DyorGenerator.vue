@@ -296,6 +296,7 @@
         </g>
       </svg>
     </header>
+    <div class="css-dg-wca">Wait a moment please...</div>
     <vue-html2pdf
       :show-layout="controlValue.showLayout"
       :float-layout="controlValue.floatLayout"
@@ -398,7 +399,6 @@ export default {
       }
       if (this.route === "show") {
         this.$store.commit("showReportLayout");
-        this.downloadPdf();
       }
     },
     async downloadPdf() {
@@ -510,5 +510,10 @@ export default {
   align-items: center;
   padding: 0 10%;
   box-shadow: 1px 1px 20px var(--border-primary);
+}
+
+.css-dg-wca {
+  margin-top: 2rem;
+  font-size: var(--text-size-title);
 }
 </style>
