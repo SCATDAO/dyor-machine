@@ -137,6 +137,7 @@ const questionList = [
     options: [
       { id: 1, name: "Yes", value: 0.0 },
       { id: 2, name: "No", value: 1.0 },
+      { id: 3, name: "N/A", value: 0.0 },
     ],
     answer: null,
     textarea: "",
@@ -163,6 +164,7 @@ const questionList = [
     options: [
       { id: 1, name: "Yes", value: 0.0 },
       { id: 2, name: "No", value: 1.0 },
+      { id: 3, name: "N/A", value: 0.0 },
     ],
     answer: null,
     textarea: "",
@@ -183,7 +185,7 @@ const questionList = [
       "B. Note number of pages in box below and any thoughts or observations you may have.",
     ],
     options: [
-      { id: 1, name: "1 to 5 pages", value: 0.0 },
+      { id: 1, name: "0 to 5 pages", value: 0.0 },
       { id: 2, name: "6 to 15 pages", value: 0.2 },
       { id: 3, name: ">15 Pages", value: 0.5 },
     ],
@@ -423,6 +425,7 @@ const questionList = [
     options: [
       { id: 1, name: "Bots", value: 0.0 },
       { id: 2, name: "Real", value: 2.0 },
+      { id: 3, name: "N/A", value: 2.0 },
     ],
     answer: null,
     textarea: "",
@@ -474,6 +477,7 @@ const questionList = [
     options: [
       { id: 1, name: "Yes", value: 1.0 },
       { id: 2, name: "No", value: 0.0 },
+      { id: 3, name: "N/A", value: 1.0 },
     ],
     answer: null,
     textarea: "",
@@ -524,6 +528,7 @@ const questionList = [
     options: [
       { id: 1, name: "Yes", value: 1.0 },
       { id: 2, name: "No", value: 0.0 },
+      { id: 3, name: "N/A", value: 1.0 },
     ],
     answer: null,
     textarea: "",
@@ -573,6 +578,7 @@ const questionList = [
     options: [
       { id: 1, name: "Yes", value: 1.0 },
       { id: 2, name: "No", value: 0.0 },
+      { id: 3, name: "N/A", value: 1.0 },
     ],
     answer: null,
     textarea: "",
