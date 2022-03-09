@@ -843,7 +843,7 @@ export default {
     const bestialEncoder = new BestialEncoder();
     axios({
       method: "get",
-      url: `https://api.dyortool.io/v1/findReport/${this.id}`,
+      url: `https://api.dyortool.io/v1/report/searchId/${this.id}`,
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
