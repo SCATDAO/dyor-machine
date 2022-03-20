@@ -337,6 +337,7 @@ import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
 
+
 export default {
   name: "DyorGenerator",
   props: {

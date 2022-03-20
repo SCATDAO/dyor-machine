@@ -352,6 +352,7 @@
                         </button>
                         <template v-if="isSharing">
                           <div class="css-work-finished-sox">
+                            <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
                             <div
                               class="css-work-finished-xsc"
                               @click="displayShare()"
@@ -494,10 +495,12 @@
                     </button>
                     <template v-if="isSharing">
                       <div class="css-work-finished-sox">
+                        <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
                         <div
                           class="css-work-finished-xsc"
                           @click="displayShare()"
                         ></div>
+
                         <a
                           target="_blank"
                           :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20https://audits.dyortool.io/report/${id}`"
@@ -581,6 +584,7 @@
                   </div>
                 </div>
               </div>
+             <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
               <div class="css-work-finished-ttt">
                 <div
                   class="css-work-finished-qai"
@@ -769,6 +773,7 @@
                 </template>
                 <div class="css-work-finished-qac"></div>
               </div>
+
               <div class=".css-work-finished-cri"></div>
             </div>
           </div>
@@ -791,6 +796,7 @@ import { BestialEncoder } from "bestial-encoder";
 import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
 import DOMPurify from "dompurify";
+import MiniReport from "../components/MiniReport.vue";
 
 export default {
   props: {
@@ -798,6 +804,7 @@ export default {
   },
   components: {
     DyorGenerator,
+    MiniReport,
   },
   data() {
     return {
@@ -881,10 +888,9 @@ export default {
       quickResponse.level = "L";
     },
     createMachineURL(route) {
-      var metaTag = document.createElement("meta");
+      let metaTag = document.createElement("meta");
       metaTag.name = "viewport";
-      metaTag.content =
-        "content=width=1024";
+      metaTag.content = "content=width=1024";
       document.getElementsByTagName("head")[0].appendChild(metaTag);
       this.displaySub = !this.displaySub;
       this.machineRoute = route;
@@ -1012,8 +1018,8 @@ a {
 
 .css-work-finished-xsc {
   position: fixed;
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  height: 200%;
   z-index: 2;
   left: 0;
   right: 0;
@@ -1168,7 +1174,8 @@ a {
   color: var(--complementary-color-blue);
 }
 
-.css-work-finished-shai:hover {
+.css-work-finished-shai:hover .css-work-finished-shai:active,
+.css-work-finished-shai:focus {
   background: var(--complementary-color-blue);
   color: #fff;
   fill: #fff;
@@ -1304,7 +1311,6 @@ a {
     border-top: none;
     background: var(--base-color-white-primary);
   }
-
   .css-work-finished-shb {
     display: flex;
     flex-direction: column;
