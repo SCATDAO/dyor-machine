@@ -1301,30 +1301,9 @@ a {
   justify-content: space-between;
 }
 
-@media (max-width: 1921px) {
-  html {
-    font-size: 100%;
-  }
-}
 
-@media (max-width: 1441px) {
-  html {
-    font-size: 80%;
-  }
-}
-
-@media (max-width: 1025px) {
-  html {
-    font-size: 90%;
-  }
-}
 
 @media (max-width: 600px) {
-
-    html {
-    font-size: 100%;
-  }
-
 
   .css-work-finished-tw {
     width: 100%;

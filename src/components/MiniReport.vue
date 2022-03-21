@@ -581,7 +581,7 @@ export default {
           this.toDeviceWidth();
           body.style.opacity = "1";
         });
-      }, 1000);
+      }, 2000);
     });
   },
   methods: {
