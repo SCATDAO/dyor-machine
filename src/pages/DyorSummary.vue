@@ -352,13 +352,22 @@
                         </button>
                         <template v-if="isSharing">
                           <div class="css-work-finished-sox">
+                            <MiniReport
+                              :id="id"
+                              :newAudit="newAudit"
+                              :totalScore="totalScore"
+                              :c1="evaluateCategory('Development Team')"
+                              :c2="evaluateCategory('Tokenomics')"
+                              :c3="evaluateCategory('Community')"
+                              :c4="evaluateCategory('Metrics')"
+                            />
                             <div
                               class="css-work-finished-xsc"
                               @click="displayShare()"
                             ></div>
                             <a
                               target="_blank"
-                              :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20https://audits.dyortool.io/report/${id}`"
+                              :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
                               ><svg
                                 width="20px"
                                 height="20px"
@@ -375,7 +384,7 @@
 
                             <a
                               target="_blank"
-                              :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20%20-%20https://audits.dyortool.io/report/${id}`"
+                              :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                             >
                               <svg
                                 viewBox="0 0 800 800"
@@ -494,13 +503,26 @@
                     </button>
                     <template v-if="isSharing">
                       <div class="css-work-finished-sox">
+                        <MiniReport
+                          :id="id"
+                          :newAudit="newAudit"
+                          :totalScore="totalScore"
+                          :c1="evaluateCategory('Development Team')"
+                          :c2="evaluateCategory('Tokenomics')"
+                          :c3="evaluateCategory('Community')"
+                          :c4="evaluateCategory('Metrics')"
+                        />
+
                         <div
                           class="css-work-finished-xsc"
                           @click="displayShare()"
-                        ></div>
+                        >
+                          <div>Downloading Mini Report</div>
+                        </div>
+
                         <a
                           target="_blank"
-                          :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20https://audits.dyortool.io/report/${id}`"
+                             :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
                           ><svg
                             width="20px"
                             height="20px"
@@ -517,7 +539,7 @@
 
                         <a
                           target="_blank"
-                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20%20-%20https://audits.dyortool.io/report/${id}`"
+                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                         >
                           <svg
                             viewBox="0 0 800 800"
@@ -769,6 +791,7 @@
                 </template>
                 <div class="css-work-finished-qac"></div>
               </div>
+
               <div class=".css-work-finished-cri"></div>
             </div>
           </div>
@@ -791,6 +814,7 @@ import { BestialEncoder } from "bestial-encoder";
 import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
 import DOMPurify from "dompurify";
+import MiniReport from "../components/MiniReport.vue";
 
 export default {
   props: {
@@ -798,6 +822,7 @@ export default {
   },
   components: {
     DyorGenerator,
+    MiniReport,
   },
   data() {
     return {
@@ -881,10 +906,9 @@ export default {
       quickResponse.level = "L";
     },
     createMachineURL(route) {
-      var metaTag = document.createElement("meta");
+      let metaTag = document.createElement("meta");
       metaTag.name = "viewport";
-      metaTag.content =
-        "content=width=1024";
+      metaTag.content = "content=width=1024";
       document.getElementsByTagName("head")[0].appendChild(metaTag);
       this.displaySub = !this.displaySub;
       this.machineRoute = route;
@@ -1012,8 +1036,8 @@ a {
 
 .css-work-finished-xsc {
   position: fixed;
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  height: 200%;
   z-index: 2;
   left: 0;
   right: 0;
@@ -1142,7 +1166,6 @@ a {
 
 .css-work-finished-sha,
 .css-work-finished-shb {
-  color: var(--complementary-color-blue);
   display: flex;
   position: relative;
   align-items: center;
@@ -1168,7 +1191,8 @@ a {
   color: var(--complementary-color-blue);
 }
 
-.css-work-finished-shai:hover {
+.css-work-finished-shai:hover .css-work-finished-shai:active,
+.css-work-finished-shai:focus {
   background: var(--complementary-color-blue);
   color: #fff;
   fill: #fff;
@@ -1304,12 +1328,23 @@ a {
     border-top: none;
     background: var(--base-color-white-primary);
   }
-
   .css-work-finished-shb {
     display: flex;
     flex-direction: column;
   }
 
+  .css-work-finished-xsc {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .css-work-finished-xsc div {
+    top: 30%;
+    font-size: var(--text-size-title);
+    position: absolute;
+  }
   .css-work-finished-sha {
     display: none;
   }
