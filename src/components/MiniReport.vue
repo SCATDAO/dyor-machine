@@ -629,7 +629,7 @@ export default {
   box-sizing: border-box;
   flex-direction: column;
   position: fixed;
-
+  top: -1000px;
   z-index: 10;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
