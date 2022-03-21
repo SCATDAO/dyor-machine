@@ -27,16 +27,20 @@
 
     <div class="css-dc-kqq">
       <div class="css-dc-qxh">
-        Development Team<span>{{ c1 }}/10.00</span>
+        <div>Development Team</div>
+        <span>{{ c1 }}/10.00</span>
       </div>
       <div class="css-dc-qxh">
-        Tokenomics<span>{{ c2 }}/10.00</span>
+        <div>Tokenomics</div>
+        <span>{{ c2 }}/10.00</span>
       </div>
       <div class="css-dc-qxh">
-        Community<span>{{ c3 }}/10.00</span>
+        <div>Community</div>
+        <span>{{ c3 }}/10.00</span>
       </div>
       <div class="css-dc-qxh">
-        ICO Trading Metrics<span>
+        <div>ICO Trading Metrics</div>
+        <span>
           <template v-if="c4 === 404">
             <span>Doesn't Apply </span>
           </template>
@@ -630,7 +634,7 @@ export default {
   flex-direction: column;
   position: fixed;
   z-index: 1000;
-  top: -1000px;
+
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
 
@@ -693,14 +697,17 @@ export default {
   padding: 0 2rem;
   justify-content: space-between;
   box-sizing: border-box;
-  text-align: left;
   margin-top: 1rem;
   font-size: var(--text-size-fourth);
 }
 
+.css-dc-qxh div {
+  text-align: left !important;
+}
 .css-dc-qxh span {
   letter-spacing: 0.03em;
   margin-left: auto;
+  text-align: right !important;
 }
 .css-dc-cqw {
   color: #fff;
