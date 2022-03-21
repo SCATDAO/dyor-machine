@@ -629,8 +629,8 @@ export default {
   box-sizing: border-box;
   flex-direction: column;
   position: fixed;
+  z-index: 1000;
   top: -1000px;
-  z-index: 10;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
 
@@ -697,6 +697,7 @@ export default {
 
 .css-dc-qxh span {
   letter-spacing: 0.03em;
+  margin-left: auto;
 }
 .css-dc-cqw {
   color: #fff;
