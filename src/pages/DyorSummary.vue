@@ -1320,6 +1320,12 @@ a {
 }
 
 @media (max-width: 600px) {
+
+    html {
+    font-size: 100%;
+  }
+
+
   .css-work-finished-tw {
     width: 100%;
     display: flex;
