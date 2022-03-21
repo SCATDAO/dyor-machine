@@ -10,10 +10,7 @@
       <div class="css-dc-xqq">
         <div class="css-dc-xaa">
           <div class="css-dc-qkz">
-            <img
-              src="data:image/png;base64,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"
-              alt=""
-            />
+            <img :src="newAudit.pl" alt="" />
           </div>
         </div>
 
@@ -29,10 +26,26 @@
     </div>
 
     <div class="css-dc-kqq">
-      <div class="css-dc-qxh">Development Team<span>5.32/10.00</span></div>
-      <div class="css-dc-qxh">Tokenomics<span>7.32/10.00</span></div>
-      <div class="css-dc-qxh">Community<span>9.32/10.00</span></div>
-      <div class="css-dc-qxh">ICO Trading Metrics<span>5.00/5.00</span></div>
+      <div class="css-dc-qxh">
+        Development Team<span>{{ c1 }}/10.00</span>
+      </div>
+      <div class="css-dc-qxh">
+        Tokenomics<span>{{ c2 }}/10.00</span>
+      </div>
+      <div class="css-dc-qxh">
+        Community<span>{{ c3 }}/10.00</span>
+      </div>
+      <div class="css-dc-qxh">
+        ICO Trading Metrics<span>
+          <template v-if="c4 === 404">
+            <span>Doesn't Apply </span>
+          </template>
+
+          <template v-if="c4 !== 404">
+            <span>{{ c4 }} / 5.00 </span>
+          </template>
+        </span>
+      </div>
     </div>
     <div class="css-dc-qox">
       <canvas
@@ -41,9 +54,17 @@
         style="image-rendering: pixelated"
       ></canvas>
       <div class="css-dc-qqq">
-        <span class="css-dc-cqw"> <span>ID:</span> 98cas9dasd</span>
-        <span class="css-dc-cqw"> <span>Date:</span> 12/02/2012</span>
-        <span class="css-dc-cqw"> <span>Author:</span> Cardanofan</span>
+        <span class="css-dc-cqw"> <span>ID:</span> {{ id }}</span>
+        <span class="css-dc-cqw">
+          <span>Date:</span>
+
+          {{ reportDate.getDate() }} /
+
+          {{ reportDate.toLocaleString("default", { month: "numeric" }) }} /
+
+          {{ reportDate.getFullYear() }}
+        </span>
+        <span class="css-dc-cqw"> <span>Author:</span> {{ newAudit.an }}</span>
       </div>
       <div class="css-mr-qcz">
         <svg
@@ -531,44 +552,56 @@ import html2canvas from "html2canvas";
 import QRious from "qrious";
 
 export default {
-  props: ["totalScore", "newAudit"],
+  props: ["id", "totalScore", "newAudit", "c1", "c2", "c3", "c4"],
   data() {
     return {
       reportCode: "Paribus",
-      reportDate: 123,
     };
+  },
+  computed: {
+    reportDate() {
+      return this.$store.getters.sendMeDate;
+    },
   },
   mounted() {
     this.createNewCanvas();
 
-    let metaTag = document.createElement("meta");
-    metaTag.name = "viewport";
-    metaTag.content = "content=width=1024";
-    document.getElementsByTagName("head")[0].appendChild(metaTag);
-
     this.$nextTick(() => {
       setTimeout(() => {
+        this.toContentWidth();
+        const body = document.querySelector("body");
+        body.style.opacity = "0";
         const recipe = document.querySelector("#capture2");
         html2canvas(recipe, { width: 700, height: 900 }).then((canvas) => {
           canvas.style.imageRendering = "pixelated";
           let can = document.createElement("a");
           can.href = canvas.toDataURL("image/png;base64");
-          can.download = "IMAGE.PNG";
+          can.download = `${this.newAudit.pn}`;
           can.click();
+          this.toDeviceWidth();
+          body.style.opacity = "1";
         });
       }, 1000);
     });
-
-    metaTag = document.createElement("meta");
-    metaTag.name = "viewport";
-    metaTag.content = "width=device-width, initial-scale=1";
-    document.getElementsByTagName("head")[0].appendChild(metaTag);
   },
   methods: {
+    toContentWidth() {
+      let metaTag = document.createElement("meta");
+      metaTag.name = "viewport";
+      metaTag.content = "content=width=1024";
+      document.getElementsByTagName("head")[0].appendChild(metaTag);
+    },
+    toDeviceWidth() {
+      let metaTag = document.createElement("meta");
+      metaTag = document.createElement("meta");
+      metaTag.name = "viewport";
+      metaTag.content = "width=device-width, initial-scale=1";
+      document.getElementsByTagName("head")[0].appendChild(metaTag);
+    },
     createNewCanvas() {
       const quickResponse = new QRious({
         element: document.getElementById("quickResponse3"),
-        value: `https://audits.dyortool.io/report/${this.reportCode}`,
+        value: `https://audits.dyortool.io/report/${this.id}`,
       });
       quickResponse.size = 100;
       quickResponse.background = "#ffffff";
@@ -587,14 +620,20 @@ export default {
 .css-mr-qca {
   font-family: "Nunito", sans-serif;
   width: 700px;
+  min-width: 700px;
+  min-height: 900px;
+  max-height: 900px;
+  max-width: 700px;
   height: 900px;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
   position: fixed;
-  z-index: 1000;
+  top: -1000px;
+  z-index: 10;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
+
 .css-dc-qkz {
   width: 100%;
   display: flex;
@@ -704,7 +743,7 @@ export default {
 .css-dc-qxs span {
   color: #fff;
   text-align: left;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-size: var(--text-size-sixth);
 }
 
@@ -723,5 +762,12 @@ export default {
 }
 .css-dc-qkz img {
   border-radius: 50%;
+  width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  height: 100px;
+  background: #ffffff;
 }
 </style>

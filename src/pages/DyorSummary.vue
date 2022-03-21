@@ -352,14 +352,22 @@
                         </button>
                         <template v-if="isSharing">
                           <div class="css-work-finished-sox">
-                            <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
+                            <MiniReport
+                              :id="id"
+                              :newAudit="newAudit"
+                              :totalScore="totalScore"
+                              :c1="evaluateCategory('Development Team')"
+                              :c2="evaluateCategory('Tokenomics')"
+                              :c3="evaluateCategory('Community')"
+                              :c4="evaluateCategory('Metrics')"
+                            />
                             <div
                               class="css-work-finished-xsc"
                               @click="displayShare()"
                             ></div>
                             <a
                               target="_blank"
-                              :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20https://audits.dyortool.io/report/${id}`"
+                              :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
                               ><svg
                                 width="20px"
                                 height="20px"
@@ -376,7 +384,7 @@
 
                             <a
                               target="_blank"
-                              :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20%20-%20https://audits.dyortool.io/report/${id}`"
+                              :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                             >
                               <svg
                                 viewBox="0 0 800 800"
@@ -495,15 +503,26 @@
                     </button>
                     <template v-if="isSharing">
                       <div class="css-work-finished-sox">
-                        <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
+                        <MiniReport
+                          :id="id"
+                          :newAudit="newAudit"
+                          :totalScore="totalScore"
+                          :c1="evaluateCategory('Development Team')"
+                          :c2="evaluateCategory('Tokenomics')"
+                          :c3="evaluateCategory('Community')"
+                          :c4="evaluateCategory('Metrics')"
+                        />
+
                         <div
                           class="css-work-finished-xsc"
                           @click="displayShare()"
-                        ></div>
+                        >
+                          <div>Downloading Mini Report</div>
+                        </div>
 
                         <a
                           target="_blank"
-                          :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20https://audits.dyortool.io/report/${id}`"
+                             :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
                           ><svg
                             width="20px"
                             height="20px"
@@ -520,7 +539,7 @@
 
                         <a
                           target="_blank"
-                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20%20-%20https://audits.dyortool.io/report/${id}`"
+                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                         >
                           <svg
                             viewBox="0 0 800 800"
@@ -584,7 +603,6 @@
                   </div>
                 </div>
               </div>
-             <MiniReport :newAudit="newAudit" :totalScore="totalScore" />
               <div class="css-work-finished-ttt">
                 <div
                   class="css-work-finished-qai"
@@ -1148,7 +1166,6 @@ a {
 
 .css-work-finished-sha,
 .css-work-finished-shb {
-  color: var(--complementary-color-blue);
   display: flex;
   position: relative;
   align-items: center;
@@ -1316,6 +1333,18 @@ a {
     flex-direction: column;
   }
 
+  .css-work-finished-xsc {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .css-work-finished-xsc div {
+    top: 30%;
+    font-size: var(--text-size-title);
+    position: absolute;
+  }
   .css-work-finished-sha {
     display: none;
   }
