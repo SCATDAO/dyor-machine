@@ -629,7 +629,7 @@ export default {
   box-sizing: border-box;
   flex-direction: column;
   position: fixed;
-  top: -1000px;
+
   z-index: 10;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
@@ -681,7 +681,9 @@ export default {
 
 .css-dc-qxh {
   display: flex;
-  width: 100%;
+  width: 700px;
+  min-width: 700px;
+  max-width: 700px;
   height: 4rem;
   align-items: center;
   color: #ffffff;
