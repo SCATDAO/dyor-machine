@@ -634,7 +634,7 @@ export default {
   flex-direction: column;
   position: fixed;
   z-index: 1000;
-
+  top: -1000px;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
 
