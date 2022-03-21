@@ -674,6 +674,9 @@ export default {
 }
 
 .css-dc-kqq {
+  width: 700px;
+  min-width: 700px;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   margin-top: auto;
