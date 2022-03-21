@@ -681,7 +681,9 @@ export default {
 
 .css-dc-qxh {
   display: flex;
-  width: 100%;
+  width: 700px;
+  min-width: 700px;
+  max-width: 700px;
   height: 4rem;
   align-items: center;
   color: #ffffff;
