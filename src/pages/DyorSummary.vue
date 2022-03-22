@@ -1,7 +1,7 @@
 <template>
   <div class="css-work-finished-wrap">
     <template v-if="!displaySub">
-      <div class="css-work-finished-wrap">
+      <div class="css-work-finished-wrap" :class="{ active: isMobiSharing }">
         <header class="css-work-finished-her">
           <a href="https://dyortool.io/">
             <svg
@@ -351,82 +351,138 @@
                           </svg>
                         </button>
                         <template v-if="isSharing">
-                          <div class="css-work-finished-sox">
-                            <MiniReport
-                              :id="id"
-                              :newAudit="newAudit"
-                              :totalScore="totalScore"
-                              :c1="evaluateCategory('Development Team')"
-                              :c2="evaluateCategory('Tokenomics')"
-                              :c3="evaluateCategory('Community')"
-                              :c4="evaluateCategory('Metrics')"
-                            />
-                            <div
-                              class="css-work-finished-xsc"
-                              @click="displayShare()"
-                            ></div>
-                            <a
-                              target="_blank"
-                              :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
-                              ><svg
-                                width="20px"
-                                height="20px"
-                                fill="rgb(29, 155, 240)"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                              >
-                                <g>
-                                  <path
-                                    d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
-                                  ></path>
-                                </g></svg
-                            ></a>
+                          <div class="css-work-finished-xsc">
+                            <div class="css-work-finished-sox">
+                              <div class="css-wf-qco" @click="displayShare()">
+                                <MiniReport
+                                  ref="miniReport"
+                                  :id="id"
+                                  :newAudit="newAudit"
+                                  :totalScore="totalScore"
+                                  :c1="evaluateCategory('Development Team')"
+                                  :c2="evaluateCategory('Tokenomics')"
+                                  :c3="evaluateCategory('Community')"
+                                  :c4="evaluateCategory('Metrics')"
+                                />
+                              </div>
+                              <div class="css-wf-cak">
+                                <a
+                                  class="tooltip"
+                                  target="_blank"
+                                  :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
+                                  ><svg
+                                    width="20px"
+                                    height="20px"
+                                    fill="rgb(29, 155, 240)"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                  >
+                                    <g>
+                                      <path
+                                        d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
+                                      ></path>
+                                    </g>
+                                  </svg>
+                                  <span class="tooltiptext">Twitter</span></a
+                                >
 
-                            <a
-                              target="_blank"
-                              :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
-                            >
-                              <svg
-                                viewBox="0 0 800 800"
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="20px"
-                                width="20px"
-                              >
-                                <circle
-                                  cx="400"
-                                  cy="400"
-                                  fill="#ff4500"
-                                  r="400"
-                                />
-                                <path
-                                  d="M666.8 400c.08 5.48-.6 10.95-2.04 16.24s-3.62 10.36-6.48 15.04c-2.85 4.68-6.35 8.94-10.39 12.65s-8.58 6.83-13.49 9.27c.11 1.46.2 2.93.25 4.4a107.268 107.268 0 0 1 0 8.8c-.05 1.47-.14 2.94-.25 4.4 0 89.6-104.4 162.4-233.2 162.4S168 560.4 168 470.8c-.11-1.46-.2-2.93-.25-4.4a107.268 107.268 0 0 1 0-8.8c.05-1.47.14-2.94.25-4.4a58.438 58.438 0 0 1-31.85-37.28 58.41 58.41 0 0 1 7.8-48.42 58.354 58.354 0 0 1 41.93-25.4 58.4 58.4 0 0 1 46.52 15.5 286.795 286.795 0 0 1 35.89-20.71c12.45-6.02 25.32-11.14 38.51-15.3s26.67-7.35 40.32-9.56 27.45-3.42 41.28-3.63L418 169.6c.33-1.61.98-3.13 1.91-4.49.92-1.35 2.11-2.51 3.48-3.4 1.38-.89 2.92-1.5 4.54-1.8 1.61-.29 3.27-.26 4.87.09l98 19.6c9.89-16.99 30.65-24.27 48.98-17.19s28.81 26.43 24.71 45.65c-4.09 19.22-21.55 32.62-41.17 31.61-19.63-1.01-35.62-16.13-37.72-35.67L440 186l-26 124.8c13.66.29 27.29 1.57 40.77 3.82a284.358 284.358 0 0 1 77.8 24.86A284.412 284.412 0 0 1 568 360a58.345 58.345 0 0 1 29.4-15.21 58.361 58.361 0 0 1 32.95 3.21 58.384 58.384 0 0 1 25.91 20.61A58.384 58.384 0 0 1 666.8 400zm-396.96 55.31c2.02 4.85 4.96 9.26 8.68 12.97 3.71 3.72 8.12 6.66 12.97 8.68A40.049 40.049 0 0 0 306.8 480c16.18 0 30.76-9.75 36.96-24.69 6.19-14.95 2.76-32.15-8.68-43.59s-28.64-14.87-43.59-8.68c-14.94 6.2-24.69 20.78-24.69 36.96 0 5.25 1.03 10.45 3.04 15.31zm229.1 96.02c2.05-2 3.22-4.73 3.26-7.59.04-2.87-1.07-5.63-3.07-7.68s-4.73-3.22-7.59-3.26c-2.87-.04-5.63 1.07-7.94 2.8a131.06 131.06 0 0 1-19.04 11.35 131.53 131.53 0 0 1-20.68 7.99c-7.1 2.07-14.37 3.54-21.72 4.39-7.36.85-14.77 1.07-22.16.67-7.38.33-14.78.03-22.11-.89a129.01 129.01 0 0 1-21.64-4.6c-7.08-2.14-13.95-4.88-20.56-8.18s-12.93-7.16-18.89-11.53c-2.07-1.7-4.7-2.57-7.38-2.44s-5.21 1.26-7.11 3.15c-1.89 1.9-3.02 4.43-3.15 7.11s.74 5.31 2.44 7.38c7.03 5.3 14.5 9.98 22.33 14s16 7.35 24.4 9.97 17.01 4.51 25.74 5.66c8.73 1.14 17.54 1.53 26.33 1.17 8.79.36 17.6-.03 26.33-1.17A153.961 153.961 0 0 0 476.87 564c7.83-4.02 15.3-8.7 22.33-14zm-7.34-68.13c5.42.06 10.8-.99 15.81-3.07 5.01-2.09 9.54-5.17 13.32-9.06s6.72-8.51 8.66-13.58A39.882 39.882 0 0 0 532 441.6c0-16.18-9.75-30.76-24.69-36.96-14.95-6.19-32.15-2.76-43.59 8.68s-14.87 28.64-8.68 43.59c6.2 14.94 20.78 24.69 36.96 24.69z"
-                                  fill="#fff"
-                                />
-                              </svg>
-                            </a>
+                                <a
+                                  class="tooltip"
+                                  target="_blank"
+                                  :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
+                                >
+                                  <svg
+                                    viewBox="0 0 800 800"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="20px"
+                                    width="20px"
+                                  >
+                                    <circle
+                                      cx="400"
+                                      cy="400"
+                                      fill="#ff4500"
+                                      r="400"
+                                    />
+                                    <path
+                                      d="M666.8 400c.08 5.48-.6 10.95-2.04 16.24s-3.62 10.36-6.48 15.04c-2.85 4.68-6.35 8.94-10.39 12.65s-8.58 6.83-13.49 9.27c.11 1.46.2 2.93.25 4.4a107.268 107.268 0 0 1 0 8.8c-.05 1.47-.14 2.94-.25 4.4 0 89.6-104.4 162.4-233.2 162.4S168 560.4 168 470.8c-.11-1.46-.2-2.93-.25-4.4a107.268 107.268 0 0 1 0-8.8c.05-1.47.14-2.94.25-4.4a58.438 58.438 0 0 1-31.85-37.28 58.41 58.41 0 0 1 7.8-48.42 58.354 58.354 0 0 1 41.93-25.4 58.4 58.4 0 0 1 46.52 15.5 286.795 286.795 0 0 1 35.89-20.71c12.45-6.02 25.32-11.14 38.51-15.3s26.67-7.35 40.32-9.56 27.45-3.42 41.28-3.63L418 169.6c.33-1.61.98-3.13 1.91-4.49.92-1.35 2.11-2.51 3.48-3.4 1.38-.89 2.92-1.5 4.54-1.8 1.61-.29 3.27-.26 4.87.09l98 19.6c9.89-16.99 30.65-24.27 48.98-17.19s28.81 26.43 24.71 45.65c-4.09 19.22-21.55 32.62-41.17 31.61-19.63-1.01-35.62-16.13-37.72-35.67L440 186l-26 124.8c13.66.29 27.29 1.57 40.77 3.82a284.358 284.358 0 0 1 77.8 24.86A284.412 284.412 0 0 1 568 360a58.345 58.345 0 0 1 29.4-15.21 58.361 58.361 0 0 1 32.95 3.21 58.384 58.384 0 0 1 25.91 20.61A58.384 58.384 0 0 1 666.8 400zm-396.96 55.31c2.02 4.85 4.96 9.26 8.68 12.97 3.71 3.72 8.12 6.66 12.97 8.68A40.049 40.049 0 0 0 306.8 480c16.18 0 30.76-9.75 36.96-24.69 6.19-14.95 2.76-32.15-8.68-43.59s-28.64-14.87-43.59-8.68c-14.94 6.2-24.69 20.78-24.69 36.96 0 5.25 1.03 10.45 3.04 15.31zm229.1 96.02c2.05-2 3.22-4.73 3.26-7.59.04-2.87-1.07-5.63-3.07-7.68s-4.73-3.22-7.59-3.26c-2.87-.04-5.63 1.07-7.94 2.8a131.06 131.06 0 0 1-19.04 11.35 131.53 131.53 0 0 1-20.68 7.99c-7.1 2.07-14.37 3.54-21.72 4.39-7.36.85-14.77 1.07-22.16.67-7.38.33-14.78.03-22.11-.89a129.01 129.01 0 0 1-21.64-4.6c-7.08-2.14-13.95-4.88-20.56-8.18s-12.93-7.16-18.89-11.53c-2.07-1.7-4.7-2.57-7.38-2.44s-5.21 1.26-7.11 3.15c-1.89 1.9-3.02 4.43-3.15 7.11s.74 5.31 2.44 7.38c7.03 5.3 14.5 9.98 22.33 14s16 7.35 24.4 9.97 17.01 4.51 25.74 5.66c8.73 1.14 17.54 1.53 26.33 1.17 8.79.36 17.6-.03 26.33-1.17A153.961 153.961 0 0 0 476.87 564c7.83-4.02 15.3-8.7 22.33-14zm-7.34-68.13c5.42.06 10.8-.99 15.81-3.07 5.01-2.09 9.54-5.17 13.32-9.06s6.72-8.51 8.66-13.58A39.882 39.882 0 0 0 532 441.6c0-16.18-9.75-30.76-24.69-36.96-14.95-6.19-32.15-2.76-43.59 8.68s-14.87 28.64-8.68 43.59c6.2 14.94 20.78 24.69 36.96 24.69z"
+                                      fill="#fff"
+                                    />
+                                  </svg>
+                                  <span class="tooltiptext">Reddit</span>
+                                </a>
 
-                            <a
-                              target="_blank"
-                              :href="`https://www.facebook.com/sharer/sharer.php?u=https://audits.dyortool.io/report/${id}`"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20px"
-                                height="20px"
-                                viewBox="126.445 2.281 589 589"
-                              >
-                                <circle
-                                  cx="420.945"
-                                  cy="296.781"
-                                  r="294.5"
-                                  fill="#3c5a9a"
-                                />
-                                <path
-                                  d="M516.704 92.677h-65.239c-38.715 0-81.777 16.283-81.777 72.402.189 19.554 0 38.281 0 59.357H324.9v71.271h46.174v205.177h84.847V294.353h56.002l5.067-70.117h-62.531s.14-31.191 0-40.249c0-22.177 23.076-20.907 24.464-20.907 10.981 0 32.332.032 37.813 0V92.677h-.032z"
-                                  fill="#fff"
-                                />
-                              </svg>
-                            </a>
+                                <a
+                                  class="tooltip"
+                                  target="_blank"
+                                  :href="`https://www.facebook.com/sharer/sharer.php?u=https://audits.dyortool.io/report/${id}`"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20px"
+                                    height="20px"
+                                    viewBox="126.445 2.281 589 589"
+                                  >
+                                    <circle
+                                      cx="420.945"
+                                      cy="296.781"
+                                      r="294.5"
+                                      fill="#3c5a9a"
+                                    />
+                                    <path
+                                      d="M516.704 92.677h-65.239c-38.715 0-81.777 16.283-81.777 72.402.189 19.554 0 38.281 0 59.357H324.9v71.271h46.174v205.177h84.847V294.353h56.002l5.067-70.117h-62.531s.14-31.191 0-40.249c0-22.177 23.076-20.907 24.464-20.907 10.981 0 32.332.032 37.813 0V92.677h-.032z"
+                                      fill="#fff"
+                                    />
+                                  </svg>
+                                  <span class="tooltiptext">Facebook</span>
+                                </a>
+
+                                <a
+                                  class="tooltip"
+                                  @click="$refs.miniReport.downloadImage()"
+                                >
+                                  <svg
+                                    id="SVGRoot"
+                                    width="20px"
+                                    height="20px"
+                                    version="1.1"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <g
+                                      id="Stockholm-icons-/-Files-/-Download"
+                                      transform="matrix(.83333 0 0 .83333 .042725 -.042422)"
+                                      fill="none"
+                                      fill-rule="evenodd"
+                                    >
+                                      <rect id="bound" width="24" height="24" />
+                                      <g fill="#000">
+                                        <path
+                                          d="m2 13c0-0.5 0.5-1 1-1s1 0.5 1 1v5c0 1.1046 0.89543 2 2 2h12c1.1046 0 2-0.89543 2-2v-5c0-0.55228 0.44772-1 1-1s1 0.44772 1 1v5c0 2.2091-1.7909 4-4 4h-12c-2.2091 0-4-1.7909-4-4v-5z"
+                                          fill-rule="nonzero"
+                                          opacity=".3"
+                                        />
+                                        <rect
+                                          id="Rectangle"
+                                          transform="rotate(180,12,8)"
+                                          x="11"
+                                          y="1"
+                                          width="2"
+                                          height="14"
+                                          rx="1"
+                                          opacity=".3"
+                                        />
+                                        <path
+                                          transform="rotate(180 12 12.5)"
+                                          d="m7.7071 15.707c-0.39052 0.39052-1.0237 0.39052-1.4142 0s-0.39052-1.0237 0-1.4142l5-5c0.37608-0.37608 0.98074-0.39198 1.3761-0.036187l5 4.5c0.41051 0.36946 0.44379 1.0017 0.07433 1.4123-0.36946 0.41051-1.0017 0.44379-1.4123 0.07433l-4.2948-3.8653z"
+                                          fill-rule="nonzero"
+                                        />
+                                      </g>
+                                    </g>
+                                  </svg>
+                                  <span class="tooltiptext">Download</span>
+                                </a>
+                              </div>
+                            </div>
                           </div>
                         </template>
 
@@ -485,7 +541,7 @@
                   <div class="css-work-finished-shb">
                     <button
                       class="css-work-finished-shai"
-                      @click="displayShare()"
+                      @click="displayShareM()"
                     >
                       <svg
                         id="SVGRoot"
@@ -501,28 +557,41 @@
                         />
                       </svg>
                     </button>
-                    <template v-if="isSharing">
-                      <div class="css-work-finished-sox">
-                        <MiniReport
-                          :id="id"
-                          :newAudit="newAudit"
-                          :totalScore="totalScore"
-                          :c1="evaluateCategory('Development Team')"
-                          :c2="evaluateCategory('Tokenomics')"
-                          :c3="evaluateCategory('Community')"
-                          :c4="evaluateCategory('Metrics')"
-                        />
 
-                        <div
-                          class="css-work-finished-xsc"
-                          @click="displayShare()"
-                        >
-                          <div>Downloading Mini Report</div>
-                        </div>
+                    <button
+                      class="css-work-finished-shai"
+                      @click="createMachineURL('download')"
+                    >
+                      Download
+                    </button>
 
+                    <button
+                      class="css-work-finished-shai"
+                      @click="createMachineURL('show')"
+                    >
+                      Show
+                    </button>
+                  </div>
+                  <template v-if="isMobiSharing">
+                    <div class="css-work-finished-sox">
+                      <MobiReport
+                        ref="mobiReport"
+                        :id="id"
+                        :newAudit="newAudit"
+                        :totalScore="totalScore"
+                        :c1="evaluateCategory('Development Team')"
+                        :c2="evaluateCategory('Tokenomics')"
+                        :c3="evaluateCategory('Community')"
+                        :c4="evaluateCategory('Metrics')"
+                      />
+
+                      <div
+                        class="css-work-finished-xsc"
+                        @click="displayShare()"
+                      >
                         <a
                           target="_blank"
-                             :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
+                          :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
                           ><svg
                             width="20px"
                             height="20px"
@@ -577,23 +646,50 @@
                             />
                           </svg>
                         </a>
+                        <a @click="$refs.mobiReport.downloadImage()">
+                          <svg
+                            id="SVGRoot"
+                            width="20px"
+                            height="20px"
+                            version="1.1"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              id="Stockholm-icons-/-Files-/-Download"
+                              transform="matrix(.83333 0 0 .83333 .042725 -.042422)"
+                              fill="none"
+                              fill-rule="evenodd"
+                            >
+                              <rect id="bound" width="24" height="24" />
+                              <g fill="#000">
+                                <path
+                                  d="m2 13c0-0.5 0.5-1 1-1s1 0.5 1 1v5c0 1.1046 0.89543 2 2 2h12c1.1046 0 2-0.89543 2-2v-5c0-0.55228 0.44772-1 1-1s1 0.44772 1 1v5c0 2.2091-1.7909 4-4 4h-12c-2.2091 0-4-1.7909-4-4v-5z"
+                                  fill-rule="nonzero"
+                                  opacity=".3"
+                                />
+                                <rect
+                                  id="Rectangle"
+                                  transform="rotate(180,12,8)"
+                                  x="11"
+                                  y="1"
+                                  width="2"
+                                  height="14"
+                                  rx="1"
+                                  opacity=".3"
+                                />
+                                <path
+                                  transform="rotate(180 12 12.5)"
+                                  d="m7.7071 15.707c-0.39052 0.39052-1.0237 0.39052-1.4142 0s-0.39052-1.0237 0-1.4142l5-5c0.37608-0.37608 0.98074-0.39198 1.3761-0.036187l5 4.5c0.41051 0.36946 0.44379 1.0017 0.07433 1.4123-0.36946 0.41051-1.0017 0.44379-1.4123 0.07433l-4.2948-3.8653z"
+                                  fill-rule="nonzero"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </a>
                       </div>
-                    </template>
-
-                    <button
-                      class="css-work-finished-shai"
-                      @click="createMachineURL('download')"
-                    >
-                      Download
-                    </button>
-
-                    <button
-                      class="css-work-finished-shai"
-                      @click="createMachineURL('show')"
-                    >
-                      Show
-                    </button>
-                  </div>
+                    </div>
+                  </template>
                   <div class="css-work-finished-sr">
                     <canvas
                       class="camva"
@@ -815,6 +911,7 @@ import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
 import DOMPurify from "dompurify";
 import MiniReport from "../components/MiniReport.vue";
+import MobiReport from "../components/MobiReport.vue";
 
 export default {
   props: {
@@ -823,6 +920,7 @@ export default {
   components: {
     DyorGenerator,
     MiniReport,
+    MobiReport,
   },
   data() {
     return {
@@ -830,6 +928,7 @@ export default {
       machineRoute: "",
       dataParsed: [],
       isSharing: false,
+      isMobiSharing: false,
       newAudit: {},
       isNoApply: false,
       teste: true,
@@ -892,6 +991,9 @@ export default {
   methods: {
     displayShare() {
       this.isSharing = !this.isSharing;
+    },
+    displayShareM() {
+      this.isMobiSharing = !this.isMobiSharing;
     },
     createNewCanvas() {
       const quickResponse = new QRious({
@@ -1019,19 +1121,69 @@ a {
 }
 
 .css-work-finished-sox {
-  position: absolute;
   display: flex;
-  height: 60px;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
-  z-index: 1;
-  padding: 0 1rem;
+  padding-top: 68px;
+  z-index: 112;
+  position: relative;
+  margin-top: 8rem;
   align-items: center;
   box-sizing: border-box;
   animation-name: deploy1;
-  box-shadow: 0px 0px 20px var(--border-primary);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   animation-duration: 0.5s;
   border: 1px solid var(--border-primary);
-  background: #fff;
+  background: rgb(255, 255, 255);
+}
+
+.css-wf-cak {
+  display: flex;
+  width: 80px;
+  height: inherit;
+  align-items: center;
+  border-left: 1px solid var(--border-primary);
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  top: 10px;
+  right: 115%;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.css-wf-qco {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .css-work-finished-xsc {
@@ -1039,6 +1191,10 @@ a {
   width: 100%;
   height: 200%;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   left: 0;
   right: 0;
 }
@@ -1051,10 +1207,16 @@ a {
   width: 50px;
   z-index: 3;
   height: 50px;
+  border: 1px solid var(--border-primary);
   justify-content: center;
   display: flex;
+  margin-top: 1rem;
   align-items: center;
   border-radius: 8px;
+}
+
+.css-work-finished-sox a:hover {
+  background: var(--base-color-white-secondary);
 }
 
 @keyframes deploy1 {
@@ -1191,7 +1353,8 @@ a {
   color: var(--complementary-color-blue);
 }
 
-.css-work-finished-shai:hover .css-work-finished-shai:active,
+.css-work-finished-shai:hover,
+.css-work-finished-shai:active,
 .css-work-finished-shai:focus {
   background: var(--complementary-color-blue);
   color: #fff;
@@ -1301,10 +1464,7 @@ a {
   justify-content: space-between;
 }
 
-
-
 @media (max-width: 600px) {
-
   .css-work-finished-tw {
     width: 100%;
     display: flex;
@@ -1313,17 +1473,25 @@ a {
     border-top: none;
     background: var(--base-color-white-primary);
   }
+
+  .css-work-finished-wrap.active {
+    overflow: hidden;
+  }
   .css-work-finished-shb {
     display: flex;
     flex-direction: column;
   }
 
   .css-work-finished-xsc {
-    background: #ffffff;
+    background: var(--base-color-white-primary);
     display: flex;
+    position: fixed;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    top: 0px;
+    width: 100%;
+    height: 100%;
   }
   .css-work-finished-xsc div {
     top: 30%;
