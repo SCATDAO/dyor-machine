@@ -1,5 +1,5 @@
 <template>
-  <div class="css-mr-qca" id="capture2" style="image-rendering: pixelated">
+  <div class="css-mr-qca" id="capture3" style="image-rendering: pixelated">
     <div class="css-dc-koq">
       <div class="css-dc-qxs">
         <span>{{ newAudit.pn }}</span>
@@ -559,7 +559,6 @@ export default {
   props: ["id", "totalScore", "newAudit", "c1", "c2", "c3", "c4"],
   data() {
     return {
-      reportCode: "Paribus",
     };
   },
   computed: {
@@ -577,15 +576,13 @@ export default {
           this.toContentWidth();
           const body = document.querySelector("body");
           body.style.opacity = "0";
-          const recipe = document.querySelector("#capture2");
-          recipe.style.transform = "scale(100%)";
+          const recipe = document.querySelector("#capture3");
           html2canvas(recipe, { width: 700, height: 900 }).then((canvas) => {
             canvas.style.imageRendering = "pixelated";
             const can = document.createElement("a");
             can.href = canvas.toDataURL("image/png;base64");
             can.download = `${this.newAudit.pn}`;
             can.click();
-            recipe.style.transform = "scale(80%)";
             this.toDeviceWidth();
             body.style.opacity = "1";
           });
@@ -633,14 +630,12 @@ export default {
   max-width: 700px;
   height: 900px;
   display: flex;
+  position: fixed;
+  top: -1000px;
   box-sizing: border-box;
   flex-direction: column;
   z-index: 1000;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
-}
-
-#capture2 {
-  transform: scale(80%);
 }
 .css-dc-qkz {
   width: 100%;
