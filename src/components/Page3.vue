@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-          <div class="html2pdf__page-break" />
+    <div class="html2pdf__page-break" />
   </div>
 </template>
 
@@ -202,21 +202,25 @@ export default {
       this.donutOption.labels = labelSorted;
     },
     updateBarData() {
-      let barData = [
-        this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
-        this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
-        this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
-        this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
-      ];
-      this.barData[0].data = barData;
+      try {
+        let barData = [
+          this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
+        ];
+        this.barData[0].data = barData;
 
-      let barLegend = [];
+        let barLegend = [];
 
-      for (const e of barData) {
-        barLegend.push(e + " Followers");
+        for (const e of barData) {
+          barLegend.push(e + " Followers");
+        }
+
+        this.barOption.legend.customLegendItems = barLegend;
+      } catch (e) {
+        console.log(e);
       }
-
-      this.barOption.legend.customLegendItems = barLegend;
     },
     updateDataReport() {
       this.reportDataDecoded = this.$store.getters.sendMeReport;

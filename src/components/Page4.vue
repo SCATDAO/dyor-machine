@@ -138,6 +138,17 @@
         </div>
       </div>
     </div>
+    <template v-if="newAudit.pp">
+      <div class="css-dyor-doc-rtw">Final Thoughts</div>
+      <div class="css-dyor-doc-rra">
+        <div class="css-dyor-doc-rrr">
+          <span>{{ newAudit.pp.re }}</span>
+        </div>
+        <div class="css-dyor-doc-ror">
+          <div class="textarea2">{{ newAudit.pp.pe }}</div>
+        </div>
+      </div>
+    </template>
 
     <div class="css-dyor-doc-dtx">
       The information contained in the DYOR Tool and within this report is not
@@ -188,6 +199,11 @@ export default {
       }
       return ((counter * 100) / 35).toFixed(2);
     }
+  },
+  computed: {
+    newAudit() {
+      return this.$store.getters.sendMeAudit;
+    },
   },
   methods: {
     updateQuestionList() {
