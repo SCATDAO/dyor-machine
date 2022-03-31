@@ -585,7 +585,7 @@ export default {
             can.href = canvas.toDataURL("image/png;base64");
             can.download = `${this.newAudit.pn}`;
             can.click();
-            recipe.style.transform = "scale(80%)";
+            recipe.style.transform = "scale(60%)";
             this.toDeviceWidth();
             body.style.opacity = "1";
           });
@@ -640,7 +640,7 @@ export default {
 }
 
 #capture2 {
-  transform: scale(80%);
+  transform: scale(60%);
 }
 .css-dc-qkz {
   width: 100%;
