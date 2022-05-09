@@ -577,7 +577,7 @@ export default {
   bottom: 20rem;
   text-align: start;
   padding: 0 4rem;
-  font-weight: 600;
+
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
