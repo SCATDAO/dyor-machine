@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
 
 :root {
   --text-color-primary: #001737;
@@ -39,6 +39,7 @@ export default {
 * {
   padding: 0;
   margin: 0;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 html,
@@ -62,7 +63,6 @@ header {
 }
 
 #app {
-  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -79,8 +79,8 @@ header {
   animation-name: deploy;
   animation-duration: 1s;
   -webkit-tap-highlight-color: transparent;
-   image-rendering: optimizeQuality;
-   text-rendering: geometricPrecision;
+  image-rendering: optimizeQuality;
+  text-rendering: geometricPrecision;
 }
 
 @keyframes deploy {

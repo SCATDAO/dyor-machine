@@ -1,4 +1,12 @@
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+
 module.exports = {
+
+  configureWebpack: {
+  plugins: [
+    new NodePolyfillPlugin()
+]
+ },
   css: {
     loaderOptions: {
       // pass options to sass-loader
@@ -27,3 +35,4 @@ module.exports = {
     }
   }
 }
+
