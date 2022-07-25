@@ -979,7 +979,15 @@ export default {
           "updateReportDate",
           new Date(response.data.date * 1)
         );
-        this.$store.commit("updateReportData", result);
+
+
+        let reportVersion = 0;
+
+        if (result[0].vr === 1) {
+          reportVersion = 1;
+        }
+
+        this.$store.commit("updateReportData", [result, reportVersion]);
         this.newAudit = this.$store.getters.sendMeAudit;
       })
       .catch((error) => {
