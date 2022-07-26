@@ -1244,9 +1244,9 @@ const questionList = [
       ],
 
       options: [
-        { id: 1, name: "Yes", value: 1.0 },
+        { id: 1, name: "Yes", value: 0.5 },
         { id: 2, name: "No", value: 0.0 },
-        { id: 3, name: "N/A", value: 1.0 },
+        { id: 3, name: "N/A", value: 0.5 },
       ],
       answer: null,
       textarea: "",

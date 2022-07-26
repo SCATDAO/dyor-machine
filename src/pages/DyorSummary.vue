@@ -950,7 +950,7 @@ export default {
           }
         }
 
-        return ((counter * 100) / 30.5).toFixed(2);
+        return ((counter * 100) / 30).toFixed(2);
       } else {
         for (const element of this.answeredQuestion) {
           for (const option of element.options) {
@@ -959,7 +959,7 @@ export default {
             }
           }
         }
-        return ((counter * 100) / 35.5).toFixed(2);
+        return ((counter * 100) / 35).toFixed(2);
       }
 
       if (this.newAudit.vr === 1) {
