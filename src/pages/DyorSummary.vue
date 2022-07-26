@@ -942,7 +942,7 @@ export default {
     totalScore() {
       let counter = 0;
       if (this.isNoApply) {
-        for (const element of this.answeredQuestion.slice(0, 23)) {
+        for (const element of this.answeredQuestion.slice(0, 29)) {
           for (const option of element.options) {
             if (option.id === element.answer) {
               counter += option.value;
@@ -950,7 +950,7 @@ export default {
           }
         }
 
-        return ((counter * 100) / 30).toFixed(2);
+        return ((counter * 100) / 30.5).toFixed(2);
       } else {
         for (const element of this.answeredQuestion) {
           for (const option of element.options) {
@@ -959,7 +959,18 @@ export default {
             }
           }
         }
-        return ((counter * 100) / 35).toFixed(2);
+        return ((counter * 100) / 35.5).toFixed(2);
+      }
+
+      if (this.newAudit.vr === 1) {
+        for (const element of this.answeredQuestion) {
+          for (const option of element.options) {
+            if (option.id === element.answer) {
+              counter += option.value;
+            }
+          }
+        }
+        return ((counter * 100) / 35.5).toFixed(2);
       }
     },
   },
@@ -979,7 +990,16 @@ export default {
           "updateReportDate",
           new Date(response.data.date * 1)
         );
-        this.$store.commit("updateReportData", result);
+
+        console.log(result[0].vr);
+
+        let reportVersion = 0;
+
+        if (result[0].vr === 1) {
+          reportVersion = 1;
+        }
+
+        this.$store.commit("updateReportData", [result, reportVersion]);
         this.newAudit = this.$store.getters.sendMeAudit;
       })
       .catch((error) => {
