@@ -18,17 +18,17 @@
       <div class="css-dyor-doc-sdc">
         <div>
           Vesting schedule
-          <span>{{ knowAnswerOption(questionList[10]) }}</span>
-        </div>
-        <div>
-          Minting policy Locked
           <span>{{ knowAnswerOption(questionList[11]) }}</span>
         </div>
         <div>
-          Clear use case <span>{{ knowAnswerOption(questionList[12]) }}</span>
+          Minting policy Locked
+          <span>{{ knowAnswerOption(questionList[12]) }}</span>
         </div>
         <div>
-          ISO Fee <span>{{ knowAnswerOption(questionList[13]) }}</span>
+          Clear use case <span>{{ knowAnswerOption(questionList[13]) }}</span>
+        </div>
+        <div>
+          ISO Fee <span>{{ knowAnswerOption(questionList[14]) }}</span>
         </div>
       </div>
       <div class="html2pdf__page-break" />
@@ -48,19 +48,19 @@
         <div>
           Twitter real followers
 
-          <span>{{ knowAnswerOption(questionList[16]) }}</span>
+          <span>{{ knowAnswerOption(questionList[17]) }}</span>
         </div>
         <div>
           Reddit active environment
-          <span>{{ knowAnswerOption(questionList[18]) }}</span>
+          <span>{{ knowAnswerOption(questionList[19]) }}</span>
         </div>
         <div>
           Telegram active environment
-          <span>{{ knowAnswerOption(questionList[20]) }}</span>
+          <span>{{ knowAnswerOption(questionList[21]) }}</span>
         </div>
         <div>
           Discord active environment
-          <span>{{ knowAnswerOption(questionList[22]) }}</span>
+          <span>{{ knowAnswerOption(questionList[23]) }}</span>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@ export default {
       },
       barData: [
         {
-          data: [2100, 3200, 532, 1323],
+          data: [1, 1, 1, 1],
         },
       ],
       barOption: {
@@ -191,7 +191,8 @@ export default {
     updateChartData() {
       let dataSorted = [];
       let labelSorted = [];
-      this.reportDataDecoded[9].ed.forEach((data) => {
+      console.log(this.reportDataDecoded)
+      this.reportDataDecoded[10].ed.forEach((data) => {
         if (data.per !== "") {
           dataSorted.push(data.per.replace(/\D/gm, "") * 1);
           labelSorted.push(data.name);
@@ -201,13 +202,13 @@ export default {
       this.donutData = dataSorted;
       this.donutOption.labels = labelSorted;
     },
-    updateBarData() {
+    updateBarData() {      console.log(this.reportDataDecoded)
       try {
         let barData = [
-          this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[17].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[19].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[21].ed.replace(/\D/gm, ""),
+          this.reportDataDecoded[23].ed.replace(/\D/gm, ""),
         ];
         this.barData[0].data = barData;
 
