@@ -18,17 +18,17 @@
       <div class="css-dyor-doc-sdc">
         <div>
           Vesting schedule
-          <span>{{ knowAnswerOption(questionList[11]) }}</span>
+          <span>{{ knowAnswerOption(11) }}</span>
         </div>
         <div>
           Minting policy Locked
-          <span>{{ knowAnswerOption(questionList[12]) }}</span>
+          <span>{{ knowAnswerOption(12) }}</span>
         </div>
         <div>
-          Clear use case <span>{{ knowAnswerOption(questionList[13]) }}</span>
+          Clear use case <span>{{ knowAnswerOption(13) }}</span>
         </div>
         <div>
-          ISO Fee <span>{{ knowAnswerOption(questionList[14]) }}</span>
+          ISO Fee <span>{{ knowAnswerOption(14) }}</span>
         </div>
       </div>
       <div class="html2pdf__page-break" />
@@ -48,19 +48,19 @@
         <div>
           Twitter real followers
 
-          <span>{{ knowAnswerOption(questionList[17]) }}</span>
+          <span>{{ knowAnswerOption(17) }}</span>
         </div>
         <div>
           Reddit active environment
-          <span>{{ knowAnswerOption(questionList[19]) }}</span>
+          <span>{{ knowAnswerOption(19) }}</span>
         </div>
         <div>
           Telegram active environment
-          <span>{{ knowAnswerOption(questionList[21]) }}</span>
+          <span>{{ knowAnswerOption(21) }}</span>
         </div>
         <div>
           Discord active environment
-          <span>{{ knowAnswerOption(questionList[23]) }}</span>
+          <span>{{ knowAnswerOption(23) }}</span>
         </div>
       </div>
     </div>
@@ -187,12 +187,22 @@ export default {
       },
     };
   },
+  computed: {
+    newAudit() {
+      return this.$store.getters.sendMeAudit;
+    },
+  },
   methods: {
     updateChartData() {
       let dataSorted = [];
       let labelSorted = [];
-      console.log(this.reportDataDecoded)
-      this.reportDataDecoded[10].ed.forEach((data) => {
+      console.log(this.reportDataDecoded);
+      let ver = 10;
+      if (!this.newAudit.vr) {
+        ver = 9;
+      }
+
+      this.reportDataDecoded[ver].ed.forEach((data) => {
         if (data.per !== "") {
           dataSorted.push(data.per.replace(/\D/gm, "") * 1);
           labelSorted.push(data.name);
@@ -202,14 +212,26 @@ export default {
       this.donutData = dataSorted;
       this.donutOption.labels = labelSorted;
     },
-    updateBarData() {      console.log(this.reportDataDecoded)
+    updateBarData() {
+      console.log(this.reportDataDecoded);
       try {
-        let barData = [
-          this.reportDataDecoded[17].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[19].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[21].ed.replace(/\D/gm, ""),
-          this.reportDataDecoded[23].ed.replace(/\D/gm, ""),
-        ];
+        let barData = [];
+
+        if (!this.newAudit.vr) {
+          barData = [
+            this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
+          ];
+        } else {
+          barData = [
+            this.reportDataDecoded[17].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[19].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[21].ed.replace(/\D/gm, ""),
+            this.reportDataDecoded[23].ed.replace(/\D/gm, ""),
+          ];
+        }
         this.barData[0].data = barData;
 
         let barLegend = [];
@@ -238,10 +260,22 @@ export default {
     updateQuestionList() {
       this.questionList = this.$store.getters.sendMeQuestion;
     },
-    knowAnswerOption(question) {
-      for (const option of question.options) {
-        if (option.id === question.answer) {
-          return option.name;
+    knowAnswerOption(n) {
+      if (!this.newAudit.vr) {
+        const quest = this.questionList[n - 1];
+
+        for (const option of quest.options) {
+          if (option.id === quest.answer) {
+            return option.name;
+          }
+        }
+      } else {
+        const quest = this.questionList[n];
+
+        for (const option of quest.options) {
+          if (option.id === quest.answer) {
+            return option.name;
+          }
         }
       }
     },
