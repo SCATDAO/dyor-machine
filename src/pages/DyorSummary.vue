@@ -1,6 +1,6 @@
 <template>
   <div class="css-w-f-wrap">
-    <template v-if="!displaySub">
+    <template v-if="!report_visible">
       <div class="css-w-f-wrap" :class="{ active: isMobiSharing }">
         <header class="css-w-f-her">
           <a href="https://dyortool.io/">
@@ -225,11 +225,11 @@
         </div>
       </div>
     </template>
-    <template v-if="displaySub">
+    <template v-if="report_visible">
       <DyorGenerator
-        :reportCode="id"
-        :route="machineRoute"
-        :totalScore="totalScore"
+        :id="id"
+        :route="report_route"
+        :total_percentage="general_data.total_percentage"
       />
     </template>
   </div>
@@ -257,8 +257,8 @@ export default {
   },
   data() {
     return {
-      displaySub: false,
-      machineRoute: "",
+      report_visible: false,
+      report_route: "",
       dataParsed: [],
       share_visible: false,
       isMobiSharing: false,
@@ -324,8 +324,8 @@ export default {
       metaTag.name = "viewport";
       metaTag.content = "content=width=1024";
       document.getElementsByTagName("head")[0].appendChild(metaTag);
-      this.displaySub = !this.displaySub;
-      this.machineRoute = route;
+      this.report_visible = !this.report_visible;
+      this.report_route = route;
     },
 
     searchByCategory(category) {

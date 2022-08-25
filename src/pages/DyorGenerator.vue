@@ -319,8 +319,8 @@
     >
       <section slot="pdf-content">
         <Page1 />
-        <Page2 :reportCode="reportCode" :totalScore="totalScore" />
-        <page3 />
+        <Page2 :id="id" :total_percentage="total_percentage" />
+     
         <Page4 />
       </section>
     </vue-html2pdf>
@@ -342,8 +342,8 @@ export default {
   name: "DyorGenerator",
   props: {
     route: String,
-    totalScore: String,
-    reportCode: String,
+    total_percentage: String,
+    id: String,
   },
   components: {
     VueHtml2pdf,

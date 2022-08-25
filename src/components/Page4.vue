@@ -1,154 +1,51 @@
 <template>
   <div class="css-dyor-doc-pwo">
-    <div class="css-dyor-doc-rtw">
-      Development Team
-
-      <span>
-        <div>
-          {{ evaluateCategory("Development Team") }} /
-          {{ KnowMaxCategory("Development Team") }}
-        </div></span
-      >
-    </div>
-
     <div
-      class="css-dyor-doc-qsw"
-      v-for="element in searchByCategory('Development Team')"
-      :key="element.id"
+      class="css-dyor-doc-rtw"
+      v-for="(item, name) of general_data.category_score"
+      :key="name"
     >
-      <div class="css-dyor-doc-rsw">
-        {{ element.id }}. {{ element.question }}
-        <div>
-          {{ showAnswerData(element) }} / {{ knowMaxValue(element).toFixed(2) }}
-        </div>
+      <div class="css-haxu">
+        {{ name.replace("_", " ") }}
+        <span>
+          <div>
+            {{ item.score }} /
+            {{ item.max_score }}
+          </div></span
+        >
       </div>
 
-      <div class="css-dyor-doc-rra">
-        <div class="css-dyor-doc-rrr">
-          <span>{{ knowAnswerOption(element) }}</span>
-        </div>
-        <div class="css-dyor-doc-ror">
-          <div class="textarea2">{{ element.textarea }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="css-dyor-doc-rtw">
-      Tokenomics
-
-      <span>
-        <div>
-          {{ evaluateCategory("Tokenomics") }} /
-          {{ KnowMaxCategory("Tokenomics") }}
-        </div></span
+      <div
+        class="css-dyor-doc-qsw"
+        v-for="element of item.questions"
+        :key="element.id"
       >
+        <div class="css-dyor-doc-rsw">
+          {{ element.id }}. {{ element.question }}
+          <div>{{ element.score }} / {{ element.max_score }}</div>
+        </div>
+
+        <div class="css-dyor-doc-rra">
+          <div class="css-dyor-doc-rrr">
+            <span>{{ report_data[element.id].answer }}</span>
+          </div>
+          <div class="css-dyor-doc-ror">
+            <div class="textarea2">{{ report_data[element.id].textarea }}</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div
-      class="css-dyor-doc-qsw"
-      v-for="element in searchByCategory('Tokenomics')"
-      :key="element.id"
-    >
-      <div class="css-dyor-doc-rsw">
-        {{ element.id }}. {{ element.question }}
-        <div>
-          {{ showAnswerData(element) }} / {{ knowMaxValue(element).toFixed(2) }}
-        </div>
+    <div class="css-dyor-doc-rtw">Final Thoughts</div>
+    <div class="css-dyor-doc-rra">
+      <div class="css-dyor-doc-rrr">
+        <span>{{ report_audit.audit_opinion.answer }}</span>
       </div>
-
-      <div class="css-dyor-doc-rra">
-        <div class="css-dyor-doc-rrr">
-          <span>{{ knowAnswerOption(element) }}</span>
-        </div>
-        <div class="css-dyor-doc-ror">
-          <div class="textarea2">{{ element.textarea }}</div>
-        </div>
+      <div class="css-dyor-doc-ror">
+        <div class="textarea2">{{ report_audit.audit_opinion.textarea }}</div>
       </div>
     </div>
-
-    <div class="css-dyor-doc-rtw">
-      Community
-
-      <span>
-        <div>
-          {{ evaluateCategory("Community") }} /
-          {{ KnowMaxCategory("Community") }}
-        </div></span
-      >
-    </div>
-
-    <div
-      class="css-dyor-doc-qsw"
-      v-for="element in searchByCategory('Community')"
-      :key="element.id"
-    >
-      <div class="css-dyor-doc-rsw">
-        {{ element.id }}. {{ element.question }}
-        <div>
-          {{ showAnswerData(element) }} / {{ knowMaxValue(element).toFixed(2) }}
-        </div>
-      </div>
-
-      <div class="css-dyor-doc-rra">
-        <div class="css-dyor-doc-rrr">
-          <span>{{ knowAnswerOption(element) }}</span>
-        </div>
-        <div class="css-dyor-doc-ror">
-          <div class="textarea2">{{ element.textarea }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="css-dyor-doc-rtw">
-      ICO Trading Metrics
-      <span>
-        <div>
-          <template v-if="evaluateCategory('Metrics') === 404">
-            <span>Doesn't Apply </span>
-          </template>
-
-          <template v-if="evaluateCategory('Metrics') !== 404">
-            <span
-              >{{ evaluateCategory("Metrics") }} /
-              {{ KnowMaxCategory("Metrics") }}</span
-            >
-          </template>
-        </div></span
-      >
-    </div>
-
-    <div
-      class="css-dyor-doc-qsw"
-      v-for="element in searchByCategory('Metrics')"
-      :key="element.id"
-    >
-      <div class="css-dyor-doc-rsw">
-        {{ element.id }}. {{ element.question }}
-        <div>
-          {{ showAnswerData(element) }} / {{ knowMaxValue(element).toFixed(2) }}
-        </div>
-      </div>
-
-      <div class="css-dyor-doc-rra">
-        <div class="css-dyor-doc-rrr">
-          <span>{{ knowAnswerOption(element) }}</span>
-        </div>
-        <div class="css-dyor-doc-ror">
-          <div class="textarea2">{{ element.textarea }}</div>
-        </div>
-      </div>
-    </div>
-    <template v-if="newAudit.pp">
-      <div class="css-dyor-doc-rtw">Final Thoughts</div>
-      <div class="css-dyor-doc-rra">
-        <div class="css-dyor-doc-rrr">
-          <span>{{ newAudit.pp.re }}</span>
-        </div>
-        <div class="css-dyor-doc-ror">
-          <div class="textarea2">{{ newAudit.pp.pe }}</div>
-        </div>
-      </div>
-    </template>
 
     <div class="css-dyor-doc-dtx">
       The information contained in the DYOR Tool and within this report is not
@@ -177,32 +74,18 @@ export default {
       isNoApply: false,
     };
   },
-  totalScore() {
-    let counter = 0;
-    if (this.isNoApply) {
-      for (const element of this.questionList.slice(0, 23)) {
-        for (const option of element.options) {
-          if (option.id === element.answer) {
-            counter += option.value;
-          }
-        }
-      }
-
-      return ((counter * 100) / 30).toFixed(2);
-    } else {
-      for (const element of this.questionList) {
-        for (const option of element.options) {
-          if (option.id === element.answer) {
-            counter += option.value;
-          }
-        }
-      }
-      return ((counter * 100) / 35).toFixed(2);
-    }
-  },
   computed: {
-    newAudit() {
-      return this.$store.getters.sendMeAudit;
+    report_date() {
+      return this.$store.getters.getReportDate;
+    },
+    report_data() {
+      return this.$store.getters.getReportData;
+    },
+    report_audit() {
+      return this.$store.getters.getAuditData;
+    },
+    general_data() {
+      return this.$store.getters.getGeneralData;
     },
   },
   methods: {
@@ -263,27 +146,6 @@ export default {
     knowBrokePage(e) {
       return [3, 6, 9, 12, 15, 18, 21, 24, 27].includes(e) ? true : false;
     },
-    evaluateCategory(cty) {
-      let counter = 0;
-      for (const element of this.questionList) {
-        if (element.category === cty) {
-          for (const option of element.options) {
-            if (element.answer === 404) {
-              counter = 404;
-            }
-            if (option.id === element.answer) {
-              counter += option.value;
-            }
-          }
-        }
-      }
-      if (counter === 404) {
-        this.isNoApply = true;
-        return counter;
-      } else {
-        return counter.toFixed(2);
-      }
-    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -298,9 +160,19 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap");
 
+.css-haxu {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+  justify-content: space-between;
+  font-size: var(--text-size-title);
+  text-transform: capitalize;
+  border: 1px solid var(--border-primary);
+}
 .css-dyor-doc-pwo {
   background: var(--base-color-white-primary);
-  font-family: "Nunito", sans-serif;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -309,20 +181,14 @@ export default {
 
 .css-dyor-doc-qsw {
   display: flex;
+  width: 100%;
   flex-direction: column;
 }
 
 .css-dyor-doc-rtw {
-  font-weight: bold;
   display: flex;
-  justify-content: space-between;
-  font-size: var(--text-size-title);
-  padding: 1rem 1rem;
-  border: 1px solid var(--border-primary);
-
-  border-radius: 4px;
+  flex-direction: column;
   align-items: center;
-  border-left: 2px solid var(--complementary-color-blue);
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -379,7 +245,6 @@ export default {
 
 .css-dyor-doc-rtw span {
   font-size: var(--text-size-primary);
-  color: var(--text-color-secondary);
 }
 
 .css-dyor-doc-rsw {
