@@ -13,6 +13,9 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
 
+@import "primevue/resources/primevue.min.css";
+
+@import "primeicons/primeicons.css";
 :root {
   --text-color-primary: #001737;
   --text-color-secondary: #727384;
@@ -34,12 +37,38 @@ export default {
   --color-soft-blue: rgba(0, 105, 245, 0.1);
   --border-primary: #e9f1fc;
   --shadow-blue: 0 0 25px rgba(26, 108, 225, 0.1);
+
+  --blue: linear-gradient(
+    45deg,
+    rgba(0, 105, 245, 1) 0%,
+    rgba(64, 78, 237, 1) 100%
+  );
+
+  --text-a: rgb(15, 20, 25);
+  --text-b: rgb(83, 100, 113);
+  --text-c: #7a7d82;
+  --text-w: #ffffff;
+
+  --background-a: #ffffff;
+  --background-b: #fafafa;
+  --background-c: linear-gradient(
+    45deg,
+    rgba(0, 105, 245, 1) 0%,
+    rgba(64, 78, 237, 1) 100%
+  );
+
+  --shadow-a: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+  --border-a: #e9f1fc;
+
+  --button-a: #23272a;
 }
 
 * {
   padding: 0;
   margin: 0;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 html,
@@ -50,9 +79,9 @@ body {
 header {
   width: 100%;
   min-width: 100%;
-  height: 64px;
-  min-height: 64px;
-  max-height: 64px;
+  height: 54px;
+  min-height: 54px;
+  max-height: 54px;
   display: flex;
   align-content: center;
   align-items: center;

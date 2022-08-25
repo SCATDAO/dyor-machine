@@ -1,16 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { getField, updateField } from "vuex-map-fields";
-import questionList from "../data";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    questionList: questionList,
-    reportDataDecoded: Object,
-    reportVersion: 0,
-    reporDate: "",
+    report_date: null,
+    report_data: null,
+    report_audit: null,
+    general_data: null,
     controlValue: {
       showLayout: false,
       floatLayout: true,
@@ -28,19 +27,18 @@ export default new Vuex.Store({
 
   mutations: {
     updateField,
-    updateReportDate(state, payload) {
-      state.reportDate = payload;
+    saveReportDate(state, payload) {
+      state.report_date = payload;
     },
-    updateReportData(state, payload) {
-      state.reportDataDecoded = payload[0];
-      state.reportVersion = payload[1];
-      state.questionList[payload[1]].forEach((e) => {
-        e.answer = payload[0][e.id].an;
-        e.textarea = payload[0][e.id].ta;
-        e.input = payload[0][e.id].ed;
-      });
-
-      state.controlValue.filename = payload[0][0].pn + " report";
+    saveReportData(state, payload) {
+      state.report_data = payload;
+    },
+    saveAuditData(state, payload) {
+      state.report_audit = payload;
+    },
+    saveGeneralData(state, payload) {
+      state.general_data = payload;
+      state.controlValue.filename = payload.project + " report";
     },
     showReportLayout(state) {
       state.controlValue.showLayout = true;
@@ -48,17 +46,17 @@ export default new Vuex.Store({
   },
   getters: {
     getField,
-    sendMeReport(state) {
-      return state.reportDataDecoded;
+    getReportDate(state) {
+      return state.report_date;
     },
-    sendMeAudit(state) {
-      return state.reportDataDecoded[0];
+    getReportData(state) {
+      return state.report_data;
     },
-    sendMeQuestion(state) {
-      return state.questionList[state.reportVersion];
+    getAuditData(state) {
+      return state.report_audit;
     },
-    sendMeDate(state) {
-      return state.reportDate;
+    getGeneralData(state) {
+      return state.general_data;
     },
   },
 });
