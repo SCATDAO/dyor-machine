@@ -320,7 +320,7 @@
       <section slot="pdf-content">
         <Page1 />
         <Page2 :id="id" :total_percentage="total_percentage" />
-     
+        <Page3 />
         <Page4 />
       </section>
     </vue-html2pdf>
@@ -336,7 +336,6 @@ import Page3 from "../components/Page3";
 import Page4 from "../components/Page4";
 
 import { mapFields } from "vuex-map-fields";
-
 
 export default {
   name: "DyorGenerator",

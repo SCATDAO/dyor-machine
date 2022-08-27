@@ -8,28 +8,24 @@
         </div>
       </div>
       <div class="css-dyor-doc-sbg" id="chart1">
-        <apexchart
+        <!--      <apexchart
           type="donut"
           :options="donutOption"
           height="350"
           :series="donutData"
-        ></apexchart>
+        ></apexchart>  -->
       </div>
       <div class="css-dyor-doc-sdc">
         <div>
           Vesting schedule
-          <span>{{ knowAnswerOption(11) }}</span>
+          <span>x</span>
         </div>
         <div>
           Minting policy Locked
-          <span>{{ knowAnswerOption(12) }}</span>
+          <span>x</span>
         </div>
-        <div>
-          Clear use case <span>{{ knowAnswerOption(13) }}</span>
-        </div>
-        <div>
-          ISO Fee <span>{{ knowAnswerOption(14) }}</span>
-        </div>
+        <div>Clear use case <span>x</span></div>
+        <div>ISO Fee <span>x</span></div>
       </div>
       <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-brw" id="css-com-break">
@@ -40,27 +36,15 @@
         <apexchart
           type="bar"
           height="350"
-          :options="barOption"
-          :series="barData"
+          :options="bar_options"
+          :series="bar_data"
         ></apexchart>
       </div>
       <div class="css-dyor-doc-sdc" style="padding-top: 1rem">
-        <div>
-          Twitter real followers
-
-          <span>{{ knowAnswerOption(17) }}</span>
-        </div>
-        <div>
-          Reddit active environment
-          <span>{{ knowAnswerOption(19) }}</span>
-        </div>
-        <div>
-          Telegram active environment
-          <span>{{ knowAnswerOption(21) }}</span>
-        </div>
-        <div>
-          Discord active environment
-          <span>{{ knowAnswerOption(23) }}</span>
+        <div v-for="(item, key) of report_audit.charts.community" :key="key">
+          {{ item.name }}
+          .............................................................................................................
+          <span> {{ item.answer }}</span>
         </div>
       </div>
     </div>
@@ -71,10 +55,8 @@
 <script>
 export default {
   created() {
-    this.updateQuestionList();
-    this.updateDataReport();
-    this.updateChartData();
-    this.updateBarData();
+    //this.updateChartData();
+    this.updateBarChart();
   },
   data() {
     return {
@@ -111,12 +93,12 @@ export default {
         ],
         labels: [],
       },
-      barData: [
+      bar_data: [
         {
-          data: [1, 1, 1, 1],
+          data: [0, 0, 0, 0],
         },
       ],
-      barOption: {
+      bar_options: {
         chart: {
           id: "chart",
           type: "bar",
@@ -154,7 +136,7 @@ export default {
           enabled: false,
         },
         xaxis: {
-          categories: ["Twitter", "Reddit", "Telegram", "Discord"],
+          categories: [],
           labels: {
             style: {
               colors: ["#001737"],
@@ -188,15 +170,24 @@ export default {
     };
   },
   computed: {
-    newAudit() {
-      return this.$store.getters.sendMeAudit;
+    report_date() {
+      return this.$store.getters.getReportDate;
+    },
+    report_data() {
+      return this.$store.getters.getReportData;
+    },
+    report_audit() {
+      return this.$store.getters.getAuditData;
+    },
+    general_data() {
+      return this.$store.getters.getGeneralData;
     },
   },
   methods: {
     updateChartData() {
       let dataSorted = [];
       let labelSorted = [];
-      console.log(this.reportDataDecoded);
+
       let ver = 10;
       if (!this.newAudit.vr) {
         ver = 9;
@@ -212,71 +203,23 @@ export default {
       this.donutData = dataSorted;
       this.donutOption.labels = labelSorted;
     },
-    updateBarData() {
-      console.log(this.reportDataDecoded);
+    updateBarChart() {
       try {
-        let barData = [];
+        const data = this.report_audit.charts.community;
 
-        if (!this.newAudit.vr) {
-          barData = [
-            this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
-          ];
-        } else {
-          barData = [
-            this.reportDataDecoded[17].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[19].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[21].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[23].ed.replace(/\D/gm, ""),
-          ];
-        }
-        this.barData[0].data = barData;
+        this.bar_options.xaxis.categories = Object.keys(data);
 
-        let barLegend = [];
+        let bar_data = Object.values(data).map((e) => e.value);
 
-        for (const e of barData) {
-          barLegend.push(e + " Followers");
-        }
+        let bar_legends = [];
 
-        this.barOption.legend.customLegendItems = barLegend;
+        bar_data.forEach((e) => bar_legends.push(e + " - Followers"));
+
+        this.bar_data[0].data = bar_data;
+
+        this.bar_options.legend.customLegendItems = bar_legends;
       } catch (e) {
-        console.log(e);
-      }
-    },
-    updateDataReport() {
-      this.reportDataDecoded = this.$store.getters.sendMeReport;
-    },
-    searchByCategory(category) {
-      let byCategory = [];
-      for (const question of this.questionList) {
-        if (question.category === category) {
-          byCategory.push(question);
-        }
-      }
-      return byCategory;
-    },
-    updateQuestionList() {
-      this.questionList = this.$store.getters.sendMeQuestion;
-    },
-    knowAnswerOption(n) {
-      if (!this.newAudit.vr) {
-        const quest = this.questionList[n - 1];
-
-        for (const option of quest.options) {
-          if (option.id === quest.answer) {
-            return option.name;
-          }
-        }
-      } else {
-        const quest = this.questionList[n];
-
-        for (const option of quest.options) {
-          if (option.id === quest.answer) {
-            return option.name;
-          }
-        }
+        console.error(e);
       }
     },
   },
@@ -292,10 +235,9 @@ export default {
 
 <style scoped>
 .css-dyor-doc-pwo {
-  background: var(--base-color-white-primary);
+  background: var(--background-a);
   width: 100%;
   height: 100%;
-  font-family: "Nunito", sans-serif;
   box-sizing: border-box;
   padding: 1rem 3rem;
 }
@@ -326,7 +268,7 @@ export default {
 }
 
 .css-dyor-doc-sdc {
-  padding: 0 2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
 }
 .css-dyor-doc-sdc div {

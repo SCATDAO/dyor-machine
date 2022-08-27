@@ -176,7 +176,6 @@ export default {
   background: var(--base-color-white-primary);
   width: 100%;
   height: 100%;
-  font-family: "Nunito", sans-serif;
   box-sizing: border-box;
   padding: 1rem 3rem;
   padding-top: 3rem;

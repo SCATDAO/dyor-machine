@@ -137,10 +137,7 @@
                   </div>
                   <template v-if="isMobiSharing">
                     <div class="css-w-f-sox">
-                      <MobiReport
-                        ref="mobiReport"
-                        :id="id"
-                      />
+                      <MobiReport ref="mobiReport" :id="id" />
 
                       <div class="css-w-f-xsc" @click="displayShare()">
                         <a
@@ -191,11 +188,11 @@
                       <div class="css-w-f-qah">
                         <div class="css-w-f-stb">Total Score:</div>
                         <div>
-                         {{
-                          item === "doesn't apply"
-                            ? "Doesn't apply"
-                            : item.score + " / " + item.max_score
-                        }}
+                          {{
+                            item === "doesn't apply"
+                              ? "Doesn't apply"
+                              : item.score + " / " + item.max_score
+                          }}
                         </div>
                       </div>
                       <div
@@ -208,8 +205,6 @@
                         <div>
                           {{ element.score.toFixed(2) }} /
                           {{ element.max_score }}
-
-                          
                         </div>
                       </div>
                     </div>
@@ -297,17 +292,16 @@ export default {
             DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
           );
 
-          const date = new Date(response.data.date);
+          const response_ = JSON.parse(
+            DOMPurify.sanitize(JSON.stringify(response.data))
+          );
+
+          const date = new Date(response_.date);
 
           this.$store.commit("saveReportDate", date);
           this.$store.commit("saveReportData", report_data_decoded);
           this.$store.commit("saveAuditData", report_data_decoded[0]);
-          this.$store.commit("saveGeneralData", response.data);
-
-          console.log(this.$store.getters.getReportDate);
-          console.log(this.$store.getters.getReportData);
-          console.log(this.$store.getters.getAuditData);
-          console.log(this.$store.getters.getGeneralData);
+          this.$store.commit("saveGeneralData", response_);
         })
         .catch((error) => {
           console.error(error);

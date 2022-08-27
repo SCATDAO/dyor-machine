@@ -9,8 +9,11 @@
         {{ name.replace("_", " ") }}
         <span>
           <div>
-            {{ item.score }} /
-            {{ item.max_score }}
+            {{
+              item === "doesn't apply"
+                ? "Doesn't apply"
+                : item.score + " / " + item.max_score
+            }}
           </div></span
         >
       </div>
@@ -22,19 +25,20 @@
       >
         <div class="css-dyor-doc-rsw">
           {{ element.id }}. {{ element.question }}
-          <div>{{ element.score }} / {{ element.max_score }}</div>
+          <div>{{ element.score.toFixed(2) }} / {{ element.max_score }}</div>
         </div>
 
         <div class="css-dyor-doc-rra">
           <div class="css-dyor-doc-rrr">
-            <span>{{ report_data[element.id].answer }}</span>
+            <span>{{ element.name }}</span>
           </div>
           <div class="css-dyor-doc-ror">
-            <div class="textarea2">{{ report_data[element.id].textarea }}</div>
+            <div class="report_text">
+              {{ report_data[element.id].textarea }}
+            </div>
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="css-dyor-doc-rtw">Final Thoughts</div>
@@ -43,7 +47,7 @@
         <span>{{ report_audit.audit_opinion.answer }}</span>
       </div>
       <div class="css-dyor-doc-ror">
-        <div class="textarea2">{{ report_audit.audit_opinion.textarea }}</div>
+        <div class="report_text">{{ report_audit.audit_opinion.textarea }}</div>
       </div>
     </div>
 
@@ -63,10 +67,6 @@
 
 <script>
 export default {
-  created() {
-    this.updateQuestionList();
-    this.evaluateQuestions();
-  },
   data() {
     return {
       questionList: Object,
@@ -89,60 +89,6 @@ export default {
     },
   },
   methods: {
-    updateQuestionList() {
-      this.questionList = this.$store.getters.sendMeQuestion;
-    },
-    evaluateQuestions() {
-      let counter = 0;
-      for (const answer of this.questionList) {
-        for (const option of answer.options) {
-          if (option.id === answer.answer) {
-            counter += option.value;
-          }
-        }
-      }
-      this.totalScore = counter.toFixed(2);
-    },
-    knowAnswerOption(question) {
-      for (const option of question.options) {
-        if (option.id === question.answer) {
-          return option.name;
-        }
-      }
-    },
-    KnowMaxCategory(e) {
-      let counter = 0.0;
-      for (const element of this.questionList) {
-        if (element.category === e) {
-          counter += this.knowMaxValue(element);
-        }
-      }
-      return counter.toFixed(2);
-    },
-    showAnswerData(question) {
-      for (const option of question.options) {
-        if (option.id === question.answer) {
-          return option.value.toFixed(2);
-        }
-      }
-      return (0.0).toFixed(2);
-    },
-    knowMaxValue(question) {
-      let counter = [];
-      for (const option of question.options) {
-        counter.push(option.value);
-      }
-      return Math.max(...counter);
-    },
-    searchByCategory(category) {
-      let byCategory = [];
-      for (const question of this.questionList) {
-        if (question.category === category) {
-          byCategory.push(question);
-        }
-      }
-      return byCategory;
-    },
     knowBrokePage(e) {
       return [3, 6, 9, 12, 15, 18, 21, 24, 27].includes(e) ? true : false;
     },
@@ -158,14 +104,13 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap");
-
 .css-haxu {
   width: 100%;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   border-radius: 6px;
+  align-items: center;
   justify-content: space-between;
   font-size: var(--text-size-title);
   text-transform: capitalize;
@@ -199,24 +144,20 @@ export default {
   padding: 1rem;
   border-radius: 8px;
   text-align: center;
+  line-height: 1.5rem;
   font-size: var(--text-size-secondary);
   margin-top: 1rem;
 }
-.textarea2 {
+.report_text {
   width: 100%;
   border: none;
-  font-size: var(--text-size-primary);
+
   text-align: left;
   outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  caret-color: var(--text-color-primary);
-  color: var(--text-color-secondary);
+  caret-color: var(--text-b);
+  color: var(--text-b);
   resize: none;
-  font-family: "Nunito", sans-serif;
-  font-weight: lighter;
-  padding: 0.5rem;
+  line-height: 1.5rem;
   white-space: pre-line;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -255,6 +196,7 @@ export default {
   margin-top: 1rem;
   text-align: start;
   border-radius: 4px;
+  line-height: 1.5rem;
 }
 
 .css-dyor-doc-rsw div {
