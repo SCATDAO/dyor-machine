@@ -8,24 +8,19 @@
         </div>
       </div>
       <div class="css-dyor-doc-sbg" id="chart1">
-        <!--      <apexchart
+        <apexchart
           type="donut"
-          :options="donutOption"
+          :options="donut_option"
           height="350"
-          :series="donutData"
-        ></apexchart>  -->
+          :series="donut_data"
+        ></apexchart>
       </div>
       <div class="css-dyor-doc-sdc">
-        <div>
-          Vesting schedule
-          <span>x</span>
+        <div v-for="(item, key) of report_audit.charts.tokenomics.info" :key="key">
+          {{ item.name }}
+          .................
+          <span> {{ item.answer }}</span>
         </div>
-        <div>
-          Minting policy Locked
-          <span>x</span>
-        </div>
-        <div>Clear use case <span>x</span></div>
-        <div>ISO Fee <span>x</span></div>
       </div>
       <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-brw" id="css-com-break">
@@ -55,15 +50,26 @@
 <script>
 export default {
   created() {
-    //this.updateChartData();
+    this.updateDonutData();
     this.updateBarChart();
   },
   data() {
     return {
       reportDataDecoded: Object,
       questionList: Object,
-      donutData: [],
-      donutOption: {
+      donut_data: [],
+      donut_option: {
+        colors: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#9b19f5",
+          "#ffa300",
+          "#dc0ab4",
+          "#b3d4ff",
+          "#00bfa0",
+        ],
+        labels: [],
         chart: {
           id: "chart1",
           type: "donut",
@@ -91,7 +97,6 @@ export default {
             },
           },
         ],
-        labels: [],
       },
       bar_data: [
         {
@@ -99,6 +104,16 @@ export default {
         },
       ],
       bar_options: {
+        colors: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#9b19f5",
+          "#ffa300",
+          "#dc0ab4",
+          "#b3d4ff",
+          "#00bfa0",
+        ],
         chart: {
           id: "chart",
           type: "bar",
@@ -184,24 +199,13 @@ export default {
     },
   },
   methods: {
-    updateChartData() {
-      let dataSorted = [];
-      let labelSorted = [];
+    updateDonutData() {
+      const data = this.report_audit.charts.tokenomics;
 
-      let ver = 10;
-      if (!this.newAudit.vr) {
-        ver = 9;
-      }
+      console.log(data);
 
-      this.reportDataDecoded[ver].ed.forEach((data) => {
-        if (data.per !== "") {
-          dataSorted.push(data.per.replace(/\D/gm, "") * 1);
-          labelSorted.push(data.name);
-        }
-      });
-
-      this.donutData = dataSorted;
-      this.donutOption.labels = labelSorted;
+      this.donut_data = data.values;
+      this.donut_option.labels = data.labels;
     },
     updateBarChart() {
       try {
