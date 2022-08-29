@@ -53,7 +53,7 @@
       </div>
       <div class="css-dyor-doc-sba">
         Description:
-        <span style="text-transform: capitalize">
+        <span >
           {{ general_data.description }}
         </span>
       </div>
