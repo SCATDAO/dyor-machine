@@ -30,7 +30,7 @@
 
         <div class="css-dyor-doc-rra">
           <div class="css-dyor-doc-rrr">
-            <span>{{ element.name }}</span>
+            <span>{{ formatChar(element.name) }}</span>
           </div>
           <div class="css-dyor-doc-ror">
             <div class="report_text">
@@ -89,6 +89,9 @@ export default {
     },
   },
   methods: {
+    formatChar(e) {
+      return e.replace(/&lt;/g, "Less than ").replace(/&gt;/g, "Greater than ");
+    },
     knowBrokePage(e) {
       return [3, 6, 9, 12, 15, 18, 21, 24, 27].includes(e) ? true : false;
     },

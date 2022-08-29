@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="css-dyor-doc-rsb">
-      <b>{{ general_data.project }}</b>
-      <b>DYOR REPORT</b>
+      <b style="font-weight: 300">{{ general_data.project }}</b>
+      <b style="font-weight: 600">DYOR REPORT</b>
       <b>{{ report_date.getFullYear() }}</b>
     </div>
     <div class="css-dyor-doc-rcb">
       <div>{{ report_date.getDate() }}</div>
       <div>{{ report_date.toLocaleString("default", { month: "long" }) }}</div>
-      <div>{{ report_date.getFullYear() }}</div>
+      <div>{{ report_date.getFullYear() }} - {{ general_data.scheme }}</div>
     </div>
     <div class="css-dyor-doc-rub">
       <span>Community report made by {{ general_data.author }}</span>
@@ -59,8 +59,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap");
-
 .css-dyor-doc-rap {
   width: 100%;
   top: 18%;
@@ -115,6 +113,7 @@ export default {
   text-align: start;
   padding: 0 4rem;
   letter-spacing: 0.04em;
+  text-transform: capitalize;
 }
 
 .css-dyor-doc-pwo {

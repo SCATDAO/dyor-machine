@@ -1,27 +1,33 @@
 <template>
   <div class="css-dyor-doc-pwo">
     <div class="css-dyor-doc-bar">
-      <div class="css-dyor-doc-brw">
-        <div class="css-dyor-doc-sbc">Tokenomics</div>
-        <div class="css-dyor-doc-swc">
-          Public and private token distribution
+      <template v-if="general_data.scheme === 'dapp'">
+        <div class="css-dyor-doc-brw">
+          <div class="css-dyor-doc-sbc">Tokenomics</div>
+          <div class="css-dyor-doc-swc">
+            Public and private token distribution
+          </div>
         </div>
-      </div>
-      <div class="css-dyor-doc-sbg" id="chart1">
-        <apexchart
-          type="donut"
-          :options="donut_option"
-          height="350"
-          :series="donut_data"
-        ></apexchart>
-      </div>
-      <div class="css-dyor-doc-sdc">
-        <div v-for="(item, key) of report_audit.charts.tokenomics.info" :key="key">
-          {{ item.name }}
-          .................
-          <span> {{ item.answer }}</span>
+        <div class="css-dyor-doc-sbg" id="chart1">
+          <apexchart
+            type="donut"
+            :options="donut_option"
+            height="350"
+            :series="donut_data"
+          ></apexchart>
         </div>
-      </div>
+
+        <div class="css-dyor-doc-sdc">
+          <div
+            v-for="(item, key) of report_audit.charts.tokenomics.info"
+            :key="key"
+          >
+            {{ item.name }}
+            ...........................................................................................................
+            <span> {{ item.answer }}</span>
+          </div>
+        </div>
+      </template>
       <div class="html2pdf__page-break" />
       <div class="css-dyor-doc-brw" id="css-com-break">
         <div class="css-dyor-doc-sbc">Community</div>
@@ -38,7 +44,7 @@
       <div class="css-dyor-doc-sdc" style="padding-top: 1rem">
         <div v-for="(item, key) of report_audit.charts.community" :key="key">
           {{ item.name }}
-          .............................................................................................................
+          ...........................................................................................................
           <span> {{ item.answer }}</span>
         </div>
       </div>
@@ -200,12 +206,13 @@ export default {
   },
   methods: {
     updateDonutData() {
-      const data = this.report_audit.charts.tokenomics;
+      if (this.general_data.scheme === "dapp") {
+        const data = this.report_audit.charts.tokenomics;
 
-      console.log(data);
+        this.donut_data = data.values;
 
-      this.donut_data = data.values;
-      this.donut_option.labels = data.labels;
+        this.donut_option.labels = data.labels;
+      }
     },
     updateBarChart() {
       try {

@@ -27,7 +27,7 @@
             />
           </div>
 
-          <span class="css-dyor-doc-psp">{{ general_data.project }}</span>
+          <span class="css-dyor-doc-psp" style="text-transform: capitalize">{{ general_data.project }}</span>
           <span class="css-dyor-doc-pss">Total percentage:</span>
           <span class="css-dyor-doc-tsp"
             >{{ general_data.total_percentage }}

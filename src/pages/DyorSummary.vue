@@ -284,7 +284,7 @@ export default {
     getReport() {
       axios({
         method: "get",
-        url: `http://localhost:8000/v1/report/id/${this.id}`,
+        url: `http://192.168.1.3:8000/1.1/report/search-id/${this.id}`,
         headers: { "content-type": "application/json" },
       })
         .then((response) => {
