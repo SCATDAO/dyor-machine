@@ -27,7 +27,9 @@
             />
           </div>
 
-          <span class="css-dyor-doc-psp" style="text-transform: capitalize">{{ general_data.project }}</span>
+          <span class="css-dyor-doc-psp" style="text-transform: capitalize">{{
+            general_data.project
+          }}</span>
           <span class="css-dyor-doc-pss">Total percentage:</span>
           <span class="css-dyor-doc-tsp"
             >{{ general_data.total_percentage }}
@@ -53,12 +55,12 @@
       </div>
       <div class="css-dyor-doc-sba">
         Description:
-        <span >
+        <span>
           {{ general_data.description }}
         </span>
       </div>
       <div class="css-dyor-doc-sba">
-        Token:
+        Symbol:
         <span style="text-transform: uppercase">
           {{ general_data.symbol || "N/A" }}
         </span>
@@ -67,6 +69,13 @@
         Website:
         <span style="text-transform: lowercase">
           {{ report_audit.website }}
+        </span>
+      </div>
+
+      <div class="css-dyor-doc-sba">
+        Repository:
+        <span style="text-transform: lowercase">
+          {{ report_audit.repository || "N/A" }}
         </span>
       </div>
 
@@ -184,7 +193,7 @@ export default {
 .css-dyor-doc-tsp {
   margin-top: 1rem;
   font-size: var(--text-size-fifth);
-  margin-left: 6px;
+
 }
 
 .css-dyor-doc-csx {
@@ -201,11 +210,11 @@ export default {
   display: flex;
   box-sizing: border-box;
   align-items: center;
-  border: 1px solid var(--border-primary);
+
   font-weight: 600;
   border-radius: 6px;
-  padding: 1rem;
-  margin-top: 1.5rem;
+  padding: 0 1rem;
+  margin-top: 3rem;
   text-align: start;
 }
 
@@ -263,7 +272,7 @@ export default {
   border-radius: 8px;
 }
 .css-dyor-doc-sbc span {
-  color: var(--text-color-secondary);
+  color: var(--text-b);
   font-size: var(--text-size-primary);
   font-weight: initial;
 }
@@ -271,19 +280,19 @@ export default {
   width: 50%;
   text-align: end;
   font-weight: 500;
-  color: var(--text-color-secondary);
+  color: var(--text-b);
 }
 
 .css-dyor-doc-sbc {
   font-size: var(--text-size-title);
-  font-weight: 700;
+  font-weight: bold;
   text-align: start;
   margin-top: 2rem;
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  border-top: 1px dashed var(--border-primary);
-  border-bottom: 1px dashed var(--border-primary);
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
   justify-content: space-between;
 }
 </style>

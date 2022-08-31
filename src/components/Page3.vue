@@ -19,12 +19,16 @@
 
         <div class="css-dyor-doc-sdc">
           <div
-            v-for="(item, key) of report_audit.charts.tokenomics.info"
+            v-for="(item, key) of report_audit.charts.tokenomics.ref"
             :key="key"
           >
-            {{ item.name }}
-            ...........................................................................................................
-            <span> {{ item.answer }}</span>
+            {{ general_data.score_per_question[item].name }}:
+
+            <span>
+              {{
+                formatChar(general_data.score_per_question[item].answer)
+              }}</span
+            >
           </div>
         </div>
       </template>
@@ -43,9 +47,11 @@
       </div>
       <div class="css-dyor-doc-sdc" style="padding-top: 1rem">
         <div v-for="(item, key) of report_audit.charts.community" :key="key">
-          {{ item.name }}
-          ...........................................................................................................
-          <span> {{ item.answer }}</span>
+          {{ general_data.score_per_question[item.id].name }}:
+
+          <span>
+            {{ formatChar(general_data.score_per_question[item.id].answer) }}</span
+          >
         </div>
       </div>
     </div>
@@ -205,6 +211,9 @@ export default {
     },
   },
   methods: {
+    formatChar(e) {
+      return e.replace(/&lt;/g, "Less than ").replace(/&gt;/g, "Greater than ");
+    },
     updateDonutData() {
       if (this.general_data.scheme === "dapp") {
         const data = this.report_audit.charts.tokenomics;
@@ -262,6 +271,7 @@ export default {
 
 .css-dyor-doc-sdc {
   height: 200px;
+  white-space: nowrap;
 }
 
 .css-dyor-doc-ctp {
@@ -274,7 +284,7 @@ export default {
 
 .css-dyor-doc-sbc {
   font-size: var(--text-size-title);
-  font-weight: 700;
+  font-weight: bold;
   text-align: start;
 }
 
@@ -283,26 +293,28 @@ export default {
   box-sizing: border-box;
 }
 .css-dyor-doc-sdc div {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
+  font-weight: 600;
   justify-content: space-between;
 }
 
 .css-dyor-doc-sdc span {
-  font-weight: bold;
+  color: var(--text-b);
+  font-weight: 500;
 }
 
 .css-dyor-doc-brw {
   display: flex;
-  border-top: 1px dashed var(--border-primary);
-  border-bottom: 1px dashed var(--border-primary);
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
 }
 
 .css-dyor-doc-swc {
-  color: var(--text-color-secondary);
+  color: var(--text-b);
 }
 
 .css-dyor-doc-sbg {

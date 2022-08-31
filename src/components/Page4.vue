@@ -30,7 +30,7 @@
 
         <div class="css-dyor-doc-rra">
           <div class="css-dyor-doc-rrr">
-            <span>{{ formatChar(element.name) }}</span>
+            <span>{{ formatChar(element.answer) }}</span>
           </div>
           <div class="css-dyor-doc-ror">
             <div class="report_text">
@@ -114,6 +114,7 @@ export default {
   justify-content: space-between;
   border-radius: 6px;
   align-items: center;
+  font-weight: 600;
   justify-content: space-between;
   font-size: var(--text-size-title);
   text-transform: capitalize;
@@ -142,7 +143,7 @@ export default {
 }
 .css-dyor-doc-dtx {
   border: 1px solid var(--complementary-color-blue);
-  background: var(--color-soft-blue);
+
   color: var(--complementary-color-blue);
   padding: 1rem;
   border-radius: 8px;

@@ -8,7 +8,7 @@
           </a>
         </header>
         <div class="css-w-f-srp">
-          <div class="css-w-f">
+          <div class="css-w-f-843">
             <div class="css-w-f-tw">
               <div class="css-w-f-ttq">
                 <div class="css-w-f-ttw">
@@ -27,9 +27,15 @@
                       <div class="css-w-f-std">
                         <div>Total Percentage</div>
                         <div class="css-w-f-stx">
-                          {{ general_data.total_percentage }}%
+                          {{ general_data.total_percentage }}
+                          <span style="font-size: var(--text-size-third)"
+                            >%</span
+                          >
                         </div>
-                        <div class="css-w-f-stm">Created by scatcat</div>
+                        <div class="css-w-f-stm">
+                          Community report by
+                          <span>{{ general_data.author }}</span>
+                        </div>
                       </div>
                     </div>
                     <div class="css-w-f-sfw">
@@ -99,22 +105,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="css-w-f-sts">
-                    <div
-                      class="css-w-f-sti"
-                      v-for="(item, name) of general_data.category_score"
-                      :key="name"
-                    >
-                      {{ name.replace("_", " ") }}
-                      <span>
-                        {{
-                          item === "doesn't apply"
-                            ? "doesn't apply"
-                            : item.score + " / " + item.max_score
-                        }}
-                      </span>
-                    </div>
-                  </div>
 
                   <div class="css-w-f-shb">
                     <button class="css-w-f-shai" @click="displayShareM()">
@@ -178,9 +168,13 @@
                     <span style="text-transform: capitalize; font-weight: 600">
                       {{ name.replace("_", " ") }}</span
                     >
-                    <button>
-                      <i class="pi pi-folder-open"></i>
-                    </button>
+                    <div>
+                      {{
+                        item === "doesn't apply"
+                          ? "Doesn't apply"
+                          : item.score + " / " + item.max_score
+                      }}
+                    </div>
                   </div>
 
                   <template v-if="dropdown.e1 === true">
@@ -214,7 +208,7 @@
                 <div class="css-w-f-qac"></div>
               </div>
 
-              <div class=".css-w-f-cri"></div>
+              <div class="css-w-f-cri"></div>
             </div>
           </div>
         </div>
@@ -233,7 +227,6 @@
 <script>
 import axios from "axios";
 import { BestialEncoder } from "bestial-encoder";
-import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
 import DOMPurify from "dompurify";
 import MiniReport from "../components/MiniReport.vue";
@@ -291,7 +284,7 @@ export default {
           const report_data_decoded = JSON.parse(
             DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
           );
-
+          console.log(report_data_decoded);
           const response_ = JSON.parse(
             DOMPurify.sanitize(JSON.stringify(response.data))
           );
@@ -320,12 +313,6 @@ export default {
       document.getElementsByTagName("head")[0].appendChild(metaTag);
       this.report_visible = !this.report_visible;
       this.report_route = route;
-    },
-
-    searchByCategory(category) {
-      this.general_data.score_per_question.filter(
-        (e) => (e.category = category)
-      );
     },
   },
 };
@@ -371,12 +358,11 @@ a {
   box-sizing: border-box;
   justify-content: center;
   box-shadow: 1px 1px 20px var(--border-primary);
-  background: var(--blue);
 }
 
-.css-w-f {
+.css-w-f-843 {
   height: 100%;
-  margin: 0 15%;
+
   z-index: 2;
 }
 
@@ -461,6 +447,7 @@ a {
 
 .css-w-f-ttq {
   padding: 2rem;
+  background: var(--blue);
 }
 
 .css-w-f-sox a {
@@ -506,6 +493,7 @@ a {
 
 .css-w-f-ttt {
   margin: 2rem;
+  margin: 0 15%;
   color: var(--text-color-primary);
   border-radius: 6px;
   display: flex;
@@ -551,30 +539,18 @@ a {
   border: none;
 }
 
-.css-w-f-qai:hover {
-  background: var(--background-b);
-}
-
 .css-w-f-stw {
   display: flex;
-  width: 350px;
-  min-width: 350px;
-  margin-right: 2rem;
+  width: 500px;
+  min-width: 500px;
   flex-direction: column;
   justify-content: space-between;
+  color: #ffffff;
 }
 
 .css-w-f-stm {
-  color: var(--text-color-secondary);
-  text-transform: capitalize;
   font-size: var(--text-size-secondary);
-}
-
-.css-w-f-sts {
-  flex-direction: column;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+  text-transform: uppercase;
 }
 
 .css-w-f-sha {
@@ -601,9 +577,9 @@ a {
   border-radius: 6px;
   display: flex;
   cursor: pointer;
-  border: 1px solid #0069f5;
+  border: 1px solid #ffffff;
   background: transparent;
-  color: #0069f5;
+  color: #ffffff;
   justify-content: center;
 }
 
@@ -651,23 +627,29 @@ a {
 }
 
 .css-w-f-stt {
-  font-size: var(--text-size-title);
+  font-size: var(--text-size-fifth);
   text-transform: capitalize;
-  font-weight: bold;
-  text-align: start;
+  text-align: center;
 }
 
 .css-w-f-sfw {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .css-w-f-std {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding-left: 1rem;
-  text-align: start;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.css-w-f-std div {
+  margin-top: 1rem;
 }
 
 .css-w-f-stx {
@@ -677,13 +659,12 @@ a {
 .css-w-f-sta {
   height: 90px;
   width: 90px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  border: 2px solid var(--border-primary);
 }
 
 .css-w-f-txa {
@@ -693,16 +674,13 @@ a {
 }
 
 .css-w-f-ttw {
-  border: 1px solid var(--border-primary);
   color: var(--text-color-primary);
   border-radius: 8px;
   width: 100%;
-  height: 350px;
   box-sizing: border-box;
-  padding: 2rem;
+
   display: flex;
-  justify-content: space-between;
-  background: var(--background-b);
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
@@ -766,14 +744,12 @@ a {
   .css-w-f-ttt {
     margin: 0 10%;
   }
-  .css-w-f-sts {
-    width: 100%;
-  }
+
   #logo-blue {
     fill: #fff;
   }
 
-  .css-w-f {
+  .css-w-f-843 {
     margin: 0;
   }
 
