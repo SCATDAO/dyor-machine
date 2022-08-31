@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style>
-
 @import "primevue/resources/primevue.min.css";
 
 @import "primeicons/primeicons.css";
@@ -68,7 +67,7 @@ export default {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    text-rendering: auto;
+  text-rendering: auto;
 }
 
 html,
@@ -90,12 +89,14 @@ header {
   z-index: 10;
   padding: 0 10%;
 }
+button {
+  font-size: var(--text-size-primary);
+}
 
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   width: 100%;
   height: 100%;
   display: flex;

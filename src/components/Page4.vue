@@ -41,7 +41,9 @@
       </div>
     </div>
 
-    <div class="css-dyor-doc-rtw">Final Thoughts</div>
+    <div class="css-dyor-doc-rtw">
+      <div class="css-haxu">Final Thoughts</div>
+    </div>
     <div class="css-dyor-doc-rra">
       <div class="css-dyor-doc-rrr">
         <span>{{ report_audit.audit_opinion.answer }}</span>

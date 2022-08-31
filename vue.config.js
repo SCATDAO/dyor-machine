@@ -22,12 +22,12 @@ module.exports = {
       // `scss` syntax requires an semicolon at the end of a statement, while `sass` syntax requires none
       // in that case, we can target the `scss` syntax separately using the `scss` option
       scss: {
-        prependData: `@import "~@/assets/style/app.scss";`
+        additionalData: `@import "~@/scss/style.scss";`
       },
       // pass Less.js Options to less-loader
     //   less:{
     //     // http://lesscss.org/usage/#less-options-strict-units `Global Variables`
-    //     // `primary` is global variables fields name
+    //     // `primary` rependData: `@import "~@/styles/[rest of path to import]";`, is global variables fields name
     //     globalVars: {
     //       primary: '#fff'
     //     }

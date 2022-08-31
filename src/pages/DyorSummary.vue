@@ -162,13 +162,13 @@
                   class="css-w-f-qai"
                   v-for="(item, name) of general_data.category_score"
                   :key="name"
-                  v-on:click="dropdown.e1 = !dropdown.e1"
+                  v-on:click="showTab(name)"
                 >
                   <div class="css-w-f-8c2">
                     <span style="text-transform: capitalize; font-weight: 600">
                       {{ name.replace("_", " ") }}</span
                     >
-                    <div>
+                    <div style="color: var(--text-b)">
                       {{
                         item === "doesn't apply"
                           ? "Doesn't apply"
@@ -177,24 +177,14 @@
                     </div>
                   </div>
 
-                  <template v-if="dropdown.e1 === true">
+                  <template v-if="dropdown_list.includes(name)">
                     <div class="css-w-f-qao">
-                      <div class="css-w-f-qah">
-                        <div class="css-w-f-stb">Total Score:</div>
-                        <div>
-                          {{
-                            item === "doesn't apply"
-                              ? "Doesn't apply"
-                              : item.score + " / " + item.max_score
-                          }}
-                        </div>
-                      </div>
                       <div
                         class="css-w-f-qah"
                         v-for="element of item.questions"
                         :key="element.id"
                       >
-                        {{ element.question }}
+                        {{ element.id }}. {{ element.question }}
 
                         <div>
                           {{ element.score.toFixed(2) }} /
@@ -253,7 +243,7 @@ export default {
       newAudit: {},
       isNoApply: false,
       teste: true,
-      dropdown: { e1: false, e2: false, e3: false, e4: false },
+      dropdown_list: [],
     };
   },
   computed: {
@@ -274,6 +264,13 @@ export default {
     this.getReport();
   },
   methods: {
+    showTab(name) {
+      !this.dropdown_list.includes(name)
+        ? this.dropdown_list.push(name)
+        : (this.dropdown_list = this.dropdown_list.filter(
+            (item) => item !== name
+          ));
+    },
     getReport() {
       axios({
         method: "get",
@@ -327,11 +324,8 @@ a {
 .css-w-f-8c2 {
   display: flex;
   width: 100%;
+  font-size: var(--text-size-title);
   justify-content: space-between;
-}
-
-#logo-blue {
-  fill: var(--complementary-color-blue);
 }
 
 .css-w-f-wrap {
@@ -448,6 +442,7 @@ a {
 .css-w-f-ttq {
   padding: 2rem;
   background: var(--blue);
+  box-sizing: border-box;
 }
 
 .css-w-f-sox a {
@@ -630,6 +625,8 @@ a {
   font-size: var(--text-size-fifth);
   text-transform: capitalize;
   text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .css-w-f-sfw {
@@ -743,10 +740,6 @@ a {
 
   .css-w-f-ttt {
     margin: 0 10%;
-  }
-
-  #logo-blue {
-    fill: #fff;
   }
 
   .css-w-f-843 {
