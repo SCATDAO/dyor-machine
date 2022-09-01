@@ -20,17 +20,17 @@
                       <div class="css-w-f-sta">
                         <img
                           class="css-w-f-txa"
-                          :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
+                          :src="
+                            'data:image/png;base64,' +
+                            report_audit.project_logo.split(',')[1]
+                          "
                           alt=""
                         />
                       </div>
                       <div class="css-w-f-std">
-                        <div>Total Percentage</div>
+                        <div>Total percentage</div>
                         <div class="css-w-f-stx">
-                          {{ general_data.total_percentage }}
-                          <span style="font-size: var(--text-size-third)"
-                            >%</span
-                          >
+                          {{ general_data.total_percentage }}%
                         </div>
                         <div class="css-w-f-stm">
                           Community report by
@@ -278,7 +278,6 @@ export default {
         headers: { "content-type": "application/json" },
       })
         .then((response) => {
-
           const report_data_decoded = JSON.parse(
             DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
           );
@@ -325,8 +324,13 @@ a {
 .css-w-f-8c2 {
   display: flex;
   width: 100%;
+  padding: 1rem;
   font-size: var(--text-size-title);
   justify-content: space-between;
+}
+.css-w-f-8c2:hover {
+  background: #f7f7f7;
+  border-radius: 8px;
 }
 
 .css-w-f-wrap {
@@ -480,7 +484,6 @@ a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-primary);
   border-top: none;
   background: var(--base-color-white-primary);
   box-sizing: border-box;
@@ -500,10 +503,9 @@ a {
 .css-w-f-qai {
   margin-top: 1rem;
   display: flex;
-  padding: 1rem;
+
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--border-primary);
   border-radius: 6px;
   cursor: pointer;
   flex-direction: column;
@@ -544,11 +546,6 @@ a {
   color: #ffffff;
 }
 
-.css-w-f-stm {
-  font-size: var(--text-size-secondary);
-  text-transform: uppercase;
-}
-
 .css-w-f-sha {
   display: flex;
   width: 100%;
@@ -568,25 +565,25 @@ a {
 
 .css-w-f-shai {
   width: 100%;
-  padding: 1rem;
-  margin-right: 0.5rem;
-  border-radius: 6px;
+  padding: 1rem 0.75rem;
+  margin-right: 1rem;
+  border-radius: 99px;
   display: flex;
   cursor: pointer;
-  border: 1px solid #ffffff;
-  background: transparent;
+  border: none;
+  background: #23272a;
   color: #ffffff;
+  box-shadow: var(--shadow-a);
   justify-content: center;
 }
 
 .css-w-f-shai:hover,
 .css-w-f-shai:active,
 .css-w-f-shai:focus {
-  background: var(--complementary-color-blue);
+  background: #ffffff;
   color: #fff;
-  fill: #fff;
-  transition: ease-out 0.4s;
-  animation-duration: 0.3s;
+  transition: var(--transition-a);
+  background: rgba(61, 65, 68, 1);
 }
 
 .css-w-f-qao {
@@ -635,7 +632,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .css-w-f-std {
@@ -655,19 +652,19 @@ a {
 }
 
 .css-w-f-sta {
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   background: #ffffff;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
+  border: 3px solid #ffffff;
 }
 
 .css-w-f-txa {
   width: 80px;
-  border: 1px solid transparent;
   height: 80px;
 }
 
@@ -686,7 +683,7 @@ a {
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-primary);
+
     border-top: none;
     background: var(--base-color-white-primary);
   }

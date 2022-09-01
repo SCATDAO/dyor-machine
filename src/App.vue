@@ -55,6 +55,8 @@ export default {
     rgba(64, 78, 237, 1) 100%
   );
 
+  --transition-a: ease-in 0.2s;
+  
   --shadow-a: 0 5px 10px rgba(0, 0, 0, 0.1);
 
   --border-a: #e9f1fc;
