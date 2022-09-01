@@ -20,7 +20,7 @@
                       <div class="css-w-f-sta">
                         <img
                           class="css-w-f-txa"
-                          :src="report_audit.project_logo"
+                          :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
                           alt=""
                         />
                       </div>
@@ -278,10 +278,11 @@ export default {
         headers: { "content-type": "application/json" },
       })
         .then((response) => {
+
           const report_data_decoded = JSON.parse(
             DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
           );
-          console.log(report_data_decoded);
+
           const response_ = JSON.parse(
             DOMPurify.sanitize(JSON.stringify(response.data))
           );

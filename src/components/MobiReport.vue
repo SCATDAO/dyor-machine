@@ -10,7 +10,13 @@
       <div class="css-dc-xqq">
         <div class="css-dc-xaa">
           <div class="css-dc-qkz">
-            <img :src="report_audit.project_logo" alt="" />
+            <img
+              :src="
+                'data:image/png;base64,' +
+                report_audit.project_logo.split(',')[1]
+              "
+              alt=""
+            />
           </div>
         </div>
 
@@ -149,7 +155,6 @@ export default {
 </script>
 
 <style scoped>
-
 canvas {
   border: 2px solid #ffffff;
   border-radius: 3px;

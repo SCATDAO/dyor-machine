@@ -6,7 +6,7 @@
         <img
           class="css-dyor-doc-scw"
           id="logo-img"
-          :src="report_audit.project_logo"
+          :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
           alt=""
         />
       </div>

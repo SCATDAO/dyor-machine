@@ -22,7 +22,7 @@
           <div class="css-dyor-doc-sxz">
             <img
               class="css-dyor-doc-csx"
-              :src="report_audit.project_logo"
+              :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
               alt=""
             />
           </div>
@@ -68,14 +68,14 @@
       <div class="css-dyor-doc-sba">
         Website:
         <span style="text-transform: lowercase">
-          {{ report_audit.website }}
+          {{ general_data.website }}
         </span>
       </div>
 
       <div class="css-dyor-doc-sba">
         Repository:
         <span style="text-transform: lowercase">
-          {{ report_audit.repository || "N/A" }}
+          {{ general_data.repository || "N/A" }}
         </span>
       </div>
 
@@ -83,40 +83,40 @@
         <div class="css-dyor-doc-sba">
           Discord:
           <span style="text-transform: lowercase">
-            {{ report_audit.discord || "N/A" }}
+            {{ general_data.discord || "N/A" }}
           </span>
         </div>
 
         <div class="css-dyor-doc-sba">
           Twitter:
           <span style="text-transform: lowercase">
-            {{ report_audit.twitter || "N/A" }}
+            {{ general_data.twitter || "N/A" }}
           </span>
         </div>
         <div class="css-dyor-doc-sba">
           Number in circulation:
           <span style="text-transform: lowercase">
-            {{ report_audit.number_in_circulation || "N/A" }}
+            {{ general_data.number_in_circulation || "N/A" }}
           </span>
         </div>
         <div class="css-dyor-doc-sba">
           Whitelist:
           <span style="text-transform: lowercase">
-            {{ report_audit.whitelist || "N/A" }}
+            {{ general_data.whitelist || "N/A" }}
           </span>
         </div>
 
         <div class="css-dyor-doc-sba">
           Number per mint:
           <span style="text-transform: lowercase">
-            {{ report_audit.number_per_mint || "N/A" }}
+            {{ general_data.number_per_mint || "N/A" }}
           </span>
         </div>
 
         <div class="css-dyor-doc-sba">
           Mint date:
           <span style="text-transform: lowercase">
-            {{ report_audit.mint_date || "N/A" }}
+            {{ general_data.mint_date || "N/A" }}
           </span>
         </div>
       </template>
@@ -127,7 +127,7 @@
       <div class="css-dyor-doc-sba">
         Repository:
         <span style="text-transform: lowercase">
-          {{ report_audit.repository || "N/A" }}
+          {{ general_data.repository || "N/A" }}
         </span>
       </div>
       <div class="css-dyor-doc-sba">
