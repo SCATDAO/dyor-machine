@@ -1,14 +1,14 @@
 <template>
-  <div class="css-dyor-doc-pwo">
-    <div class="css-dyor-doc-bar">
+  <div class="css-abs-pwo">
+    <div class="css-abs-bar">
       <template v-if="general_data.scheme === 'dapp'">
-        <div class="css-dyor-doc-brw">
-          <div class="css-dyor-doc-sbc">Tokenomics</div>
-          <div class="css-dyor-doc-swc">
+        <div class="css-abs-brw">
+          <div class="css-abs-sbc">Tokenomics</div>
+          <div class="css-abs-swc">
             Public and private token distribution
           </div>
         </div>
-        <div class="css-dyor-doc-sbg" id="chart1">
+        <div class="css-abs-sbg" id="chart1">
           <apexchart
             type="donut"
             :options="donut_option"
@@ -17,7 +17,7 @@
           ></apexchart>
         </div>
 
-        <div class="css-dyor-doc-sdc">
+        <div class="css-abs-sdc">
           <div
             v-for="(item, key) of report_audit.charts.tokenomics.ref"
             :key="key"
@@ -33,11 +33,11 @@
         </div>
       </template>
       <div class="html2pdf__page-break" />
-      <div class="css-dyor-doc-brw" id="css-com-break">
-        <div class="css-dyor-doc-sbc">Community</div>
-        <div class="css-dyor-doc-swc">Social networks information</div>
+      <div class="css-abs-brw" id="css-com-break">
+        <div class="css-abs-sbc">Community</div>
+        <div class="css-abs-swc">Social networks information</div>
       </div>
-      <div class="css-dyor-doc-sbg" id="chart">
+      <div class="css-abs-sbg" id="chart">
         <apexchart
           type="bar"
           height="350"
@@ -45,7 +45,7 @@
           :series="bar_data"
         ></apexchart>
       </div>
-      <div class="css-dyor-doc-sdc" style="padding-top: 1rem">
+      <div class="css-abs-sdc" style="padding-top: 1rem">
         <div v-for="(item, key) of report_audit.charts.community" :key="key">
           {{ general_data.score_per_question[item.id].name }}:
 
@@ -212,7 +212,11 @@ export default {
   },
   methods: {
     formatChar(e) {
-      return e.replace(/&lt;/g, "Less than ").replace(/&gt;/g, "Greater than ");
+      return e
+        .replace(/&lt;/g, "Less than ")
+        .replace(/&gt;/g, "Greater than ")
+        .replace(/</g, "Less than ")
+        .replace(/>/g, "Greater than ");
     },
     updateDonutData() {
       if (this.general_data.scheme === "dapp") {
@@ -254,7 +258,7 @@ export default {
 </script>
 
 <style scoped>
-.css-dyor-doc-pwo {
+.css-abs-pwo {
   background: var(--background-a);
   width: 100%;
   height: 100%;
@@ -262,19 +266,19 @@ export default {
   padding: 1rem 3rem;
 }
 
-.css-dyor-doc-bar {
+.css-abs-bar {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
 }
 
-.css-dyor-doc-sdc {
+.css-abs-sdc {
   height: 200px;
   white-space: nowrap;
 }
 
-.css-dyor-doc-ctp {
+.css-abs-ctp {
   padding-top: 1rem;
 }
 
@@ -282,29 +286,29 @@ export default {
   margin-top: 3rem;
 }
 
-.css-dyor-doc-sbc {
+.css-abs-sbc {
   font-size: var(--text-size-title);
   font-weight: bold;
   text-align: start;
 }
 
-.css-dyor-doc-sdc {
+.css-abs-sdc {
   padding: 0 1rem;
   box-sizing: border-box;
 }
-.css-dyor-doc-sdc div {
+.css-abs-sdc div {
   margin-top: 1.5rem;
   display: flex;
   font-weight: 600;
   justify-content: space-between;
 }
 
-.css-dyor-doc-sdc span {
+.css-abs-sdc span {
   color: var(--text-b);
   font-weight: 500;
 }
 
-.css-dyor-doc-brw {
+.css-abs-brw {
   display: flex;
   border-top: 1px solid var(--border-primary);
   border-bottom: 1px solid var(--border-primary);
@@ -313,11 +317,11 @@ export default {
   justify-content: space-between;
 }
 
-.css-dyor-doc-swc {
+.css-abs-swc {
   color: var(--text-b);
 }
 
-.css-dyor-doc-sbg {
+.css-abs-sbg {
   margin-top: 2rem;
 }
 </style>

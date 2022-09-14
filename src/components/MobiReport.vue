@@ -1,5 +1,5 @@
 <template>
-  <div class="css-mr-qca" id="capture2" style="image-rendering: pixelated">
+  <div class="css-mr-qca" id="capture3" style="image-rendering: pixelated">
     <div class="css-dc-koq">
       <div class="css-dc-qxs">
         <span>{{ general_data.project }}</span>
@@ -55,7 +55,7 @@
     <div class="css-dc-qox">
       <canvas
         class="camva"
-        id="qr-3"
+        id="qr-2"
         style="image-rendering: pixelated"
       ></canvas>
       <div class="css-dc-qqq">
@@ -111,8 +111,7 @@ export default {
           this.createNewCanvas();
           const body = document.querySelector("body");
           body.style.opacity = "0";
-          const recipe = document.querySelector("#capture2");
-          recipe.style.transform = "scale(100%)";
+          const recipe = document.querySelector("#capture3");
           html2canvas(recipe, { width: 700, height: 900 }).then((canvas) => {
             canvas.style.imageRendering = "pixelated";
             const can = document.createElement("a");
@@ -140,7 +139,7 @@ export default {
     },
     createNewCanvas() {
       const quickResponse = new QRious({
-        element: document.getElementById("qr-3"),
+        element: document.getElementById("qr-2"),
         value: `https://audits.dyortool.io/report/${this.id}`,
       });
       quickResponse.size = 100;
@@ -170,6 +169,7 @@ canvas {
   box-sizing: border-box;
   flex-direction: column;
   z-index: 1000;
+  margin-top: 100%;
   background: linear-gradient(22.58deg, #0036c2 0%, #0069f5 100%);
 }
 

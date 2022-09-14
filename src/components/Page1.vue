@@ -1,27 +1,27 @@
 <template>
-  <div class="css-dyor-doc-pwo">
+  <div class="css-dcx-pwo">
     <img src="../assets/report-cover.svg" alt="" />
-    <div class="css-dyor-doc-rap">
-      <div class="css-dyor-doc-aiw">
+    <div class="css-dcx-rap">
+      <div class="css-dcx-aiw">
         <img
-          class="css-dyor-doc-scw"
+          class="css-dcx-scw"
           id="logo-img"
           :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
           alt=""
         />
       </div>
     </div>
-    <div class="css-dyor-doc-rsb">
+    <div class="css-dcx-rsb">
       <b style="font-weight: 300">{{ general_data.project }}</b>
       <b style="font-weight: 600">DYOR REPORT</b>
       <b>{{ report_date.getFullYear() }}</b>
     </div>
-    <div class="css-dyor-doc-rcb">
+    <div class="css-dcx-rcb">
       <div>{{ report_date.getDate() }}</div>
       <div>{{ report_date.toLocaleString("default", { month: "long" }) }}</div>
       <div>{{ report_date.getFullYear() }} - {{ general_data.scheme }}</div>
     </div>
-    <div class="css-dyor-doc-rub">
+    <div class="css-dcx-rub">
       <span>Community report made by {{ general_data.author }}</span>
     </div>
   </div>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style scoped>
-.css-dyor-doc-rap {
+.css-dcx-rap {
   width: 100%;
   top: 18%;
   height: 100px;
@@ -68,7 +68,7 @@ export default {
   position: absolute;
 }
 
-.css-dyor-doc-scw {
+.css-dcx-scw {
   width: 80px;
   height: 80px;
 }
@@ -77,7 +77,7 @@ export default {
   min-width: 300px;
   image-rendering: optimizeQuality;
 }
-.css-dyor-doc-aiw {
+.css-dcx-aiw {
   width: 100px;
   height: 100px;
   background-size: contain;
@@ -88,7 +88,7 @@ export default {
   align-items: center;
 }
 
-.css-dyor-doc-rcb {
+.css-dcx-rcb {
   text-transform: uppercase;
   display: flex;
   color: #fff;
@@ -100,11 +100,11 @@ export default {
   letter-spacing: 0.3em;
 }
 
-.css-dyor-doc-rcb div {
+.css-dcx-rcb div {
   margin-right: 0.5rem;
 }
 
-.css-dyor-doc-rub {
+.css-dcx-rub {
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -116,7 +116,7 @@ export default {
   text-transform: capitalize;
 }
 
-.css-dyor-doc-pwo {
+.css-dcx-pwo {
   width: 100%;
   height: 1121px;
   background: var(--base-color-white-primary);
@@ -126,7 +126,7 @@ export default {
   background-repeat: no-repeat;
 }
 
-.css-dyor-doc-rsb {
+.css-dcx-rsb {
   font-size: var(--text-size-fifth);
   display: flex;
   flex-direction: column;

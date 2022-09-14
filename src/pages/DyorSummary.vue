@@ -194,8 +194,6 @@
                     </div>
                   </template>
                 </div>
-
-                <div class="css-w-f-qac"></div>
               </div>
 
               <div class="css-w-f-cri"></div>
@@ -274,7 +272,7 @@ export default {
     getReport() {
       axios({
         method: "get",
-        url: `http://192.168.1.3:8000/1.1/report/search-id/${this.id}`,
+        url: `https://api.dyortool.io/1.1/report/search-id/${this.id}`,
         headers: { "content-type": "application/json" },
       })
         .then((response) => {
@@ -356,7 +354,6 @@ a {
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
-  box-shadow: 1px 1px 20px var(--border-primary);
 }
 
 .css-w-f-843 {
@@ -370,10 +367,8 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  padding-top: 68px;
   z-index: 112;
   position: relative;
-  margin-top: 8rem;
   align-items: center;
   box-sizing: border-box;
   animation-name: deploy1;
@@ -477,7 +472,7 @@ a {
 }
 
 .css-w-f-qac {
-  height: 300px;
+  height: 100px;
 }
 
 .css-w-f-tw {
@@ -487,7 +482,6 @@ a {
   border-top: none;
   background: var(--base-color-white-primary);
   box-sizing: border-box;
-  box-shadow: var(--shadow-a);
 }
 
 .css-w-f-ttt {
@@ -599,7 +593,7 @@ a {
   height: 64px;
   display: flex;
   align-items: center;
-  padding: 0 3rem !important;
+  padding: 0 3rem;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -664,6 +658,8 @@ a {
 }
 
 .css-w-f-txa {
+  border: 3px solid #ffffff;
+  border-radius: 8px;
   width: 80px;
   height: 80px;
 }
@@ -726,18 +722,26 @@ a {
     margin-right: 0;
   }
 
+  .css-w-f-her {
+    box-shadow: none;
+    padding: 0 8%;
+  }
+
   .css-w-f-ttq {
     padding: 0;
   }
-
-  .css-w-f-her {
-    background: var(--complementary-color-blue);
-    box-shadow: none;
-    padding: 0 10%;
+  .css-w-f-ttw {
+    flex-direction: column;
+    padding: 10%;
+    margin: 0;
+    border-radius: 0;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    background: var(--blue);
   }
 
   .css-w-f-ttt {
-    margin: 0 10%;
+    margin: 0 8%;
   }
 
   .css-w-f-843 {
@@ -754,6 +758,8 @@ a {
 
   .css-w-f-stw {
     margin: initial;
+    width: initial;
+    min-width: 0;
   }
 
   .css-w-f-tw {
@@ -761,15 +767,9 @@ a {
     border-top-left-radius: 16px;
   }
 
-  .css-w-f-srp {
-    background: var(--blue);
-  }
-
-  .css-w-f-ttw {
-    flex-direction: column;
-    padding: 10%;
-    margin: 0;
-    border: 1px solid transparent;
+  .css-w-f-srp,
+  .css-w-f-ttq {
+    background: transparent;
   }
 
   .css-w-f-sti {

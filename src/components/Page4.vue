@@ -1,7 +1,7 @@
 <template>
-  <div class="css-dyor-doc-pwo">
+  <div class="css-nsc-pwo">
     <div
-      class="css-dyor-doc-rtw"
+      class="css-nsc-rtw"
       v-for="(item, name) of general_data.category_score"
       :key="name"
     >
@@ -19,20 +19,20 @@
       </div>
 
       <div
-        class="css-dyor-doc-qsw"
+        class="css-nsc-qsw"
         v-for="element of item.questions"
         :key="element.id"
       >
-        <div class="css-dyor-doc-rsw">
+        <div class="css-nsc-rsw">
           {{ element.id }}. {{ element.question }}
           <div>{{ element.score.toFixed(2) }} / {{ element.max_score }}</div>
         </div>
 
-        <div class="css-dyor-doc-rra">
-          <div class="css-dyor-doc-rrr">
+        <div class="css-nsc-rra">
+          <div class="css-nsc-rrr">
             <span>{{ formatChar(element.answer) }}</span>
           </div>
-          <div class="css-dyor-doc-ror">
+          <div class="css-nsc-ror">
             <div class="report_text">
               {{ report_data[element.id].textarea }}
             </div>
@@ -41,19 +41,19 @@
       </div>
     </div>
 
-    <div class="css-dyor-doc-rtw">
+    <div class="css-nsc-rtw">
       <div class="css-haxu">Final Thoughts</div>
     </div>
-    <div class="css-dyor-doc-rra">
-      <div class="css-dyor-doc-rrr">
+    <div class="css-nsc-rra">
+      <div class="css-nsc-rrr">
         <span>{{ report_audit.audit_opinion.answer }}</span>
       </div>
-      <div class="css-dyor-doc-ror">
+      <div class="css-nsc-ror">
         <div class="report_text">{{ report_audit.audit_opinion.textarea }}</div>
       </div>
     </div>
 
-    <div class="css-dyor-doc-dtx">
+    <div class="css-nsc-dtx">
       The information contained in the DYOR Tool and within this report is not
       intended as, and shall not be understood or construed as, financial
       advice. The makers of the tool and creator of this report are not
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     formatChar(e) {
-      return e.replace(/&lt;/g, "Less than ").replace(/&gt;/g, "Greater than ");
+      return e.replace(/&lt;/g, "Less than ").replace(/&gt;/g, "Greater than ").replace(/</g, "Less than ").replace(/>/g, "Greater than ");
     },
     knowBrokePage(e) {
       return [3, 6, 9, 12, 15, 18, 21, 24, 27].includes(e) ? true : false;
@@ -122,7 +122,7 @@ export default {
   text-transform: capitalize;
   border: 1px solid var(--border-primary);
 }
-.css-dyor-doc-pwo {
+.css-nsc-pwo {
   background: var(--base-color-white-primary);
   width: 100%;
   height: 100%;
@@ -130,20 +130,20 @@ export default {
   padding: 1rem 3rem;
 }
 
-.css-dyor-doc-qsw {
+.css-nsc-qsw {
   display: flex;
   width: 100%;
   flex-direction: column;
 }
 
-.css-dyor-doc-rtw {
+.css-nsc-rtw {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.css-dyor-doc-dtx {
+.css-nsc-dtx {
   border: 1px solid var(--complementary-color-blue);
 
   color: var(--complementary-color-blue);
@@ -169,7 +169,7 @@ export default {
   overflow-wrap: anywhere;
   border: 1px solid transparent;
 }
-.css-dyor-doc-rra {
+.css-nsc-rra {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border-primary);
@@ -178,23 +178,23 @@ export default {
   border-radius: 4px;
 }
 
-.css-dyor-doc-ror {
+.css-nsc-ror {
   padding: 1rem 1rem;
   box-sizing: content;
 }
 
-.css-dyor-doc-rrr {
+.css-nsc-rrr {
   border-bottom: 1px solid var(--border-primary);
   padding: 1rem 1rem;
   font-weight: 600;
   color: var(--text-color-primary);
 }
 
-.css-dyor-doc-rtw span {
+.css-nsc-rtw span {
   font-size: var(--text-size-primary);
 }
 
-.css-dyor-doc-rsw {
+.css-nsc-rsw {
   display: flex;
   padding: 1rem;
   justify-content: space-between;
@@ -205,7 +205,7 @@ export default {
   line-height: 1.5rem;
 }
 
-.css-dyor-doc-rsw div {
+.css-nsc-rsw div {
   white-space: nowrap;
   margin-left: 10px;
 }

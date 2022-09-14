@@ -1,51 +1,51 @@
 <template>
-  <div class="css-dyor-doc-pwo">
-    <div class="css-dyor-doc-fpg">
-      <div class="css-dyor-doc-sxf">
+  <div class="css-adb-pwo">
+    <div class="css-adb-fpg">
+      <div class="css-adb-sxf">
         <canvas
           class="camva"
           id="quickResponse2"
           style="image-rendering: pixelated"
         ></canvas>
-        <div class="css-dyor-doc-sfx">
-          <span class="css-dyor-doc-sxx"> <span>ID:</span> {{ id }}</span>
-          <span class="css-dyor-doc-sxx">
+        <div class="css-adb-sfx">
+          <span class="css-adb-sxx"> <span>ID:</span> {{ id }}</span>
+          <span class="css-adb-sxx">
             <span>Date:</span> {{ report_date.toLocaleString() }}</span
           >
-          <span class="css-dyor-doc-sxx">
+          <span class="css-adb-sxx">
             <span>Author:</span> {{ general_data.author }}</span
           >
         </div>
       </div>
-      <div class="css-dyor-doc-sdq">
-        <div class="css-dyor-doc-sxa">
-          <div class="css-dyor-doc-sxz">
+      <div class="css-adb-sdq">
+        <div class="css-adb-sxa">
+          <div class="css-adb-sxz">
             <img
-              class="css-dyor-doc-csx"
+              class="css-adb-csx"
               :src="'data:image/png;base64,' + report_audit.project_logo.split(',')[1]"
               alt=""
             />
           </div>
 
-          <span class="css-dyor-doc-psp" style="text-transform: capitalize">{{
+          <span class="css-adb-psp" style="text-transform: capitalize">{{
             general_data.project
           }}</span>
-          <span class="css-dyor-doc-pss">Total percentage:</span>
-          <span class="css-dyor-doc-tsp"
+          <span class="css-adb-pss">Total percentage:</span>
+          <span class="css-adb-tsp"
             >{{ general_data.total_percentage }}
             <span style="font-size: var(--text-size-third)">%</span>
           </span>
         </div>
       </div>
-      <div class="css-dyor-doc-sbc">General Information</div>
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sbc">General Information</div>
+      <div class="css-adb-sba">
         Name:
         <span style="text-transform: capitalize">
           {{ general_data.project }}
         </span>
       </div>
 
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Category:
         <span>
           <span style="text-transform: uppercase">
@@ -53,26 +53,26 @@
           </span></span
         >
       </div>
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Description:
         <span>
           {{ general_data.description }}
         </span>
       </div>
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Symbol:
         <span style="text-transform: uppercase">
           {{ general_data.symbol || "N/A" }}
         </span>
       </div>
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Website:
         <span style="text-transform: lowercase">
           {{ general_data.website }}
         </span>
       </div>
 
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Repository:
         <span style="text-transform: lowercase">
           {{ general_data.repository || "N/A" }}
@@ -80,40 +80,40 @@
       </div>
 
       <template v-if="general_data.scheme === 'nft'">
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Discord:
           <span style="text-transform: lowercase">
             {{ general_data.discord || "N/A" }}
           </span>
         </div>
 
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Twitter:
           <span style="text-transform: lowercase">
             {{ general_data.twitter || "N/A" }}
           </span>
         </div>
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Number in circulation:
           <span style="text-transform: lowercase">
             {{ general_data.number_in_circulation || "N/A" }}
           </span>
         </div>
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Whitelist:
           <span style="text-transform: lowercase">
             {{ general_data.whitelist || "N/A" }}
           </span>
         </div>
 
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Number per mint:
           <span style="text-transform: lowercase">
             {{ general_data.number_per_mint || "N/A" }}
           </span>
         </div>
 
-        <div class="css-dyor-doc-sba">
+        <div class="css-adb-sba">
           Mint date:
           <span style="text-transform: lowercase">
             {{ general_data.mint_date || "N/A" }}
@@ -124,13 +124,13 @@
   </div>
 </template>
       <div class="html2pdf__page-break" />
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Repository:
         <span style="text-transform: lowercase">
           {{ general_data.repository || "N/A" }}
         </span>
       </div>
-      <div class="css-dyor-doc-sba">
+      <div class="css-adb-sba">
         Report creator:
         <span style="text-transform: capitalize">
           {{ general_data.author }}
@@ -181,7 +181,7 @@ export default {
 </script>
 
 <style scoped>
-.css-dyor-doc-pwo {
+.css-adb-pwo {
   background: var(--base-color-white-primary);
   width: 100%;
   height: 100%;
@@ -190,22 +190,22 @@ export default {
   padding-top: 3rem;
 }
 
-.css-dyor-doc-tsp {
+.css-adb-tsp {
   margin-top: 1rem;
   font-size: var(--text-size-fifth);
 
 }
 
-.css-dyor-doc-csx {
+.css-adb-csx {
   width: 80px;
   height: 80px;
 }
-.css-dyor-doc-fpg {
+.css-adb-fpg {
   display: flex;
   flex-direction: column;
 }
 
-.css-dyor-doc-sba {
+.css-adb-sba {
   justify-content: space-between;
   display: flex;
   box-sizing: border-box;
@@ -218,7 +218,7 @@ export default {
   text-align: start;
 }
 
-.css-dyor-doc-sdq {
+.css-adb-sdq {
   border: 1px solid var(--border-primary);
   border-radius: 6px;
   margin-top: 1rem;
@@ -228,20 +228,20 @@ export default {
   flex-direction: column;
 }
 
-.css-dyor-doc-psp {
+.css-adb-psp {
   font-weight: bold;
   margin-top: 1rem;
   font-size: var(--text-size-fourth);
 }
-.css-dyor-doc-pss {
+.css-adb-pss {
   margin-top: 1rem;
 }
-.css-dyor-doc-sxf {
+.css-adb-sxf {
   display: flex;
   align-items: center;
 }
 
-.css-dyor-doc-sfx {
+.css-adb-sfx {
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -252,7 +252,7 @@ export default {
   justify-content: space-around;
 }
 
-.css-dyor-doc-sxa {
+.css-adb-sxa {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,7 +262,7 @@ export default {
   margin-bottom: 2rem;
 }
 
-.css-dyor-doc-sxz {
+.css-adb-sxz {
   width: 100px;
   height: 100px;
   display: flex;
@@ -271,19 +271,19 @@ export default {
   align-items: center;
   border-radius: 8px;
 }
-.css-dyor-doc-sbc span {
+.css-adb-sbc span {
   color: var(--text-b);
   font-size: var(--text-size-primary);
   font-weight: initial;
 }
-.css-dyor-doc-sba span {
+.css-adb-sba span {
   width: 50%;
   text-align: end;
   font-weight: 500;
   color: var(--text-b);
 }
 
-.css-dyor-doc-sbc {
+.css-adb-sbc {
   font-size: var(--text-size-title);
   font-weight: bold;
   text-align: start;
