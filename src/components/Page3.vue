@@ -1,66 +1,57 @@
 <template>
-  <div class="css-dyor-doc-pwo">
-    <div class="css-dyor-doc-bar">
-      <div class="css-dyor-doc-brw">
-        <div class="css-dyor-doc-sbc">Tokenomics</div>
-        <div class="css-dyor-doc-swc">
-          Public and private token distribution
+  <div class="css-abs-pwo">
+    <div class="css-abs-bar">
+      <template v-if="general_data.scheme === 'dapp'">
+        <div class="css-abs-brw">
+          <div class="css-abs-sbc">Tokenomics</div>
+          <div class="css-abs-swc">
+            Public and private token distribution
+          </div>
         </div>
-      </div>
-      <div class="css-dyor-doc-sbg" id="chart1">
-        <apexchart
-          type="donut"
-          :options="donutOption"
-          height="350"
-          :series="donutData"
-        ></apexchart>
-      </div>
-      <div class="css-dyor-doc-sdc">
-        <div>
-          Vesting schedule
-          <span>{{ knowAnswerOption(11) }}</span>
+        <div class="css-abs-sbg" id="chart1">
+          <apexchart
+            type="donut"
+            :options="donut_option"
+            height="350"
+            :series="donut_data"
+          ></apexchart>
         </div>
-        <div>
-          Minting policy Locked
-          <span>{{ knowAnswerOption(12) }}</span>
+
+        <div class="css-abs-sdc">
+          <div
+            v-for="(item, key) of report_audit.charts.tokenomics.ref"
+            :key="key"
+          >
+            {{ general_data.score_per_question[item].name }}:
+
+            <span>
+              {{
+                formatChar(general_data.score_per_question[item].answer)
+              }}</span
+            >
+          </div>
         </div>
-        <div>
-          Clear use case <span>{{ knowAnswerOption(13) }}</span>
-        </div>
-        <div>
-          ISO Fee <span>{{ knowAnswerOption(14) }}</span>
-        </div>
-      </div>
+      </template>
       <div class="html2pdf__page-break" />
-      <div class="css-dyor-doc-brw" id="css-com-break">
-        <div class="css-dyor-doc-sbc">Community</div>
-        <div class="css-dyor-doc-swc">Social networks information</div>
+      <div class="css-abs-brw" id="css-com-break">
+        <div class="css-abs-sbc">Community</div>
+        <div class="css-abs-swc">Social networks information</div>
       </div>
-      <div class="css-dyor-doc-sbg" id="chart">
+      <div class="css-abs-sbg" id="chart">
         <apexchart
           type="bar"
           height="350"
-          :options="barOption"
-          :series="barData"
+          :options="bar_options"
+          :series="bar_data"
         ></apexchart>
       </div>
-      <div class="css-dyor-doc-sdc" style="padding-top: 1rem">
-        <div>
-          Twitter real followers
+      <div class="css-abs-sdc" style="padding-top: 1rem">
+        <div v-for="(item, key) of report_audit.charts.community" :key="key">
+          {{ general_data.score_per_question[item.id].name }}:
 
-          <span>{{ knowAnswerOption(17) }}</span>
-        </div>
-        <div>
-          Reddit active environment
-          <span>{{ knowAnswerOption(19) }}</span>
-        </div>
-        <div>
-          Telegram active environment
-          <span>{{ knowAnswerOption(21) }}</span>
-        </div>
-        <div>
-          Discord active environment
-          <span>{{ knowAnswerOption(23) }}</span>
+          <span>
+            {{ formatChar(general_data.score_per_question[item.id].answer) }}</span
+          >
         </div>
       </div>
     </div>
@@ -71,17 +62,26 @@
 <script>
 export default {
   created() {
-    this.updateQuestionList();
-    this.updateDataReport();
-    this.updateChartData();
-    this.updateBarData();
+    this.updateDonutData();
+    this.updateBarChart();
   },
   data() {
     return {
       reportDataDecoded: Object,
       questionList: Object,
-      donutData: [],
-      donutOption: {
+      donut_data: [],
+      donut_option: {
+        colors: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#9b19f5",
+          "#ffa300",
+          "#dc0ab4",
+          "#b3d4ff",
+          "#00bfa0",
+        ],
+        labels: [],
         chart: {
           id: "chart1",
           type: "donut",
@@ -109,14 +109,23 @@ export default {
             },
           },
         ],
-        labels: [],
       },
-      barData: [
+      bar_data: [
         {
-          data: [1, 1, 1, 1],
+          data: [0, 0, 0, 0],
         },
       ],
-      barOption: {
+      bar_options: {
+        colors: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#9b19f5",
+          "#ffa300",
+          "#dc0ab4",
+          "#b3d4ff",
+          "#00bfa0",
+        ],
         chart: {
           id: "chart",
           type: "bar",
@@ -154,7 +163,7 @@ export default {
           enabled: false,
         },
         xaxis: {
-          categories: ["Twitter", "Reddit", "Telegram", "Discord"],
+          categories: [],
           labels: {
             style: {
               colors: ["#001737"],
@@ -188,95 +197,53 @@ export default {
     };
   },
   computed: {
-    newAudit() {
-      return this.$store.getters.sendMeAudit;
+    report_date() {
+      return this.$store.getters.getReportDate;
+    },
+    report_data() {
+      return this.$store.getters.getReportData;
+    },
+    report_audit() {
+      return this.$store.getters.getAuditData;
+    },
+    general_data() {
+      return this.$store.getters.getGeneralData;
     },
   },
   methods: {
-    updateChartData() {
-      let dataSorted = [];
-      let labelSorted = [];
-      console.log(this.reportDataDecoded);
-      let ver = 10;
-      if (!this.newAudit.vr) {
-        ver = 9;
-      }
-
-      this.reportDataDecoded[ver].ed.forEach((data) => {
-        if (data.per !== "") {
-          dataSorted.push(data.per.replace(/\D/gm, "") * 1);
-          labelSorted.push(data.name);
-        }
-      });
-
-      this.donutData = dataSorted;
-      this.donutOption.labels = labelSorted;
+    formatChar(e) {
+      return e
+        .replace(/&lt;/g, "Less than ")
+        .replace(/&gt;/g, "Greater than ")
+        .replace(/</g, "Less than ")
+        .replace(/>/g, "Greater than ");
     },
-    updateBarData() {
-      console.log(this.reportDataDecoded);
+    updateDonutData() {
+      if (this.general_data.scheme === "dapp") {
+        const data = this.report_audit.charts.tokenomics;
+
+        this.donut_data = data.values;
+
+        this.donut_option.labels = data.labels;
+      }
+    },
+    updateBarChart() {
       try {
-        let barData = [];
+        const data = this.report_audit.charts.community;
 
-        if (!this.newAudit.vr) {
-          barData = [
-            this.reportDataDecoded[16].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[18].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[20].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[22].ed.replace(/\D/gm, ""),
-          ];
-        } else {
-          barData = [
-            this.reportDataDecoded[17].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[19].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[21].ed.replace(/\D/gm, ""),
-            this.reportDataDecoded[23].ed.replace(/\D/gm, ""),
-          ];
-        }
-        this.barData[0].data = barData;
+        this.bar_options.xaxis.categories = Object.keys(data);
 
-        let barLegend = [];
+        let bar_data = Object.values(data).map((e) => e.value);
 
-        for (const e of barData) {
-          barLegend.push(e + " Followers");
-        }
+        let bar_legends = [];
 
-        this.barOption.legend.customLegendItems = barLegend;
+        bar_data.forEach((e) => bar_legends.push(e + " - Followers"));
+
+        this.bar_data[0].data = bar_data;
+
+        this.bar_options.legend.customLegendItems = bar_legends;
       } catch (e) {
-        console.log(e);
-      }
-    },
-    updateDataReport() {
-      this.reportDataDecoded = this.$store.getters.sendMeReport;
-    },
-    searchByCategory(category) {
-      let byCategory = [];
-      for (const question of this.questionList) {
-        if (question.category === category) {
-          byCategory.push(question);
-        }
-      }
-      return byCategory;
-    },
-    updateQuestionList() {
-      this.questionList = this.$store.getters.sendMeQuestion;
-    },
-    knowAnswerOption(n) {
-      if (!this.newAudit.vr) {
-        const quest = this.questionList[n - 1];
-
-        for (const option of quest.options) {
-          if (option.id === quest.answer) {
-            return option.name;
-          }
-        }
-      } else {
-        const quest = this.questionList[n];
-
-        for (const option of quest.options) {
-          if (option.id === quest.answer) {
-            return option.name;
-          }
-        }
+        console.error(e);
       }
     },
   },
@@ -291,27 +258,27 @@ export default {
 </script>
 
 <style scoped>
-.css-dyor-doc-pwo {
-  background: var(--base-color-white-primary);
+.css-abs-pwo {
+  background: var(--background-a);
   width: 100%;
   height: 100%;
-  font-family: "Nunito", sans-serif;
   box-sizing: border-box;
   padding: 1rem 3rem;
 }
 
-.css-dyor-doc-bar {
+.css-abs-bar {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
 }
 
-.css-dyor-doc-sdc {
+.css-abs-sdc {
   height: 200px;
+  white-space: nowrap;
 }
 
-.css-dyor-doc-ctp {
+.css-abs-ctp {
   padding-top: 1rem;
 }
 
@@ -319,40 +286,42 @@ export default {
   margin-top: 3rem;
 }
 
-.css-dyor-doc-sbc {
+.css-abs-sbc {
   font-size: var(--text-size-title);
-  font-weight: 700;
+  font-weight: bold;
   text-align: start;
 }
 
-.css-dyor-doc-sdc {
-  padding: 0 2rem;
+.css-abs-sdc {
+  padding: 0 1rem;
   box-sizing: border-box;
 }
-.css-dyor-doc-sdc div {
-  margin-top: 1rem;
+.css-abs-sdc div {
+  margin-top: 1.5rem;
   display: flex;
+  font-weight: 600;
   justify-content: space-between;
 }
 
-.css-dyor-doc-sdc span {
-  font-weight: bold;
+.css-abs-sdc span {
+  color: var(--text-b);
+  font-weight: 500;
 }
 
-.css-dyor-doc-brw {
+.css-abs-brw {
   display: flex;
-  border-top: 1px dashed var(--border-primary);
-  border-bottom: 1px dashed var(--border-primary);
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
 }
 
-.css-dyor-doc-swc {
-  color: var(--text-color-secondary);
+.css-abs-swc {
+  color: var(--text-b);
 }
 
-.css-dyor-doc-sbg {
+.css-abs-sbg {
   margin-top: 2rem;
 }
 </style>

@@ -1,413 +1,70 @@
 <template>
-  <div class="css-work-finished-wrap">
-    <template v-if="!displaySub">
-      <div class="css-work-finished-wrap" :class="{ active: isMobiSharing }">
-        <header class="css-work-finished-her">
+  <div class="css-w-f-wrap">
+    <template v-if="!report_visible">
+      <div class="css-w-f-wrap" :class="{ active: isMobiSharing }">
+        <header class="css-w-f-her">
           <a href="https://dyortool.io/">
-            <svg
-              id="logo-blue"
-              width="120px"
-              height="24px"
-              version="1.1"
-              viewBox="0 0 120 24"
-              fill="#070a0e"
-            >
-              <g transform="matrix(.10159 0 0 .10159 -5.4495 -4.4501)">
-                <g>
-                  <path
-                    class="st2"
-                    d="m120.1 266.5h-62.5v-139.7h62.5c9.7 0 18.8 1.8 27.4 5.5 8.5 3.7 16 8.6 22.3 14.9 6.4 6.3 11.4 13.7 15 22.2 3.7 8.5 5.5 17.6 5.5 27.2s-1.8 18.7-5.5 27.2-8.7 15.9-15 22.2c-6.4 6.3-13.8 11.3-22.3 14.9-8.6 3.8-17.7 5.6-27.4 5.6zm-4.4-105.7h-21.4v71.6h21.4c5 0 9.7-0.9 14.1-2.8s8.2-4.4 11.4-7.7c3.2-3.2 5.8-7 7.6-11.4 1.9-4.4 2.8-9 2.8-14 0-4.9-0.9-9.6-2.8-14s-4.4-8.2-7.6-11.4-7.1-5.8-11.4-7.7c-4.3-1.6-9-2.6-14.1-2.6z"
-                  />
-                  <path
-                    class="st2"
-                    d="m271.8 218.4v48.1h-39.8v-48.1l-48.8-91.4h43.9l24.8 48.6 24.7-48.6h43.9z"
-                  />
-                  <path
-                    class="st2"
-                    d="m387.7 270.8c-10.3 0-20-1.9-29-5.8-9-3.8-16.9-9.1-23.6-15.8s-12-14.5-15.9-23.5-5.9-18.6-5.9-28.8 1.9-19.8 5.9-28.8c3.9-9 9.2-16.8 15.9-23.5s14.6-11.9 23.6-15.8 18.7-5.8 29-5.8c10.2 0 19.8 2 28.9 5.8 9.1 3.9 16.9 9.2 23.7 15.8 6.7 6.7 12 14.5 15.9 23.5s5.9 18.6 5.9 28.8-2 19.8-5.9 28.8-9.2 16.8-15.9 23.5-14.6 11.9-23.7 15.8c-9 3.9-18.7 5.8-28.9 5.8zm0-112.1c-5.3 0-10.2 1.1-14.7 3.2s-8.4 4.9-11.6 8.4-5.8 7.5-7.7 12.1-2.8 9.5-2.8 14.7c0 5 0.9 9.9 2.8 14.6s4.4 8.8 7.7 12.2c3.2 3.5 7.1 6.3 11.6 8.4s9.4 3.2 14.7 3.2 10.2-1 14.7-3.2c4.5-2.1 8.4-4.9 11.6-8.4s5.8-7.6 7.7-12.2c1.9-4.7 2.8-9.5 2.8-14.6 0-5.2-0.9-10-2.8-14.7-1.9-4.6-4.4-8.7-7.7-12.1-3.2-3.5-7.1-6.3-11.6-8.4-4.5-2.2-9.4-3.2-14.7-3.2z"
-                  />
-                  <path
-                    class="st2"
-                    d="m566.1 266.5-24.3-43.2h-23.6l0.2 43.2h-38.5v-139.7h70c3.4 0 6.8 0.6 10.3 1.9s6.8 2.9 10.1 5c3.2 2.1 6.2 4.5 9 7.1s5.1 5.3 7 8.1c2.4 3.5 4.2 7.5 5.5 12.2 1.3 4.6 1.9 9 1.9 13.2 0 7-1.6 13.4-4.9 19.4-3.2 6-7.7 11-13.5 15.1l32.8 57.6h-42zm-27.2-108.5h-21.8v30h21.8c2.2 0 4.2-0.4 6.1-1.2s3.6-1.8 5-3.2 2.6-3 3.4-4.7c0.8-1.8 1.3-3.8 1.3-5.9s-0.4-4.1-1.3-5.9c-0.8-1.8-2-3.4-3.4-4.7-1.4-1.4-3.1-2.4-5-3.2s-3.9-1.2-6.1-1.2z"
-                  />
-                  <path
-                    class="st2"
-                    d="m796.3 161.4h-38.3v105.1h-38v-105.1h-38.3l-2.5-2.5v-32h119.7v32z"
-                  />
-                  <path
-                    class="st2"
-                    d="m1120.5 266.5v-139.7h38.7v105.1h73.4v34.6z"
-                  />
-                  <path
-                    class="st3"
-                    d="m917.6 127.4c-8.8-4.4-17.9-7-27.3-7.8s-18.9 0.2-28.3 3.1c-5.4 1.6-10.6 3.9-15.5 6.8l-57.7-68.8c-3.7-4.4-10.2-5-14.6-1.3l-4.2 3.6c-4.4 3.7-5 10.2-1.3 14.6l57.8 68.9c-0.7 0.8-1.3 1.6-2 2.5-8 9.6-12.2 24.8-12.2 24.8-1.2 4.4-2.1 8.8-2.5 13.4-0.9 9.4 0.1 18.8 2.9 28.2s7.5 18 14 25.8c6.6 7.8 14.2 13.9 23 18.3s17.9 7 27.3 7.8 18.8-0.2 28.2-3.1c9.4-2.8 18-7.6 25.9-14.2 7.8-6.6 14-14.2 18.4-23 4.5-8.8 7.1-17.9 8-27.3s-0.1-18.8-2.9-28.2-7.5-18-14-25.8c-6.6-7.8-14.2-13.9-23-18.3zm14 50.9c1.9 6.4 2.6 12.9 2 19.2s-2.4 12.6-5.5 18.6c-3 5.8-7.2 11.1-12.5 15.5-5.4 4.5-11.2 7.7-17.4 9.6-6.4 1.9-12.9 2.7-19.2 2.1-6.3-0.5-12.6-2.3-18.5-5.3-5.8-2.9-11-7-15.4-12.3-4.4-5.2-7.6-11.1-9.4-17.2-1.9-6.4-2.6-12.9-2-19.2 0.6-6.4 2.4-12.7 5.4-18.8 2.9-5.8 7.1-11 12.4-15.5 5.3-4.4 11.1-7.6 17.4-9.5 6.5-2 13-2.7 19.4-2.1 6.3 0.5 12.6 2.3 18.6 5.3 5.8 2.9 10.9 7 15.3 12.3 4.4 5.4 7.6 11.2 9.4 17.3z"
-                  />
-                  <path
-                    class="st4"
-                    d="m884.1 143.1c6.9 0 13.4 1.3 19.4 3.9 6.2 2.7 11.7 6.3 16.3 10.8 4.5 4.5 8.1 9.9 10.8 16 2.6 5.9 3.9 12.4 3.9 19.3s-1.3 13.3-3.9 19.3c-2.7 6.1-6.3 11.5-10.8 16s-9.9 8.1-16.1 10.7c-6 2.6-12.6 3.9-19.5 3.9-7 0-13.6-1.3-19.6-3.8-6.2-2.6-11.6-6.2-16.1-10.7s-8.1-9.9-10.8-16c-2.6-5.9-3.9-12.4-3.9-19.3 0-6.8 1.3-13.3 3.9-19.3 2.7-6.1 6.3-11.5 10.8-16 4.6-4.5 10-8.2 16.2-10.9 5.9-2.6 12.4-3.9 19.4-3.9m0-12c-8.6 0-16.8 1.6-24.2 4.9-7.6 3.3-14.3 7.8-19.9 13.3-5.6 5.6-10.1 12.2-13.4 19.7-3.2 7.4-4.9 15.5-4.9 24s1.6 16.6 4.9 24c3.3 7.6 7.8 14.2 13.4 19.7 5.6 5.6 12.3 10 19.8 13.2s15.6 4.8 24.3 4.8c8.5 0 16.7-1.6 24.2-4.8 7.6-3.2 14.3-7.7 19.9-13.2 5.6-5.6 10.1-12.2 13.4-19.7 3.2-7.4 4.9-15.5 4.9-24s-1.6-16.6-4.9-24c-3.3-7.6-7.8-14.2-13.4-19.7-5.6-5.6-12.3-10.1-20-13.3-7.5-3.3-15.6-4.9-24.1-4.9z"
-                  />
-                  <g>
-                    <path
-                      class="st5"
-                      d="m882.5 183.8c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.5-0.1 4.8-2.2 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m894.4 183.8c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.5-0.1 4.8-2.2 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m900 194c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.5-0.1 4.7-2.1 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m894.3 204.2c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.4 0 4.7-2.1 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m882.4 204c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.4 0 4.7-2.1 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m876.8 194.2c-0.1-2.5-2-4.6-4.6-4.6-2.4 0-4.7 2.1-4.6 4.6s2 4.6 4.6 4.6c2.4-0.1 4.7-2.2 4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m901.2 181c-3.8 0-3.8 5.9 0 5.9s3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m883.9 170.8c-3.8 0-3.8 5.9 0 5.9 3.8-0.1 3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m866.5 181c-3.8 0-3.8 5.9 0 5.9 3.7 0 3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m866.5 201.1c-3.8 0-3.8 5.9 0 5.9 3.7 0 3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m883.9 211.1c-3.8 0-3.8 5.9 0 5.9s3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m901.2 201.3c-3.8 0-3.8 5.9 0 5.9 3.8-0.1 3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m896.8 169.2c-2.9 0-2.9 4.6 0 4.6s2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m870.9 169.4c-2.9 0-2.9 4.6 0 4.6s3-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m857.9 191.7c-2.9 0-2.9 4.6 0 4.6s2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m870.7 214.2c-2.9 0-2.9 4.6 0 4.6 3 0 3-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m909.8 191.7c-2.9 0-2.9 4.6 0 4.6s2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m911.5 176c-2.5 0-2.5 3.9 0 3.9s2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m883.9 224c-2.5 0-2.5 3.9 0 3.9s2.6-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m896.6 214.2c-2.9 0-2.9 4.6 0 4.6s2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m883.9 160c-2.5 0-2.5 3.9 0 3.9 2.5 0.1 2.6-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m856 175.9c-2.5 0-2.5 3.9 0 3.9 2.6 0 2.6-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m856.2 208c-2.5 0-2.5 3.9 0 3.9s2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m911.5 208.2c-2.5 0-2.5 3.9 0 3.9s2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m919.1 192.6c-1.8 0-1.8 2.8 0 2.8s1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m901.2 162.1c-1.8 0-1.8 2.8 0 2.8s1.9-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m866.3 162.3c-1.8 0-1.8 2.8 0 2.8s1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m848.8 192.6c-1.8 0-1.8 2.8 0 2.8s1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m866.3 222.9c-1.8 0-1.8 2.8 0 2.8s1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m901.2 222.7c-1.8 0-1.8 2.8 0 2.8s1.9-2.8 0-2.8z"
-                    />
-                  </g>
-                  <path
-                    class="st3"
-                    d="m979.4 145.7c-6.6 7.8-11.2 16.4-14 25.8s-3.8 18.8-2.9 28.2 3.5 18.5 8 27.3 10.6 16.4 18.4 23c7.9 6.6 16.5 11.4 25.9 14.2s18.8 3.9 28.2 3.1 18.5-3.4 27.3-7.8 16.4-10.5 23-18.3 11.2-16.4 14-25.8 3.8-18.8 2.9-28.2c-0.4-4.5-1.3-9-2.5-13.4 0 0-4.2-15.2-12.2-24.8-0.6-0.8-1.3-1.7-2-2.5l57.8-68.9c3.7-4.4 3.1-10.9-1.3-14.6l-4.2-3.6c-4.4-3.7-10.9-3.1-14.6 1.3l-57.7 68.8c-4.9-2.9-10.1-5.1-15.5-6.8-9.4-2.8-18.9-3.9-28.3-3.1s-18.5 3.4-27.3 7.8-16.4 10.5-23 18.3zm18.4 15.4c4.4-5.3 9.6-9.4 15.3-12.3 6-3 12.2-4.8 18.6-5.3s12.9 0.2 19.4 2.1c6.3 1.9 12.1 5.1 17.4 9.5 5.3 4.5 9.5 9.7 12.4 15.5 3 6.1 4.9 12.4 5.4 18.8 0.6 6.3-0.1 12.8-2 19.2-1.9 6.2-5 12-9.4 17.2s-9.6 9.4-15.4 12.3c-6 3-12.2 4.8-18.5 5.3-6.4 0.5-12.8-0.2-19.2-2.1-6.2-1.9-12.1-5.1-17.4-9.6-5.3-4.4-9.5-9.7-12.5-15.5-3.1-6-4.9-12.2-5.5-18.6-0.6-6.3 0.1-12.8 2-19.2 1.8-6.2 5-12 9.4-17.3z"
-                  />
-                  <path
-                    class="st6"
-                    d="m1035.9 143.1c7 0 13.5 1.3 19.4 3.9 6.2 2.7 11.7 6.3 16.2 10.9 4.5 4.5 8.1 9.8 10.8 16 2.6 5.9 3.9 12.4 3.9 19.3 0 6.8-1.3 13.3-3.9 19.3-2.7 6.1-6.3 11.5-10.8 16s-9.9 8.1-16.1 10.7c-6 2.5-12.5 3.8-19.6 3.8-6.9 0-13.5-1.3-19.5-3.9-6.2-2.6-11.6-6.2-16.1-10.7s-8.1-9.9-10.8-16c-2.6-5.9-3.9-12.4-3.9-19.3s1.3-13.3 3.9-19.3c2.7-6.1 6.3-11.5 10.8-16s10-8.2 16.3-10.8c6-2.6 12.5-3.9 19.4-3.9m0-12c-8.5 0-16.6 1.6-24.1 4.9-7.6 3.3-14.4 7.8-20 13.3-5.6 5.6-10.1 12.2-13.4 19.7-3.2 7.4-4.9 15.5-4.9 24s1.6 16.6 4.9 24c3.3 7.6 7.8 14.2 13.4 19.7s12.3 10 19.9 13.2c7.5 3.2 15.7 4.8 24.2 4.8 8.6 0 16.8-1.6 24.3-4.8 7.6-3.2 14.2-7.7 19.8-13.2 5.6-5.6 10.1-12.2 13.4-19.7 3.2-7.4 4.9-15.5 4.9-24s-1.6-16.6-4.9-24c-3.3-7.5-7.8-14.2-13.4-19.7-5.6-5.6-12.3-10.1-19.9-13.3-7.4-3.3-15.6-4.9-24.2-4.9z"
-                  />
-                  <g>
-                    <path
-                      class="st5"
-                      d="m1037.4 183.8c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.4-0.1-4.7-2.2-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1025.5 183.8c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.4-0.1-4.7-2.2-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1020 194c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.5-0.1-4.7-2.1-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1025.7 204.2c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.4 0-4.7-2.1-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1037.6 204c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.4 0-4.7-2.1-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1043.2 194.2c0.1-2.5 2-4.6 4.6-4.6 2.4 0 4.7 2.1 4.6 4.6s-2 4.6-4.6 4.6c-2.4-0.1-4.7-2.2-4.6-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1018.8 181c3.8 0 3.8 5.9 0 5.9s-3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1036 170.8c3.8 0 3.8 5.9 0 5.9-3.7-0.1-3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1053.5 181c3.8 0 3.8 5.9 0 5.9-3.7 0-3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1053.5 201.1c3.8 0 3.8 5.9 0 5.9-3.7 0-3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1036 211.1c3.8 0 3.8 5.9 0 5.9-3.7 0-3.7-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1018.8 201.3c3.8 0 3.8 5.9 0 5.9-3.8-0.1-3.8-5.9 0-5.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1023.2 169.2c2.9 0 2.9 4.6 0 4.6s-2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1049.1 169.4c2.9 0 2.9 4.6 0 4.6-3 0-3-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1062.1 191.7c2.9 0 2.9 4.6 0 4.6s-3-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1049.3 214.2c2.9 0 2.9 4.6 0 4.6-3 0-3-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1010.2 191.7c2.9 0 2.9 4.6 0 4.6s-2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1008.5 176c2.5 0 2.5 3.9 0 3.9s-2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1036 224c2.5 0 2.5 3.9 0 3.9s-2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1023.4 214.2c2.9 0 2.9 4.6 0 4.6s-2.9-4.6 0-4.6z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1036 160c2.5 0 2.5 3.9 0 3.9-2.5 0.1-2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1063.9 175.9c2.5 0 2.5 3.9 0 3.9s-2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1063.8 208c2.5 0 2.5 3.9 0 3.9-2.6 0-2.6-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1008.5 208.2c2.5 0 2.5 3.9 0 3.9s-2.5-3.9 0-3.9z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1000.9 192.6c1.8 0 1.8 2.8 0 2.8s-1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1018.8 162.1c1.8 0 1.8 2.8 0 2.8-1.9 0-1.9-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1053.7 162.3c1.8 0 1.8 2.8 0 2.8s-1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1071.2 192.6c1.8 0 1.8 2.8 0 2.8s-1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1053.7 222.9c1.8 0 1.8 2.8 0 2.8s-1.8-2.8 0-2.8z"
-                    />
-                    <path
-                      class="st5"
-                      d="m1018.8 222.7c1.8 0 1.8 2.8 0 2.8-1.9 0-1.9-2.8 0-2.8z"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
+            <img src="../assets/logo.svg" alt="" />
           </a>
         </header>
-        <div class="css-work-finished-srp">
-          <div class="css-work-finished">
-            <div class="css-work-finished-tw">
-              <div class="css-work-finished-ttq">
-                <div class="css-work-finished-ttw">
-                  <div class="css-work-finished-stw">
-                    <div class="css-work-finished-stt">
-                      {{ newAudit.pn }}
+        <div class="css-w-f-srp">
+          <div class="css-w-f-843">
+            <div class="css-w-f-tw">
+              <div class="css-w-f-ttq">
+                <div class="css-w-f-ttw">
+                  <div class="css-w-f-stw">
+                    <div class="css-w-f-stt">
+                      {{ general_data.project }}
                     </div>
-                    <div class="css-work-finished-sfw">
-                      <div class="css-work-finished-sta">
+                    <div class="css-w-f-sfw">
+                      <div class="css-w-f-sta">
                         <img
-                          class="css-work-finished-txa"
-                          :src="newAudit.pl"
+                          class="css-w-f-txa"
+                          :src="
+                            'data:image/png;base64,' +
+                            report_audit.project_logo.split(',')[1]
+                          "
                           alt=""
                         />
                       </div>
-                      <div class="css-work-finished-std">
-                        <div>Total Percentage</div>
-                        <div class="css-work-finished-stx">
-                          {{ totalScore }}%
+                      <div class="css-w-f-std">
+                        <div>Total percentage</div>
+                        <div class="css-w-f-stx">
+                          {{ general_data.total_percentage }}%
                         </div>
-                        <div class="css-work-finished-stm">
-                          Created by {{ newAudit.an }}
+                        <div class="css-w-f-stm">
+                          Community report by
+                          <span>{{ general_data.author }}</span>
                         </div>
                       </div>
                     </div>
-                    <div class="css-work-finished-sfw">
-                      <div class="css-work-finished-sha">
-                        <button
-                          class="css-work-finished-shai"
-                          @click="displayShare()"
-                        >
-                          <svg
-                            id="SVGRoot"
-                            width="16px"
-                            height="16px"
-                            version="1.1"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="m13.918 6.2987-7.0549 4.4096a2.9881 2.9881 0 0 1 0.1197 1.2195l6.5447 2.4539a2.9925 2.9926 0 1 1-0.52519 1.4005l-6.5432-2.4539a2.9925 2.9926 0 1 1-0.38903-3.8873l7.0534-4.4096a2.9925 2.9926 0 1 1 0.79302 1.2688z"
-                              stroke="#ffffff"
-                              stroke-width=".001"
-                            />
-                          </svg>
+                    <div class="css-w-f-sfw">
+                      <div class="css-w-f-sha">
+                        <button class="css-w-f-shai" @click="displayShare()">
+                          <i class="pi pi-share-alt"></i>
                         </button>
-                        <template v-if="isSharing">
-                          <div class="css-work-finished-xsc">
-                            <div class="css-work-finished-sox">
+                        <template v-if="share_visible">
+                          <div class="css-w-f-xsc">
+                            <div class="css-w-f-sox">
                               <div class="css-wf-qco" @click="displayShare()">
-                                <MiniReport
-                                  ref="miniReport"
-                                  :id="id"
-                                  :newAudit="newAudit"
-                                  :totalScore="totalScore"
-                                  :c1="evaluateCategory('Development Team')"
-                                  :c2="evaluateCategory('Tokenomics')"
-                                  :c3="evaluateCategory('Community')"
-                                  :c4="evaluateCategory('Metrics')"
-                                />
+                                <MiniReport ref="miniReport" :id="id" />
                               </div>
                               <div class="css-wf-cak">
                                 <a
                                   class="tooltip"
                                   target="_blank"
-                                  :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
-                                  ><svg
-                                    width="20px"
-                                    height="20px"
-                                    fill="rgb(29, 155, 240)"
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                  >
-                                    <g>
-                                      <path
-                                        d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
-                                      ></path>
-                                    </g>
-                                  </svg>
+                                  :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${general_data.project.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
+                                >
+                                  <i class="pi pi-twitter"></i>
                                   <span class="tooltiptext">Twitter</span></a
                                 >
 
                                 <a
                                   class="tooltip"
                                   target="_blank"
-                                  :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
+                                  :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${general_data.project.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                                 >
-                                  <svg
-                                    viewBox="0 0 800 800"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    height="20px"
-                                    width="20px"
-                                  >
-                                    <circle
-                                      cx="400"
-                                      cy="400"
-                                      fill="#ff4500"
-                                      r="400"
-                                    />
-                                    <path
-                                      d="M666.8 400c.08 5.48-.6 10.95-2.04 16.24s-3.62 10.36-6.48 15.04c-2.85 4.68-6.35 8.94-10.39 12.65s-8.58 6.83-13.49 9.27c.11 1.46.2 2.93.25 4.4a107.268 107.268 0 0 1 0 8.8c-.05 1.47-.14 2.94-.25 4.4 0 89.6-104.4 162.4-233.2 162.4S168 560.4 168 470.8c-.11-1.46-.2-2.93-.25-4.4a107.268 107.268 0 0 1 0-8.8c.05-1.47.14-2.94.25-4.4a58.438 58.438 0 0 1-31.85-37.28 58.41 58.41 0 0 1 7.8-48.42 58.354 58.354 0 0 1 41.93-25.4 58.4 58.4 0 0 1 46.52 15.5 286.795 286.795 0 0 1 35.89-20.71c12.45-6.02 25.32-11.14 38.51-15.3s26.67-7.35 40.32-9.56 27.45-3.42 41.28-3.63L418 169.6c.33-1.61.98-3.13 1.91-4.49.92-1.35 2.11-2.51 3.48-3.4 1.38-.89 2.92-1.5 4.54-1.8 1.61-.29 3.27-.26 4.87.09l98 19.6c9.89-16.99 30.65-24.27 48.98-17.19s28.81 26.43 24.71 45.65c-4.09 19.22-21.55 32.62-41.17 31.61-19.63-1.01-35.62-16.13-37.72-35.67L440 186l-26 124.8c13.66.29 27.29 1.57 40.77 3.82a284.358 284.358 0 0 1 77.8 24.86A284.412 284.412 0 0 1 568 360a58.345 58.345 0 0 1 29.4-15.21 58.361 58.361 0 0 1 32.95 3.21 58.384 58.384 0 0 1 25.91 20.61A58.384 58.384 0 0 1 666.8 400zm-396.96 55.31c2.02 4.85 4.96 9.26 8.68 12.97 3.71 3.72 8.12 6.66 12.97 8.68A40.049 40.049 0 0 0 306.8 480c16.18 0 30.76-9.75 36.96-24.69 6.19-14.95 2.76-32.15-8.68-43.59s-28.64-14.87-43.59-8.68c-14.94 6.2-24.69 20.78-24.69 36.96 0 5.25 1.03 10.45 3.04 15.31zm229.1 96.02c2.05-2 3.22-4.73 3.26-7.59.04-2.87-1.07-5.63-3.07-7.68s-4.73-3.22-7.59-3.26c-2.87-.04-5.63 1.07-7.94 2.8a131.06 131.06 0 0 1-19.04 11.35 131.53 131.53 0 0 1-20.68 7.99c-7.1 2.07-14.37 3.54-21.72 4.39-7.36.85-14.77 1.07-22.16.67-7.38.33-14.78.03-22.11-.89a129.01 129.01 0 0 1-21.64-4.6c-7.08-2.14-13.95-4.88-20.56-8.18s-12.93-7.16-18.89-11.53c-2.07-1.7-4.7-2.57-7.38-2.44s-5.21 1.26-7.11 3.15c-1.89 1.9-3.02 4.43-3.15 7.11s.74 5.31 2.44 7.38c7.03 5.3 14.5 9.98 22.33 14s16 7.35 24.4 9.97 17.01 4.51 25.74 5.66c8.73 1.14 17.54 1.53 26.33 1.17 8.79.36 17.6-.03 26.33-1.17A153.961 153.961 0 0 0 476.87 564c7.83-4.02 15.3-8.7 22.33-14zm-7.34-68.13c5.42.06 10.8-.99 15.81-3.07 5.01-2.09 9.54-5.17 13.32-9.06s6.72-8.51 8.66-13.58A39.882 39.882 0 0 0 532 441.6c0-16.18-9.75-30.76-24.69-36.96-14.95-6.19-32.15-2.76-43.59 8.68s-14.87 28.64-8.68 43.59c6.2 14.94 20.78 24.69 36.96 24.69z"
-                                      fill="#fff"
-                                    />
-                                  </svg>
+                                  <i class="pi pi-reddit"></i>
                                   <span class="tooltiptext">Reddit</span>
                                 </a>
 
@@ -416,23 +73,7 @@
                                   target="_blank"
                                   :href="`https://www.facebook.com/sharer/sharer.php?u=https://audits.dyortool.io/report/${id}`"
                                 >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20px"
-                                    height="20px"
-                                    viewBox="126.445 2.281 589 589"
-                                  >
-                                    <circle
-                                      cx="420.945"
-                                      cy="296.781"
-                                      r="294.5"
-                                      fill="#3c5a9a"
-                                    />
-                                    <path
-                                      d="M516.704 92.677h-65.239c-38.715 0-81.777 16.283-81.777 72.402.189 19.554 0 38.281 0 59.357H324.9v71.271h46.174v205.177h84.847V294.353h56.002l5.067-70.117h-62.531s.14-31.191 0-40.249c0-22.177 23.076-20.907 24.464-20.907 10.981 0 32.332.032 37.813 0V92.677h-.032z"
-                                      fill="#fff"
-                                    />
-                                  </svg>
+                                  <i class="pi pi-facebook"></i>
                                   <span class="tooltiptext">Facebook</span>
                                 </a>
 
@@ -440,45 +81,7 @@
                                   class="tooltip"
                                   @click="$refs.miniReport.downloadImage()"
                                 >
-                                  <svg
-                                    id="SVGRoot"
-                                    width="20px"
-                                    height="20px"
-                                    version="1.1"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <g
-                                      id="Stockholm-icons-/-Files-/-Download"
-                                      transform="matrix(.83333 0 0 .83333 .042725 -.042422)"
-                                      fill="none"
-                                      fill-rule="evenodd"
-                                    >
-                                      <rect id="bound" width="24" height="24" />
-                                      <g fill="#000">
-                                        <path
-                                          d="m2 13c0-0.5 0.5-1 1-1s1 0.5 1 1v5c0 1.1046 0.89543 2 2 2h12c1.1046 0 2-0.89543 2-2v-5c0-0.55228 0.44772-1 1-1s1 0.44772 1 1v5c0 2.2091-1.7909 4-4 4h-12c-2.2091 0-4-1.7909-4-4v-5z"
-                                          fill-rule="nonzero"
-                                          opacity=".3"
-                                        />
-                                        <rect
-                                          id="Rectangle"
-                                          transform="rotate(180,12,8)"
-                                          x="11"
-                                          y="1"
-                                          width="2"
-                                          height="14"
-                                          rx="1"
-                                          opacity=".3"
-                                        />
-                                        <path
-                                          transform="rotate(180 12 12.5)"
-                                          d="m7.7071 15.707c-0.39052 0.39052-1.0237 0.39052-1.4142 0s-0.39052-1.0237 0-1.4142l5-5c0.37608-0.37608 0.98074-0.39198 1.3761-0.036187l5 4.5c0.41051 0.36946 0.44379 1.0017 0.07433 1.4123-0.36946 0.41051-1.0017 0.44379-1.4123 0.07433l-4.2948-3.8653z"
-                                          fill-rule="nonzero"
-                                        />
-                                      </g>
-                                    </g>
-                                  </svg>
+                                  <i class="pi pi-download"></i>
                                   <span class="tooltiptext">Download</span>
                                 </a>
                               </div>
@@ -487,14 +90,14 @@
                         </template>
 
                         <button
-                          class="css-work-finished-shai"
+                          class="css-w-f-shai"
                           @click="createMachineURL('download')"
                         >
-                          Download
+                          <i class="pi pi-download"></i>
                         </button>
 
                         <button
-                          class="css-work-finished-shai"
+                          class="css-w-f-shai"
                           @click="createMachineURL('show')"
                         >
                           Show
@@ -502,403 +105,108 @@
                       </div>
                     </div>
                   </div>
-                  <div class="css-work-finished-sts">
-                    <div class="css-work-finished-sti">
-                      Development Team
-                      <span
-                        >{{ evaluateCategory("Development Team") }} /
-                        {{ KnowMaxCategory("Development Team") }}</span
-                      >
-                    </div>
-                    <div class="css-work-finished-sti">
-                      Tokenomics<span
-                        >{{ evaluateCategory("Tokenomics") }} /
-                        {{ KnowMaxCategory("Tokenomics") }}</span
-                      >
-                    </div>
-                    <div class="css-work-finished-sti">
-                      Community<span
-                        >{{ evaluateCategory("Community") }} /
-                        {{ KnowMaxCategory("Community") }}</span
-                      >
-                    </div>
-                    <div class="css-work-finished-sti">
-                      Trading Metrics
 
-                      <template v-if="evaluateCategory('Metrics') === 404">
-                        <span>Doesn't Apply </span>
-                      </template>
-
-                      <template v-if="evaluateCategory('Metrics') !== 404">
-                        <span
-                          >{{ evaluateCategory("Metrics") }} /
-                          {{ KnowMaxCategory("Metrics") }}</span
-                        >
-                      </template>
-                    </div>
-                  </div>
-
-                  <div class="css-work-finished-shb">
-                    <button
-                      class="css-work-finished-shai"
-                      @click="displayShareM()"
-                    >
-                      <svg
-                        id="SVGRoot"
-                        width="16px"
-                        height="16px"
-                        version="1.1"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="m13.918 6.2987-7.0549 4.4096a2.9881 2.9881 0 0 1 0.1197 1.2195l6.5447 2.4539a2.9925 2.9926 0 1 1-0.52519 1.4005l-6.5432-2.4539a2.9925 2.9926 0 1 1-0.38903-3.8873l7.0534-4.4096a2.9925 2.9926 0 1 1 0.79302 1.2688z"
-                          stroke="#ffffff"
-                          stroke-width=".001"
-                        />
-                      </svg>
+                  <div class="css-w-f-shb">
+                    <button class="css-w-f-shai" @click="displayShareM()">
+                      Share
                     </button>
 
                     <button
-                      class="css-work-finished-shai"
+                      class="css-w-f-shai"
                       @click="createMachineURL('download')"
                     >
                       Download
                     </button>
 
                     <button
-                      class="css-work-finished-shai"
+                      class="css-w-f-shai"
                       @click="createMachineURL('show')"
                     >
                       Show
                     </button>
                   </div>
                   <template v-if="isMobiSharing">
-                    <div class="css-work-finished-sox">
-                      <MobiReport
-                        ref="mobiReport"
-                        :id="id"
-                        :newAudit="newAudit"
-                        :totalScore="totalScore"
-                        :c1="evaluateCategory('Development Team')"
-                        :c2="evaluateCategory('Tokenomics')"
-                        :c3="evaluateCategory('Community')"
-                        :c4="evaluateCategory('Metrics')"
-                      />
+                    <div class="css-w-f-sox">
+                      <MobiReport ref="mobiReport" :id="id" />
 
-                      <div
-                        class="css-work-finished-xsc"
-                        @click="displayShare()"
-                      >
+                      <div class="css-w-f-xsc" @click="displayShare()">
                         <a
                           target="_blank"
-                          :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${newAudit.pn.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
-                          ><svg
-                            width="20px"
-                            height="20px"
-                            fill="rgb(29, 155, 240)"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <g>
-                              <path
-                                d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
-                              ></path>
-                            </g></svg
+                          :href="`https://twitter.com/intent/tweet?text=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20=>%20${general_data.project.toUpperCase()}%20https://audits.dyortool.io/report/${id}`"
+                          ><i class="pi pi-twitter"></i
                         ></a>
 
                         <a
                           target="_blank"
-                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${newAudit.pn.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
+                          :href="`https://www.reddit.com/submit?url=Click%20here%20to%20view%20my%20DYOR%20Tool%20Report%20${general_data.project.toUpperCase()}%20-%20https://audits.dyortool.io/report/${id}`"
                         >
-                          <svg
-                            viewBox="0 0 800 800"
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="20px"
-                            width="20px"
-                          >
-                            <circle cx="400" cy="400" fill="#ff4500" r="400" />
-                            <path
-                              d="M666.8 400c.08 5.48-.6 10.95-2.04 16.24s-3.62 10.36-6.48 15.04c-2.85 4.68-6.35 8.94-10.39 12.65s-8.58 6.83-13.49 9.27c.11 1.46.2 2.93.25 4.4a107.268 107.268 0 0 1 0 8.8c-.05 1.47-.14 2.94-.25 4.4 0 89.6-104.4 162.4-233.2 162.4S168 560.4 168 470.8c-.11-1.46-.2-2.93-.25-4.4a107.268 107.268 0 0 1 0-8.8c.05-1.47.14-2.94.25-4.4a58.438 58.438 0 0 1-31.85-37.28 58.41 58.41 0 0 1 7.8-48.42 58.354 58.354 0 0 1 41.93-25.4 58.4 58.4 0 0 1 46.52 15.5 286.795 286.795 0 0 1 35.89-20.71c12.45-6.02 25.32-11.14 38.51-15.3s26.67-7.35 40.32-9.56 27.45-3.42 41.28-3.63L418 169.6c.33-1.61.98-3.13 1.91-4.49.92-1.35 2.11-2.51 3.48-3.4 1.38-.89 2.92-1.5 4.54-1.8 1.61-.29 3.27-.26 4.87.09l98 19.6c9.89-16.99 30.65-24.27 48.98-17.19s28.81 26.43 24.71 45.65c-4.09 19.22-21.55 32.62-41.17 31.61-19.63-1.01-35.62-16.13-37.72-35.67L440 186l-26 124.8c13.66.29 27.29 1.57 40.77 3.82a284.358 284.358 0 0 1 77.8 24.86A284.412 284.412 0 0 1 568 360a58.345 58.345 0 0 1 29.4-15.21 58.361 58.361 0 0 1 32.95 3.21 58.384 58.384 0 0 1 25.91 20.61A58.384 58.384 0 0 1 666.8 400zm-396.96 55.31c2.02 4.85 4.96 9.26 8.68 12.97 3.71 3.72 8.12 6.66 12.97 8.68A40.049 40.049 0 0 0 306.8 480c16.18 0 30.76-9.75 36.96-24.69 6.19-14.95 2.76-32.15-8.68-43.59s-28.64-14.87-43.59-8.68c-14.94 6.2-24.69 20.78-24.69 36.96 0 5.25 1.03 10.45 3.04 15.31zm229.1 96.02c2.05-2 3.22-4.73 3.26-7.59.04-2.87-1.07-5.63-3.07-7.68s-4.73-3.22-7.59-3.26c-2.87-.04-5.63 1.07-7.94 2.8a131.06 131.06 0 0 1-19.04 11.35 131.53 131.53 0 0 1-20.68 7.99c-7.1 2.07-14.37 3.54-21.72 4.39-7.36.85-14.77 1.07-22.16.67-7.38.33-14.78.03-22.11-.89a129.01 129.01 0 0 1-21.64-4.6c-7.08-2.14-13.95-4.88-20.56-8.18s-12.93-7.16-18.89-11.53c-2.07-1.7-4.7-2.57-7.38-2.44s-5.21 1.26-7.11 3.15c-1.89 1.9-3.02 4.43-3.15 7.11s.74 5.31 2.44 7.38c7.03 5.3 14.5 9.98 22.33 14s16 7.35 24.4 9.97 17.01 4.51 25.74 5.66c8.73 1.14 17.54 1.53 26.33 1.17 8.79.36 17.6-.03 26.33-1.17A153.961 153.961 0 0 0 476.87 564c7.83-4.02 15.3-8.7 22.33-14zm-7.34-68.13c5.42.06 10.8-.99 15.81-3.07 5.01-2.09 9.54-5.17 13.32-9.06s6.72-8.51 8.66-13.58A39.882 39.882 0 0 0 532 441.6c0-16.18-9.75-30.76-24.69-36.96-14.95-6.19-32.15-2.76-43.59 8.68s-14.87 28.64-8.68 43.59c6.2 14.94 20.78 24.69 36.96 24.69z"
-                              fill="#fff"
-                            />
-                          </svg>
+                          <i class="pi pi-reddit"></i>
                         </a>
 
                         <a
                           target="_blank"
                           :href="`https://www.facebook.com/sharer/sharer.php?u=https://audits.dyortool.io/report/${id}`"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20px"
-                            height="20px"
-                            viewBox="126.445 2.281 589 589"
-                          >
-                            <circle
-                              cx="420.945"
-                              cy="296.781"
-                              r="294.5"
-                              fill="#3c5a9a"
-                            />
-                            <path
-                              d="M516.704 92.677h-65.239c-38.715 0-81.777 16.283-81.777 72.402.189 19.554 0 38.281 0 59.357H324.9v71.271h46.174v205.177h84.847V294.353h56.002l5.067-70.117h-62.531s.14-31.191 0-40.249c0-22.177 23.076-20.907 24.464-20.907 10.981 0 32.332.032 37.813 0V92.677h-.032z"
-                              fill="#fff"
-                            />
-                          </svg>
+                          <i class="pi pi-facebook"></i>
                         </a>
                         <a @click="$refs.mobiReport.downloadImage()">
-                          <svg
-                            id="SVGRoot"
-                            width="20px"
-                            height="20px"
-                            version="1.1"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g
-                              id="Stockholm-icons-/-Files-/-Download"
-                              transform="matrix(.83333 0 0 .83333 .042725 -.042422)"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <rect id="bound" width="24" height="24" />
-                              <g fill="#000">
-                                <path
-                                  d="m2 13c0-0.5 0.5-1 1-1s1 0.5 1 1v5c0 1.1046 0.89543 2 2 2h12c1.1046 0 2-0.89543 2-2v-5c0-0.55228 0.44772-1 1-1s1 0.44772 1 1v5c0 2.2091-1.7909 4-4 4h-12c-2.2091 0-4-1.7909-4-4v-5z"
-                                  fill-rule="nonzero"
-                                  opacity=".3"
-                                />
-                                <rect
-                                  id="Rectangle"
-                                  transform="rotate(180,12,8)"
-                                  x="11"
-                                  y="1"
-                                  width="2"
-                                  height="14"
-                                  rx="1"
-                                  opacity=".3"
-                                />
-                                <path
-                                  transform="rotate(180 12 12.5)"
-                                  d="m7.7071 15.707c-0.39052 0.39052-1.0237 0.39052-1.4142 0s-0.39052-1.0237 0-1.4142l5-5c0.37608-0.37608 0.98074-0.39198 1.3761-0.036187l5 4.5c0.41051 0.36946 0.44379 1.0017 0.07433 1.4123-0.36946 0.41051-1.0017 0.44379-1.4123 0.07433l-4.2948-3.8653z"
-                                  fill-rule="nonzero"
-                                />
-                              </g>
-                            </g>
-                          </svg>
+                          <i class="pi pi-download"></i>
                         </a>
                       </div>
                     </div>
                   </template>
-                  <div class="css-work-finished-sr">
-                    <canvas
-                      class="camva"
-                      id="quickResponse"
-                      style="image-rendering: pixelated"
-                    ></canvas>
-                  </div>
                 </div>
               </div>
-              <div class="css-work-finished-ttt">
+              <div class="css-w-f-ttt">
                 <div
-                  class="css-work-finished-qai"
-                  v-on:click="dropdown.e1 = !dropdown.e1"
+                  class="css-w-f-qai"
+                  v-for="(item, name) of general_data.category_score"
+                  :key="name"
+                  v-on:click="showTab(name)"
                 >
-                  Development Team
-                  <button>
-                    <svg
-                      class="css-work-finished-arrow"
-                      :class="{ active: dropdown.e1 === true }"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 1024 1024"
-                      data-v-365b8594=""
+                  <div class="css-w-f-8c2">
+                    <span style="text-transform: capitalize; font-weight: 600">
+                      {{ name.replace("_", " ") }}</span
                     >
-                      <path
-                        fill="currentColor"
-                        d="M104.704 338.752a64 64 0 0190.496 0l316.8 316.8 316.8-316.8a64 64 0 0190.496 90.496L557.248 791.296a64 64 0 01-90.496 0L104.704 429.248a64 64 0 010-90.496z"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-                <template v-if="dropdown.e1 === true">
-                  <div class="css-work-finished-qao">
-                    <div class="css-work-finished-qah">
-                      <div class="css-work-finished-stb">Total Score:</div>
-                      <div>
-                        {{ evaluateCategory("Development Team") }} /
-                        {{ KnowMaxCategory("Development Team") }}
-                      </div>
-                    </div>
-                    <div
-                      class="css-work-finished-qah"
-                      v-for="element in searchByCategory('Development Team')"
-                      :key="element.id"
-                    >
-                      {{ element.question }}
-
-                      <div>
-                        {{ showAnswerData(element) }} /
-                        {{ knowMaxValue(element).toFixed(2) }}
-                      </div>
+                    <div style="color: var(--text-b)">
+                      {{
+                        item === "doesn't apply"
+                          ? "Doesn't apply"
+                          : item.score + " / " + item.max_score
+                      }}
                     </div>
                   </div>
-                </template>
 
-                <div
-                  class="css-work-finished-qai"
-                  v-on:click="dropdown.e2 = !dropdown.e2"
-                >
-                  Tokenomics
-                  <button>
-                    <svg
-                      class="css-work-finished-arrow"
-                      :class="{ active: dropdown.e2 === true }"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 1024 1024"
-                      data-v-365b8594=""
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M104.704 338.752a64 64 0 0190.496 0l316.8 316.8 316.8-316.8a64 64 0 0190.496 90.496L557.248 791.296a64 64 0 01-90.496 0L104.704 429.248a64 64 0 010-90.496z"
-                      ></path>
-                    </svg>
-                  </button>
+                  <template v-if="dropdown_list.includes(name)">
+                    <div class="css-w-f-qao">
+                      <div
+                        class="css-w-f-qah"
+                        v-for="element of item.questions"
+                        :key="element.id"
+                      >
+                        {{ element.id }}. {{ element.question }}
+
+                        <div>
+                          {{ element.score.toFixed(2) }} /
+                          {{ element.max_score }}
+                        </div>
+                      </div>
+                    </div>
+                  </template>
                 </div>
-                <template v-if="dropdown.e2 === true">
-                  <div class="css-work-finished-qao">
-                    <div class="css-work-finished-qah">
-                      <div class="css-work-finished-stb">Total Score:</div>
-                      <div>
-                        {{ evaluateCategory("Tokenomics") }} /
-                        {{ KnowMaxCategory("Tokenomics") }}
-                      </div>
-                    </div>
-                    <div
-                      class="css-work-finished-qah"
-                      v-for="element in searchByCategory('Tokenomics')"
-                      :key="element.id"
-                    >
-                      {{ element.question }}
-
-                      <div>
-                        {{ showAnswerData(element) }} /
-                        {{ knowMaxValue(element).toFixed(2) }}
-                      </div>
-                    </div>
-                  </div>
-                </template>
-
-                <div
-                  class="css-work-finished-qai"
-                  v-on:click="dropdown.e3 = !dropdown.e3"
-                >
-                  Community
-                  <button>
-                    <svg
-                      class="css-work-finished-arrow"
-                      :class="{ active: dropdown.e3 === true }"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 1024 1024"
-                      data-v-365b8594=""
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M104.704 338.752a64 64 0 0190.496 0l316.8 316.8 316.8-316.8a64 64 0 0190.496 90.496L557.248 791.296a64 64 0 01-90.496 0L104.704 429.248a64 64 0 010-90.496z"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-                <template v-if="dropdown.e3 === true">
-                  <div class="css-work-finished-qao">
-                    <div class="css-work-finished-qah">
-                      <div class="css-work-finished-stb">Total Score:</div>
-                      <div>
-                        {{ evaluateCategory("Community") }} /
-                        {{ KnowMaxCategory("Community") }}
-                      </div>
-                    </div>
-                    <div
-                      class="css-work-finished-qah"
-                      v-for="element in searchByCategory('Community')"
-                      :key="element.id"
-                    >
-                      {{ element.question }}
-
-                      <div>
-                        {{ showAnswerData(element) }} /
-                        {{ knowMaxValue(element).toFixed(2) }}
-                      </div>
-                    </div>
-                  </div>
-                </template>
-
-                <div
-                  class="css-work-finished-qai"
-                  v-on:click="dropdown.e4 = !dropdown.e4"
-                >
-                  Metrics
-                  <button>
-                    <svg
-                      class="css-work-finished-arrow"
-                      :class="{ active: dropdown.e4 === true }"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 1024 1024"
-                      data-v-365b8594=""
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M104.704 338.752a64 64 0 0190.496 0l316.8 316.8 316.8-316.8a64 64 0 0190.496 90.496L557.248 791.296a64 64 0 01-90.496 0L104.704 429.248a64 64 0 010-90.496z"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-                <template v-if="dropdown.e4 === true">
-                  <div class="css-work-finished-qao">
-                    <div class="css-work-finished-qah">
-                      <div>Total Score:</div>
-                      <template v-if="evaluateCategory('Metrics') === 404">
-                        <span>Doesn't Apply </span>
-                      </template>
-
-                      <template v-if="evaluateCategory('Metrics') !== 404">
-                        <span
-                          >{{ evaluateCategory("Metrics") }} /
-                          {{ KnowMaxCategory("Metrics") }}</span
-                        >
-                      </template>
-                    </div>
-                    <div
-                      class="css-work-finished-qah"
-                      v-for="element in searchByCategory('Metrics')"
-                      :key="element.id"
-                    >
-                      {{ element.question }}
-
-                      <div>
-                        {{ showAnswerData(element) }} /
-                        {{ knowMaxValue(element).toFixed(2) }}
-                      </div>
-                    </div>
-                  </div>
-                </template>
-                <div class="css-work-finished-qac"></div>
               </div>
 
-              <div class=".css-work-finished-cri"></div>
+              <div class="css-w-f-cri"></div>
             </div>
           </div>
         </div>
       </div>
     </template>
-    <template v-if="displaySub">
+    <template v-if="report_visible">
       <DyorGenerator
-        :reportCode="id"
-        :route="machineRoute"
-        :totalScore="totalScore"
+        :id="id"
+        :route="report_route"
+        :total_percentage="general_data.total_percentage"
       />
     </template>
   </div>
@@ -907,11 +215,12 @@
 <script>
 import axios from "axios";
 import { BestialEncoder } from "bestial-encoder";
-import QRious from "qrious";
 import DyorGenerator from "../pages/DyorGenerator";
 import DOMPurify from "dompurify";
 import MiniReport from "../components/MiniReport.vue";
 import MobiReport from "../components/MobiReport.vue";
+
+const bestialEncoder = new BestialEncoder();
 
 export default {
   props: {
@@ -924,170 +233,81 @@ export default {
   },
   data() {
     return {
-      displaySub: false,
-      machineRoute: "",
+      report_visible: false,
+      report_route: "",
       dataParsed: [],
-      isSharing: false,
+      share_visible: false,
       isMobiSharing: false,
       newAudit: {},
       isNoApply: false,
       teste: true,
-      dropdown: { e1: false, e2: false, e3: false, e4: false },
+      dropdown_list: [],
     };
   },
   computed: {
-    answeredQuestion() {
-      return this.$store.getters.sendMeQuestion;
+    report_date() {
+      return this.$store.getters.getReportDate;
     },
-    totalScore() {
-      let counter = 0;
-      if (this.isNoApply) {
-        for (const element of this.answeredQuestion.slice(0, 29)) {
-          for (const option of element.options) {
-            if (option.id === element.answer) {
-              counter += option.value;
-            }
-          }
-        }
-
-        return ((counter * 100) / 30).toFixed(2);
-      } else {
-        for (const element of this.answeredQuestion) {
-          for (const option of element.options) {
-            if (option.id === element.answer) {
-              counter += option.value;
-            }
-          }
-        }
-        return ((counter * 100) / 35).toFixed(2);
-      }
-
-      if (this.newAudit.vr === 1) {
-        for (const element of this.answeredQuestion) {
-          for (const option of element.options) {
-            if (option.id === element.answer) {
-              counter += option.value;
-            }
-          }
-        }
-        return ((counter * 100) / 35.5).toFixed(2);
-      }
+    report_data() {
+      return this.$store.getters.getReportData;
+    },
+    report_audit() {
+      return this.$store.getters.getAuditData;
+    },
+    general_data() {
+      return this.$store.getters.getGeneralData;
     },
   },
   mounted() {
-    const bestialEncoder = new BestialEncoder();
-    axios({
-      method: "get",
-      url: `https://api.dyortool.io/v1/report/searchId/${this.id}`,
-      headers: { "content-type": "application/json" },
-    })
-      .then((response) => {
-        const result = JSON.parse(
-          DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
-        );
-
-        this.$store.commit(
-          "updateReportDate",
-          new Date(response.data.date * 1)
-        );
-
-        console.log(result[0].vr);
-
-        let reportVersion = 0;
-
-        if (result[0].vr === 1) {
-          reportVersion = 1;
-        }
-
-        this.$store.commit("updateReportData", [result, reportVersion]);
-        this.newAudit = this.$store.getters.sendMeAudit;
-      })
-      .catch((error) => {
-        console.log("NO GET", error);
-      });
-
-    this.createNewCanvas();
+    this.getReport();
   },
   methods: {
+    showTab(name) {
+      !this.dropdown_list.includes(name)
+        ? this.dropdown_list.push(name)
+        : (this.dropdown_list = this.dropdown_list.filter(
+            (item) => item !== name
+          ));
+    },
+    getReport() {
+      axios({
+        method: "get",
+        url: `https://api.dyortool.io/1.1/report/search-id/${this.id}`,
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => {
+          const report_data_decoded = JSON.parse(
+            DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
+          );
+
+          const response_ = JSON.parse(
+            DOMPurify.sanitize(JSON.stringify(response.data))
+          );
+
+          const date = new Date(response_.date);
+
+          this.$store.commit("saveReportDate", date);
+          this.$store.commit("saveReportData", report_data_decoded);
+          this.$store.commit("saveAuditData", report_data_decoded[0]);
+          this.$store.commit("saveGeneralData", response_);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     displayShare() {
-      this.isSharing = !this.isSharing;
+      this.share_visible = !this.share_visible;
     },
     displayShareM() {
       this.isMobiSharing = !this.isMobiSharing;
-    },
-    createNewCanvas() {
-      const quickResponse = new QRious({
-        element: document.getElementById("quickResponse"),
-        value: `https://audits.dyortool.io/report/${this.id}`,
-      });
-      quickResponse.size = 200;
-      quickResponse.background = "transparent";
-      quickResponse.foregroundAlpha = 0.8;
-      quickResponse.backgroundAlpha = 0.8;
-      quickResponse.foreground = "#000000";
-      quickResponse.level = "L";
     },
     createMachineURL(route) {
       let metaTag = document.createElement("meta");
       metaTag.name = "viewport";
       metaTag.content = "content=width=1024";
       document.getElementsByTagName("head")[0].appendChild(metaTag);
-      this.displaySub = !this.displaySub;
-      this.machineRoute = route;
-    },
-    evaluateCategory(cty) {
-      let counter = 0;
-      for (const element of this.answeredQuestion) {
-        if (element.category === cty) {
-          for (const option of element.options) {
-            if (element.answer === 404) {
-              counter = 404;
-            }
-            if (option.id === element.answer) {
-              counter += option.value;
-            }
-          }
-        }
-      }
-      if (counter === 404) {
-        this.isNoApply = true;
-        return counter;
-      } else {
-        return counter.toFixed(2);
-      }
-    },
-    showAnswerData(question) {
-      for (const option of question.options) {
-        if (option.id === question.answer) {
-          return option.value.toFixed(2);
-        }
-      }
-      return (0.0).toFixed(2);
-    },
-    knowMaxValue(question) {
-      let counter = [];
-      for (const option of question.options) {
-        counter.push(option.value);
-      }
-      return Math.max(...counter);
-    },
-    KnowMaxCategory(e) {
-      let counter = 0.0;
-      for (const element of this.answeredQuestion) {
-        if (element.category === e) {
-          counter += this.knowMaxValue(element);
-        }
-      }
-      return counter.toFixed(2);
-    },
-    searchByCategory(category) {
-      let byCategory = [];
-      for (const question of this.answeredQuestion) {
-        if (question.category === category) {
-          byCategory.push(question);
-        }
-      }
-      return byCategory;
+      this.report_visible = !this.report_visible;
+      this.report_route = route;
     },
   },
 };
@@ -1099,11 +319,19 @@ a {
   cursor: pointer;
 }
 
-#logo-blue {
-  fill: var(--complementary-color-blue);
+.css-w-f-8c2 {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  font-size: var(--text-size-title);
+  justify-content: space-between;
+}
+.css-w-f-8c2:hover {
+  background: #f7f7f7;
+  border-radius: 8px;
 }
 
-.css-work-finished-wrap {
+.css-w-f-wrap {
   width: 100%;
   max-width: 100vw;
   height: 100vh;
@@ -1115,40 +343,32 @@ a {
   scroll-behavior: smooth;
 }
 
-.css-work-finished-cri {
+.css-w-f-cri {
   height: 100px;
 }
 
-.css-work-finished-srp {
+.css-w-f-srp {
   width: 100%;
   caret-color: transparent;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
-  box-shadow: 1px 1px 20px var(--border-primary);
-  background: linear-gradient(
-    22.58deg,
-    rgba(0, 80, 220, 1) 0%,
-    rgba(0, 105, 245, 1) 100%
-  );
 }
 
-.css-work-finished {
+.css-w-f-843 {
   height: 100%;
-  margin: 0 15%;
+
   z-index: 2;
 }
 
-.css-work-finished-sox {
+.css-w-f-sox {
   display: flex;
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  padding-top: 68px;
   z-index: 112;
   position: relative;
-  margin-top: 8rem;
   align-items: center;
   box-sizing: border-box;
   animation-name: deploy1;
@@ -1206,7 +426,7 @@ a {
   align-items: center;
 }
 
-.css-work-finished-xsc {
+.css-w-f-xsc {
   position: fixed;
   width: 100%;
   height: 200%;
@@ -1219,11 +439,13 @@ a {
   right: 0;
 }
 
-.css-work-finished-ttq {
-  padding: 3rem;
+.css-w-f-ttq {
+  padding: 2rem;
+  background: var(--blue);
+  box-sizing: border-box;
 }
 
-.css-work-finished-sox a {
+.css-w-f-sox a {
   width: 50px;
   z-index: 3;
   height: 50px;
@@ -1233,9 +455,10 @@ a {
   margin-top: 1rem;
   align-items: center;
   border-radius: 8px;
+  color: var(--text-a);
 }
 
-.css-work-finished-sox a:hover {
+.css-w-f-sox a:hover {
   background: var(--base-color-white-secondary);
 }
 
@@ -1248,42 +471,41 @@ a {
   }
 }
 
-.css-work-finished-qac {
-  height: 300px;
+.css-w-f-qac {
+  height: 100px;
 }
 
-.css-work-finished-tw {
+.css-w-f-tw {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-primary);
   border-top: none;
   background: var(--base-color-white-primary);
   box-sizing: border-box;
 }
 
-.css-work-finished-ttt {
-  margin: 3rem;
+.css-w-f-ttt {
+  margin: 2rem;
+  margin: 0 15%;
   color: var(--text-color-primary);
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
 }
 
-.css-work-finished-qai {
+.css-w-f-qai {
   margin-top: 1rem;
-  font-weight: bold;
   display: flex;
-  padding: 1rem;
+
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--border-primary);
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  flex-direction: column;
 }
 
-.css-work-finished-qah {
+.css-w-f-qah {
   display: flex;
   padding: 1rem;
   display: flex;
@@ -1291,99 +513,74 @@ a {
   border: 1px solid var(--border-primary);
   justify-content: space-between;
   margin-top: 1rem;
+  border-radius: 6px;
   text-align: left;
   box-sizing: border-box;
 }
 
-.css-work-finished-qah div {
+.css-w-f-qah div {
   white-space: nowrap;
-  margin-left: 5px;
 }
 
-.css-work-finished-qah span {
+.css-w-f-qah span {
   font-weight: bold;
 }
 
-.css-work-finished-qai button {
+.css-w-f-qai button {
   background: transparent;
   border: none;
 }
 
-.css-work-finished-qai:hover {
-  background: var(--base-color-white-secondary);
-  animation-name: xtrans;
-  animation-duration: 1s;
-}
-
-@keyframes xtrans {
-  0% {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-
-.css-work-finished-stw {
-  width: 300px;
+.css-w-f-stw {
   display: flex;
+  width: 500px;
+  min-width: 500px;
   flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.css-w-f-sha {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 
-.css-work-finished-stm {
-  color: var(--text-color-secondary);
-  text-transform: capitalize;
-  font-size: var(--text-size-secondary);
-}
-
-.css-work-finished-sts {
-  flex-direction: column;
-  display: flex;
-  width: 400px;
-  justify-content: space-between;
-}
-
-.css-work-finished-sha,
-.css-work-finished-shb {
+.css-w-f-sha,
+.css-w-f-shb {
   display: flex;
   position: relative;
   align-items: center;
 }
 
-.css-work-finished-shb {
+.css-w-f-shb {
   display: none;
 }
 
-.css-work-finished-shai {
-  padding: 1rem;
-  max-height: 58px;
+.css-w-f-shai {
+  width: 100%;
+  padding: 1rem 0.75rem;
   margin-right: 1rem;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  letter-spacing: 0.01em;
+  border-radius: 99px;
   display: flex;
-  font-weight: 600;
   cursor: pointer;
-  border: 1px solid var(--complementary-color-blue);
-  fill: var(--complementary-color-blue);
-  background: transparent;
-  color: var(--complementary-color-blue);
+  border: none;
+  background: #23272a;
+  color: #ffffff;
+  box-shadow: var(--shadow-a);
+  justify-content: center;
 }
 
-.css-work-finished-shai:hover,
-.css-work-finished-shai:active,
-.css-work-finished-shai:focus {
-  background: var(--complementary-color-blue);
+.css-w-f-shai:hover,
+.css-w-f-shai:active,
+.css-w-f-shai:focus {
+  background: #ffffff;
   color: #fff;
-  fill: #fff;
-  transition: ease-out 0.4s;
-  animation-duration: 0.3s;
+  transition: var(--transition-a);
+  background: rgba(61, 65, 68, 1);
 }
 
-.css-work-finished-qao {
+.css-w-f-qao {
   width: 100%;
   display: flex;
   animation-name: deploy;
@@ -1391,118 +588,111 @@ a {
   flex-direction: column;
 }
 
-.css-work-finished-her {
+.css-w-f-her {
   background: var(--base-color-white-primary);
   height: 64px;
   display: flex;
   align-items: center;
-  padding: 0 3rem !important;
+  padding: 0 3rem;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
-.css-work-finished-sti {
+.css-w-f-sti {
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--color-soft-blue);
   display: flex;
+  text-transform: capitalize;
 }
 
-.css-work-finished-arrow.active {
+.css-w-f-arrow.active {
   transform: rotate(180deg);
 }
 
-.css-work-finished-sti span {
+.css-w-f-sti span {
   margin-left: auto;
-  font-weight: bold;
 }
 
-.css-work-finished-stt {
-  font-size: var(--text-size-title);
+.css-w-f-stt {
+  font-size: var(--text-size-fifth);
   text-transform: capitalize;
-  font-weight: bold;
-  text-align: start;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.css-work-finished-sfw {
+.css-w-f-sfw {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
 }
 
-.css-work-finished-std {
+.css-w-f-std {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding-left: 1rem;
-  text-align: start;
+  margin-top: 1rem;
+  text-align: center;
 }
 
-.css-work-finished-stx {
+.css-w-f-std div {
+  margin-top: 1rem;
+}
+
+.css-w-f-stx {
   font-size: var(--text-size-fifth);
 }
 
-.css-work-finished-sta {
-  height: 100px;
-  width: 100px;
-  background: rgba(255, 255, 255, 0.1);
+.css-w-f-sta {
+  height: 80px;
+  width: 80px;
+  background: #ffffff;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  border: 2px solid var(--border-primary);
+  border: 3px solid #ffffff;
 }
 
-.css-work-finished-txa {
+.css-w-f-txa {
+  border: 3px solid #ffffff;
+  border-radius: 8px;
   width: 80px;
-  border: 1px solid transparent;
   height: 80px;
 }
 
-.css-work-finished-sr {
-  width: 300px;
-  max-width: 300px;
-  min-width: 300px;
-  justify-content: center;
-  max-height: 300px;
-  font-size: var(--text-size-fifth);
-  text-transform: uppercase;
-  display: flex;
-  font-weight: bold;
-  border-radius: 8px;
-  border: 1px dashed rgba(0, 0, 0, 0.2);
-}
-
-.css-work-finished-ttw {
-  border: 1px solid var(--border-primary);
+.css-w-f-ttw {
   color: var(--text-color-primary);
-  border-radius: 4px;
+  border-radius: 8px;
   width: 100%;
-  height: 350px;
   box-sizing: border-box;
-  padding: 2rem 2rem;
+
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
-  .css-work-finished-tw {
+  .css-w-f-tw {
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-primary);
+
     border-top: none;
     background: var(--base-color-white-primary);
   }
 
-  .css-work-finished-wrap.active {
+  .css-w-f-wrap.active {
     overflow: hidden;
   }
-  .css-work-finished-shb {
+  .css-w-f-shb {
     display: flex;
     flex-direction: column;
   }
 
-  .css-work-finished-xsc {
+  .css-w-f-xsc {
     background: var(--base-color-white-primary);
     display: flex;
     position: fixed;
@@ -1513,88 +703,76 @@ a {
     width: 100%;
     height: 100%;
   }
-  .css-work-finished-xsc div {
+  .css-w-f-xsc div {
     top: 30%;
     font-size: var(--text-size-title);
     position: absolute;
   }
-  .css-work-finished-sha {
+  .css-w-f-sha {
     display: none;
   }
-  .css-work-finished-qah {
+  .css-w-f-qah {
     font-size: var(--text-size-secondary);
   }
 
-  .css-work-finished-shai {
+  .css-w-f-shai {
     width: 100%;
     margin-top: 1rem;
     display: initial;
     margin-right: 0;
   }
 
-  .css-work-finished-sr {
-    border: none;
+  .css-w-f-her {
+    box-shadow: none;
+    padding: 0 8%;
   }
-  .css-work-finished-ttq {
+
+  .css-w-f-ttq {
     padding: 0;
   }
-
-  .css-work-finished-her {
-    background: var(--complementary-color-blue);
-    box-shadow: none;
-    padding: 0 10%;
+  .css-w-f-ttw {
+    flex-direction: column;
+    padding: 10%;
+    margin: 0;
+    border-radius: 0;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    background: var(--blue);
   }
 
-  .css-work-finished-ttt {
-    margin: 0 10%;
-  }
-  .css-work-finished-sts {
-    width: 100%;
-  }
-  #logo-blue {
-    fill: #fff;
+  .css-w-f-ttt {
+    margin: 0 8%;
   }
 
-  .css-work-finished {
+  .css-w-f-843 {
     margin: 0;
   }
 
-  .css-work-finished-ttw {
+  .css-w-f-ttw {
     height: 100%;
   }
 
-  .css-work-finished-sfw {
+  .css-w-f-sfw {
     margin-top: 1rem;
   }
 
-  .css-work-finished-sr {
-    margin: 0;
-    width: 100%;
-    max-width: initial;
-    min-width: initial;
-    margin-top: 1rem;
-  }
-  .css-work-finished-stw {
+  .css-w-f-stw {
     margin: initial;
+    width: initial;
+    min-width: 0;
   }
 
-  .css-work-finished-tw {
+  .css-w-f-tw {
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
   }
 
-  .css-work-finished-srp {
-    background: var(--complementary-color-blue);
+  .css-w-f-srp,
+  .css-w-f-ttq {
+    background: transparent;
   }
 
-  .css-work-finished-ttw {
-    flex-direction: column;
-    padding: 10%;
-    margin: 0;
-    border: 1px solid transparent;
-  }
-
-  .css-work-finished-sti {
+  .css-w-f-sti {
     margin-top: 1rem;
     margin-left: initial;
     margin-right: initial;

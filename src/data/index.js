@@ -1421,8 +1421,8 @@ const questionList = [
         "E. Write your question, the teams response, and your assessment in the box below",
       ],
       options: [
-        { id: 1, name: "Yes", value: 0.0 },
-        { id: 2, name: "No", value: 0.5 },
+        { id: 1, name: "Yes", value: 0.5 },
+        { id: 2, name: "No", value: 0.0 },
       ],
       answer: null,
       textarea: "",
