@@ -263,7 +263,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
 }
 
 .css-abs-bar {
