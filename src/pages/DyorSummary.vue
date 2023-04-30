@@ -1,5 +1,5 @@
 <template>
-  <div class="css-w-f-wrap">
+  <div class="css-w-f-wrap" v-if="general_data">
     <template v-if="!report_visible">
       <div class="css-w-f-wrap" :class="{ active: isMobiSharing }">
         <header class="css-w-f-her">
@@ -280,9 +280,10 @@ export default {
             DOMPurify.sanitize(bestialEncoder.decodeByValue(response.data.data))
           );
 
-          const response_ = JSON.parse(
-            DOMPurify.sanitize(JSON.stringify(response.data))
-          );
+
+          const response_ = response.data;
+
+         
 
           const date = new Date(response_.date);
 
